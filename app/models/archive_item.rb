@@ -1,0 +1,2 @@
+class ArchiveItem < ApplicationRecord
+end
