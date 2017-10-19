@@ -1,4 +1,18 @@
 <p id="notice"><%= notice %></p>
 
+<p>name: <%= @archive_item.name %></p>
+
+<p>description: <%= @archive_item.description %></p>
+
+<p>published: <%= @archive_item.published %></p>
+
+<p>hash_id: <%= @archive_item.hash_id %></p>
+
+<p>date: <%= @archive_item.date %></p>
+
+<p>tags: <%= @archive_item.tags %></p>
+
+<p>note: <%= @archive_item.note %></p>
+
 <%= link_to 'Edit', edit_archive_item_path(@archive_item) %> |
 <%= link_to 'Back', archive_items_path %>

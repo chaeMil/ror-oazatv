@@ -1,17 +1,47 @@
 <%= form_with(model: archive_item, local: true) do |form| %>
-  <% if archive_item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(archive_item.errors.count, "error") %> prohibited this archive_item from being saved:</h2>
+    <% if archive_item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(archive_item.errors.count, "error") %> prohibited this archive_item from being saved:</h2>
 
-      <ul>
-      <% archive_item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% archive_item.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= form.label :name %> <br>
+      <%= form.text_field :name %>
+    </p>
+
+    <p>
+      <%= form.label :description %> <br>
+      <%= form.text_area :description %>
+    </p>
+
+    <p>
+      <%= form.label :published %> <br>
+      <%= form.check_box :published %>
+    </p>
+
+    <p>
+      <%= form.label :date %> <br>
+      <%= form.text_field :date %>
+    </p>
+
+    <p>
+      <%= form.label :tags %>
+      <%= form.text_area :tags %>
+    </p>
+
+    <p>
+      <%= form.label :note %>
+      <%= form.text_area :note %>
+    </p>
+
+    <div class="actions">
+      <%= form.submit %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

@@ -69,6 +69,6 @@ class ArchiveItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def archive_item_params
-      params.fetch(:archive_item, {})
+      params.require(:archive_item).permit(:name, :description, :published, :hash_id, :date, :tags, :note)
     end
 end
