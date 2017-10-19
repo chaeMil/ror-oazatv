@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: archive_items
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  description :text
+#  published   :boolean
+#  hash_id     :string
+#  date        :date
+#  tags        :text
+#  note        :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  published: false
+  hash: MyString
+  date: 2017-10-19
+  tags: MyText
+  note: MyText
+
+two:
+  name: MyString
+  description: MyText
+  published: false
+  hash: MyString
+  date: 2017-10-19
+  tags: MyText
+  note: MyText
