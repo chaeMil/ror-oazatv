@@ -6,7 +6,7 @@
 #  name        :string
 #  description :text
 #  published   :boolean
-#  hash        :string
+#  hash_id     :string
 #  date        :date
 #  tags        :text
 #  note        :text
