@@ -14,6 +14,6 @@
 
 <p>note: <%= @archive_item.note %></p>
 
-<%= link_to 'Add File', create_archive_file_path(@archive_item) %>
+<%= link_to 'Add File', new_archive_item_archive_file_path(@archive_item) %>
 <%= link_to 'Edit', edit_archive_item_path(@archive_item) %> |
 <%= link_to 'Back', archive_items_path %>

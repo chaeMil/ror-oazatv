@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   get 'home/index'
   root 'home#index'
 
-  resources :archive_items
-  resources :archive_files
+  resources :archive_items do
+    resources :archive_files
+  end
 
-  get 'archive_items/:id/files', to: 'archive_items#create_archive_file', as: 'create_archive_file'
 end
