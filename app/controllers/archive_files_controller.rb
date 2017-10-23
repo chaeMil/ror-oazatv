@@ -10,6 +10,18 @@ class ArchiveFilesController < ApplicationController
     @archive_file = ArchiveFile.new(archive_item_id: @archive_item.id)
   end
 
+  def create
+    original_filename = params[:archive_file][:file].original_filename
+    filename = "#{SecureRandom.hex(8)}#{File.extname(original_filename)}"
+
+    # @archive_file = ArchiveFile.new(archive_file_params)
+    # if @archive_file.save
+    #   redirect_to @archive_item, notice: 'Archive item was successfully created.'
+    # else
+    #   render :new
+    # end
+  end
+
   def update
     if @archive_file.update(archive_file_params)
       redirect_to @archive_file, notice: 'Archive file was successfully updated.'
@@ -30,6 +42,6 @@ class ArchiveFilesController < ApplicationController
   end
 
   def archive_file_params
-    params.require(:archive_file).permit(:filename, :type)
+    params.require(:archive_file).permit(:filename, :type, :file)
   end
 end
