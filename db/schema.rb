@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023194012) do
+ActiveRecord::Schema.define(version: 20171023201245) do
 
   create_table "archive_files", force: :cascade do |t|
     t.string "filename"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20171023194012) do
   end
 
   create_table "archive_items", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.text "description"
     t.boolean "published"
     t.string "hash_id"
