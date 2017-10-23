@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023191337) do
+ActiveRecord::Schema.define(version: 20171023194012) do
 
   create_table "archive_files", force: :cascade do |t|
     t.string "filename"
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "archive_item_id"
+    t.index ["archive_item_id"], name: "index_archive_files_on_archive_item_id"
   end
 
   create_table "archive_items", force: :cascade do |t|
