@@ -10,4 +10,5 @@
 #
 
 class ArchiveFile < ApplicationRecord
+  belongs_to :archive_item
 end

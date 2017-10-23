@@ -15,4 +15,5 @@
 #
 
 class ArchiveItem < ApplicationRecord
+  has_many :archive_files
 end
