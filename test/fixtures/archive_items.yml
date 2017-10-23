@@ -3,7 +3,7 @@
 # Table name: archive_items
 #
 #  id          :integer          not null, primary key
-#  name        :string
+#  title       :string
 #  description :text
 #  published   :boolean
 #  hash_id     :string

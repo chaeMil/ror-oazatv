@@ -1,11 +1,12 @@
 class ArchiveItemsController < ApplicationController
-  before_action :set_archive_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_archive_item, only: [:show, :edit, :update, :destroy, :create_archive_file]
 
   def index
     @archive_items = ArchiveItem.all
   end
 
   def show
+    @archive_files = ArchiveFile.find_by(archive_item_id: @archive_item.id)
   end
 
   def new
@@ -30,6 +31,14 @@ class ArchiveItemsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def create_archive_file
+    @archive_item = ArchiveItem.find(params[:id])
+    @archive_file = ArchiveFile.new(archive_item_id: @archive_item.id)
+    # if @archive_file.save
+    #   redirect_to @archive_file
+    # end
   end
 
   def destroy
