@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>
-        Name
+        Title
       </th>
       <th>
         Description
@@ -27,7 +27,7 @@
   <tbody>
     <% @archive_items.each do |archive_item| %>
       <tr>
-        <td><%= archive_item.name %></td>
+        <td><%= archive_item.title %></td>
         <td><%= archive_item.description %></td>
         <td><%= archive_item.published %></td>
         <td><%= archive_item.hash_id %></td>

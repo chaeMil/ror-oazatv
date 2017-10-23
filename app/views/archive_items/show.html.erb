@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>name: <%= @archive_item.name %></p>
+<p>name: <%= @archive_item.title %></p>
 
 <p>description: <%= @archive_item.description %></p>
 
@@ -14,5 +14,6 @@
 
 <p>note: <%= @archive_item.note %></p>
 
+<%= link_to 'Add File', create_archive_file_path(@archive_item) %>
 <%= link_to 'Edit', edit_archive_item_path(@archive_item) %> |
 <%= link_to 'Back', archive_items_path %>
