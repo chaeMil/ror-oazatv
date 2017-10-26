@@ -1,4 +1,4 @@
-<%= form_for @archive_file, url: archive_item_archive_files_path(@archive_item) do |form| %>
+<%= simple_form_for @archive_file, url: archive_item_archive_files_path(@archive_item) do |form| %>
     <% if @archive_file.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@archive_file.errors.count, "error") %> prohibited this archive_item from being saved:</h2>
@@ -11,7 +11,13 @@
         </div>
     <% end %>
 
-    <%= form.file_field :file %>
+    <p>
+      <%= form.input :type, required: true %>
+    </p>
+
+    <p>
+      <%= form.input :file, as: :file, required: true %>
+    </p>
 
     <div class="actions">
       <%= form.submit %>
