@@ -71,6 +71,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.2)
+    enumerize (1.1.1)
+      activesupport (>= 3.2)
     erd (0.4.0)
       nokogiri
       rails-erd (>= 0.4.5)
@@ -213,6 +215,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  enumerize
   erd (~> 0.4.0)
   font-awesome-rails (~> 4.7, >= 4.7.0.2)
   jbuilder (~> 2.5)
