@@ -17,7 +17,21 @@
 class ArchiveFile < ApplicationRecord
   extend Enumerize
 
-  enumerize :file_type, in: {undefined: 0, video: 1, audio: 2, image: 3, subtitles: 4}
+  TYPES = {
+    undefined: 0,
+    video: 1,
+    audio: 2,
+    image: 3,
+    subtitles: 4
+  }.freeze
+
+  enumerize :file_type, in: {
+    undefined: TYPES[:undefined],
+    video: TYPES[:video],
+    audio: TYPES[:audio],
+    image: TYPES[:image],
+    subtitles: TYPES[:subtitles]
+  }
 
   belongs_to :archive_item
 end
