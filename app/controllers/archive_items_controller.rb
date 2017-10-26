@@ -6,7 +6,8 @@ class ArchiveItemsController < ApplicationController
   end
 
   def show
-    @archive_files = ArchiveFile.find_by(archive_item_id: @archive_item.id)
+    @archive_files = ArchiveFile.where(archive_item_id: @archive_item.id)
+    p @archive_files
   end
 
   def new

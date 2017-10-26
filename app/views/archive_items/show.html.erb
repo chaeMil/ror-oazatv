@@ -14,6 +14,16 @@
 
 <p>note: <%= @archive_item.note %></p>
 
+<% if @archive_files.present? %>
+    <ul>
+      <% @archive_files.each do |archive_file| %>
+        <li>
+          <%= archive_file.id %> - <%= archive_file.file_type %>
+        </li>
+      <% end %>
+    </ul>
+<% end %>
+
 <%= link_to 'Add File', new_archive_item_archive_file_path(@archive_item) %>
 <%= link_to 'Edit', edit_archive_item_path(@archive_item) %> |
 <%= link_to 'Back', archive_items_path %>

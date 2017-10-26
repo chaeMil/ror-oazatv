@@ -11,20 +11,25 @@ class ArchiveFilesController < ApplicationController
   end
 
   def create
-    original_filename = params[:archive_file][:file].original_filename
-    filename = "#{SecureRandom.hex(8)}#{File.extname(original_filename)}"
+    #original_filename = params[:archive_file][:file].original_filename
+    #filename = "#{SecureRandom.hex(8)}#{File.extname(original_filename)}"
 
-    # @archive_file = ArchiveFile.new(archive_file_params)
-    # if @archive_file.save
-    #   redirect_to @archive_item, notice: 'Archive item was successfully created.'
-    # else
-    #   render :new
-    # end
+    @archive_item = ArchiveItem.find(params[:archive_item_id]);
+    @archive_file = ArchiveFile.new(archive_file_params)
+    @archive_file.archive_item_id = @archive_item.id
+
+    if @archive_file.save
+      redirect_to archive_item_path(@archive_file.archive_item_id),
+                  notice: 'Archive item was successfully created.'
+    else
+      render :new
+    end
   end
 
   def update
     if @archive_file.update(archive_file_params)
-      redirect_to @archive_file, notice: 'Archive file was successfully updated.'
+      redirect_to archive_item_path(@archive_file.archive_item_id),
+                  notice: 'Archive file was successfully updated.'
     else
       render :edit
     end
@@ -42,6 +47,6 @@ class ArchiveFilesController < ApplicationController
   end
 
   def archive_file_params
-    params.require(:archive_file).permit(:filename, :type, :file)
+    params.require(:archive_file).permit(:filename, :file_type, :file, :archive_item_id)
   end
 end
