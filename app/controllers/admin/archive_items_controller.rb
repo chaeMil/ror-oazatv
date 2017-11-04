@@ -1,4 +1,4 @@
-class ArchiveItemsController < ApplicationController
+class Admin::ArchiveItemsController < ApplicationController
   before_action :set_archive_item, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -20,7 +20,7 @@ class ArchiveItemsController < ApplicationController
   def create
     @archive_item = ArchiveItem.new(archive_item_params)
     if @archive_item.save
-      redirect_to @archive_item, notice: 'Archive item was successfully created.'
+      redirect_to admin_archive_item_path(@archive_item), notice: 'Archive item was successfully created.'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class ArchiveItemsController < ApplicationController
 
   def update
     if @archive_item.update(archive_item_params)
-      redirect_to @archive_item, notice: 'Archive item was successfully updated.'
+      redirect_to admin_archive_item_path(@archive_item), notice: 'Archive item was successfully updated.'
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class ArchiveItemsController < ApplicationController
 
   def destroy
     @archive_item.destroy
-    redirect_to archive_items_url, notice: 'Archive item was successfully destroyed.'
+    redirect_to admin_archive_items_url, notice: 'Archive item was successfully destroyed.'
   end
 
   private

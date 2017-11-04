@@ -1,4 +1,4 @@
-class ArchiveFilesController < ApplicationController
+class Admin::ArchiveFilesController < ApplicationController
   before_action :set_archive_file, only: [:show, :edit, :update, :destroy]
 
   def show
@@ -16,7 +16,7 @@ class ArchiveFilesController < ApplicationController
     archive_file.archive_item = archive_item
 
     if archive_file.save!
-      redirect_to archive_item_path(archive_file.archive_item_id),
+      redirect_to admin_archive_item_path(archive_file.archive_item_id),
                   notice: 'Archive item was successfully created.'
     else
       render :new
@@ -25,7 +25,7 @@ class ArchiveFilesController < ApplicationController
 
   def update
     if @archive_file.update(archive_file_params)
-      redirect_to archive_item_path(@archive_file.archive_item_id),
+      redirect_to admin_archive_item_path(@archive_file.archive_item_id),
                   notice: 'Archive file was successfully updated.'
     else
       render :edit
