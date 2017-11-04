@@ -14,7 +14,7 @@ class ArchiveFilesController < ApplicationController
     archive_item = ArchiveItem.find(params[:archive_item_id])
     archive_file = ArchiveFile.new(archive_file_params)
     archive_file.archive_item = archive_item
-    archive_file.file = params[:file]
+
     if archive_file.save!
       redirect_to archive_item_path(archive_file.archive_item_id),
                   notice: 'Archive item was successfully created.'

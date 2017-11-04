@@ -1,4 +1,4 @@
-class ArchiveFileImageUploader < CarrierWave::Uploader::Base
+class ArchiveFileUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -11,7 +11,7 @@ class ArchiveFileImageUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "#{ARCHIVE[:videos_dir]}/#{model.archive_item_id}/"
+    "public/uploads/videos/#{model.archive_item_id}/"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

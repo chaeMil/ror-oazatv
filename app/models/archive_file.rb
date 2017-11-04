@@ -16,7 +16,7 @@
 
 class ArchiveFile < ApplicationRecord
   extend Enumerize
-  mount_uploader :filename, ArchiveFileImageUploader
+  mount_uploader :filename, ArchiveFileUploader
 
   TYPES = {
     undefined: 0,
