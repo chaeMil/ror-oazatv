@@ -3,7 +3,7 @@
 # Table name: archive_files
 #
 #  id              :integer          not null, primary key
-#  filename        :string
+#  file            :string
 #  file_type       :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -16,6 +16,7 @@
 
 class ArchiveFile < ApplicationRecord
   extend Enumerize
+  mount_uploader :filename, ArchiveFileImageUploader
 
   TYPES = {
     undefined: 0,

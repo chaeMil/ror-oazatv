@@ -11,14 +11,12 @@ class ArchiveFilesController < ApplicationController
   end
 
   def create
-    @archive_item = ArchiveItem.find(params[:archive_item_id])
-    @archive_file = ArchiveFile.new(archive_file_params)
-    @archive_file.archive_item = @archive_item
-
-    ArchiveFileService.upload_file(params)
-
-    if @archive_file.save
-      redirect_to archive_item_path(@archive_file.archive_item_id),
+    archive_item = ArchiveItem.find(params[:archive_item_id])
+    archive_file = ArchiveFile.new(archive_file_params)
+    archive_file.archive_item = archive_item
+    archive_file.file = params[:file]
+    if archive_file.save!
+      redirect_to archive_item_path(archive_file.archive_item_id),
                   notice: 'Archive item was successfully created.'
     else
       render :new
@@ -46,6 +44,6 @@ class ArchiveFilesController < ApplicationController
   end
 
   def archive_file_params
-    params.require(:archive_file).permit(:filename, :file_type, :file, :archive_item_id)
+    params.require(:archive_file).permit(:filename, :file, :file_type, :archive_item_id)
   end
 end

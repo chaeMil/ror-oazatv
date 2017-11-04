@@ -11,7 +11,7 @@ class ArchiveFileImageUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    ''
+    "#{ARCHIVE[:videos_dir]}/#{model.archive_item_id}/"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -42,8 +42,11 @@ class ArchiveFileImageUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+    if original_filename
+      @name ||= "#{SecureRandom.hex(8)}"
+      "#{@name}.#{file.extension}"
+    end
+  end
 
 end
