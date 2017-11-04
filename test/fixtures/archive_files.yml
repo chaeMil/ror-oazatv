@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: archive_files
+#
+#  id              :integer          not null, primary key
+#  file            :string
+#  file_type       :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  archive_item_id :integer
+#
+# Indexes
+#
+#  index_archive_files_on_archive_item_id  (archive_item_id)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  filename: MyString
+  type: 
+
+two:
+  filename: MyString
+  type: 
