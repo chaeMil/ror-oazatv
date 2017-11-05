@@ -1,5 +1,4 @@
-class Admin::ArchiveItemsController < ApplicationController
-  before_action :authenticate_user!
+class Admin::ArchiveItemsController < Admin::AdminController
   before_action :set_archive_item, only: [:show, :edit, :update, :destroy]
 
   def index

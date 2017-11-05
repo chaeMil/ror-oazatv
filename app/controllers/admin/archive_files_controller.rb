@@ -1,5 +1,4 @@
-class Admin::ArchiveFilesController < ApplicationController
-  before_action :authenticate_user!
+class Admin::ArchiveFilesController < Admin::AdminController
   before_action :set_archive_file, only: [:show, :edit, :update, :destroy]
 
   def show
