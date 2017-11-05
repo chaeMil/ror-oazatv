@@ -7,7 +7,6 @@ class Admin::ArchiveItemsController < Admin::AdminController
 
   def show
     @archive_files = ArchiveFile.where(archive_item_id: @archive_item.id)
-    p @archive_files
   end
 
   def new

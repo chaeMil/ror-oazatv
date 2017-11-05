@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'home/index'
   root 'home#index'
 
@@ -10,6 +11,8 @@ Rails.application.routes.draw do
     resources :archive_items do
       resources :archive_files, only: [:create, :new, :show, :destroy]
     end
+
+    resources :categories
   end
 
 end
