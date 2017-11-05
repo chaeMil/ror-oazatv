@@ -5,10 +5,6 @@ class Admin::CategoriesController < Admin::AdminController
     @categories = Category.all
   end
 
-  def show
-    @cateogry = Category.where(id: params[:id])
-  end
-
   def new
     @category = Category.new
   end
@@ -37,7 +33,7 @@ class Admin::CategoriesController < Admin::AdminController
 
   private
   def set_category
-    @archive_item = ArchiveItem.find(params[:id])
+    @category = Category.find(params[:id])
   end
 
   def category_params

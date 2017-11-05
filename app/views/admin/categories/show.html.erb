@@ -1,2 +1,8 @@
-<h1>Admin::Categories#show</h1>
-<p>Find me in app/views/admin/categories/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>name: <%= @category.title %></p>
+
+<p>color: <%= @category.color %></p>
+
+<%= link_to 'Edit', edit_admin_category_path(@category) %> |
+<%= link_to 'Back', admin_categories_path %>

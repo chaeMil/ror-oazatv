@@ -1,0 +1,27 @@
+<%= simple_form_for @category do |form| %>
+    <% if @category.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@category.errors.count, "error") %> prohibited this archive_item from being saved:</h2>
+
+          <ul>
+            <% @archive_item.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= form.label :title %> <br>
+      <%= form.text_field :title %>
+    </p>
+
+    <p>
+      <%= form.label :color %> <br>
+      <%= form.text_field :color %>
+    </p>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+<% end %>

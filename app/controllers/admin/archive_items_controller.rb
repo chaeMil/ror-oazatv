@@ -44,6 +44,6 @@ class Admin::ArchiveItemsController < Admin::AdminController
   end
 
   def archive_item_params
-    params.require(:archive_item).permit(:name, :description, :published, :hash_id, :date, :tags, :note)
+    params.require(:archive_item).permit(:title, :description, :published, :hash_id, :date, :tags, :note)
   end
 end
