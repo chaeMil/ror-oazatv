@@ -1,4 +1,4 @@
-<%= simple_form_for @archive_item, url: admin_archive_items_path(@archive_item) do |form| %>
+<%= simple_form_for @archive_item, url: admin_archive_item_path(@archive_item) do |form| %>
     <% if @archive_item.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@archive_item.errors.count, "error") %> prohibited this archive_item from being saved:</h2>
