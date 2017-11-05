@@ -16,4 +16,5 @@
 
 class ArchiveItem < ApplicationRecord
   has_many :archive_files
+  has_and_belongs_to_many :categories
 end

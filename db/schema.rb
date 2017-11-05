@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105133151) do
+ActiveRecord::Schema.define(version: 20171105133924) do
 
   create_table "archive_files", force: :cascade do |t|
     t.string "file"
@@ -31,6 +31,11 @@ ActiveRecord::Schema.define(version: 20171105133151) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "archive_items_categories", id: false, force: :cascade do |t|
+    t.integer "archive_item_id", null: false
+    t.integer "category_id", null: false
   end
 
   create_table "categories", force: :cascade do |t|

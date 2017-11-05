@@ -15,6 +15,8 @@
 #
 
 class ArchiveFile < ApplicationRecord
+  belongs_to :archive_item
+
   extend Enumerize
   mount_uploader :filename, ArchiveFileUploader
 
@@ -33,6 +35,4 @@ class ArchiveFile < ApplicationRecord
     image: TYPES[:image],
     subtitles: TYPES[:subtitles]
   }
-
-  belongs_to :archive_item
 end
