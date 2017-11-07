@@ -12,7 +12,7 @@ class Admin::CategoriesController < Admin::AdminController
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to admin_category_path(@category), notice:  'Category was successfully created.'
+      redirect_to admin_category_path(@category), notice: 'Category was successfully created.'
     else
       render :new
     end
@@ -37,6 +37,6 @@ class Admin::CategoriesController < Admin::AdminController
   end
 
   def category_params
-    params.require(:category).permit(:id, :title, :color)
+    params.require(:category).permit(:title, :color)
   end
 end

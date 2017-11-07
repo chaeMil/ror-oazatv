@@ -1,10 +1,6 @@
 class Admin::ArchiveFilesController < Admin::AdminController
   before_action :set_archive_file, only: [:show, :edit, :update, :destroy]
 
-  def show
-
-  end
-
   def new
     @archive_item = ArchiveItem.find(params[:archive_item_id])
     @archive_file = ArchiveFile.new(archive_item_id: @archive_item.id)

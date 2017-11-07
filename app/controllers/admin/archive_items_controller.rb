@@ -9,13 +9,6 @@ class Admin::ArchiveItemsController < Admin::AdminController
     @archive_files = ArchiveFile.where(archive_item_id: @archive_item.id)
   end
 
-  def new
-    @archive_item = ArchiveItem.new
-  end
-
-  def edit
-  end
-
   def create
     @archive_item = ArchiveItem.new(archive_item_params)
     if @archive_item.save
