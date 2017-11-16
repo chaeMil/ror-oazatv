@@ -11,6 +11,10 @@
 #  image       :string
 #
 
-class Preacher < ApplicationRecord
-  mount_uploader :image, PreacherUploader
+require 'test_helper'
+
+class PreacherTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

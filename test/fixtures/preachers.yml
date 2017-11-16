@@ -11,6 +11,14 @@
 #  image       :string
 #
 
-class Preacher < ApplicationRecord
-  mount_uploader :image, PreacherUploader
-end
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyText
+  tags: MyText
+  description: MyText
+
+two:
+  title: MyText
+  tags: MyText
+  description: MyText

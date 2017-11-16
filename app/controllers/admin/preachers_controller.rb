@@ -38,7 +38,7 @@ module Admin
     end
 
     def preacher_params
-      params.require(:preacher).permit(:title, :tags, :description)
+      params.require(:preacher).permit(:title, :tags, :description, :image)
     end
   end
 end
