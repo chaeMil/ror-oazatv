@@ -1,5 +1,10 @@
 <ul>
   <li>
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+  </li>
+</ul>
+<ul>
+  <li>
     <%= link_to 'Dashboard', admin_path %>
   </li>
   <li>
