@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<p>name: <%= @language.title %></p>
+
+<p>locale: <%= @language.locale %></p>
+
+<%= link_to 'Edit', edit_admin_language_path(@language) %> |
+<%= link_to 'Back', admin_languages_path %>

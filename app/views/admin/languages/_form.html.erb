@@ -1,0 +1,29 @@
+<%= simple_form_for @language,
+                    url: (@language.new_record? ? admin_languages_path : admin_language_path(@language)),
+                    method: (@language.new_record? ? :post : :put) do |form| %>
+    <% if @language.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@language.errors.count, "error") %> prohibited this archive_item from being saved:</h2>
+
+          <ul>
+            <% @language.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= form.label :title %> <br>
+      <%= form.text_field :title %>
+    </p>
+
+    <p>
+      <%= form.label :locale %> <br>
+      <%= form.text_field :locale %>
+    </p>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+<% end %>
