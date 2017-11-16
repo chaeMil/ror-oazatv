@@ -1,0 +1,44 @@
+module Admin
+  class PreachersController < AdminController
+    before_action :set_preacher, only: [:show, :edit, :update, :destroy]
+
+    def index
+      @preachers = Preacher.all
+    end
+
+    def new
+      @preacher = Prechaer.new
+    end
+
+    def create
+      @preacher = Preacher.new(preacher_params)
+      if @preacher.save
+        redirect_to admin_preacher_path(@preacher), notice: 'Preacher was successfully created.'
+      else
+        render :new
+      end
+    end
+
+    def update
+      if @preacher.update(preacher_params)
+        redirect_to admin_preacher_path(@preacher), notice: 'Preacher was successfully updated.'
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @preacher.destroy
+      redirect_to admin_preachers_path, notice: 'Preacher was successfully destroyed.'
+    end
+  end
+
+  private
+  def set_preacher
+    @preacher = Preacher.find(params[:id])
+  end
+
+  def preacher_params
+    params.require(:preacher).permit(:title, :tags, :description)
+  end
+end
