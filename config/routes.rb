@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :languages
     resources :categories
     resources :preachers
+    resources :songs
   end
 
 end
