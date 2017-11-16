@@ -14,7 +14,10 @@
 
 <div>
   <% @photo_album.photos.each do |photo| %>
-      <%= image_tag photo.image.thumb.url %>
+      <span class="thumbnail pull-left">
+        <%= image_tag photo.image.thumb.url %>
+        <p><%= photo.description %></p>
+      </span>
   <% end %>
 </div>
 
