@@ -86,9 +86,6 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
-    entity_storage (2.1.6)
-      activerecord (>= 3.0.3)
-      rails (>= 3.0.3)
     enumerize (2.1.2)
       activesupport (>= 3.2)
     erd (0.4.0)
@@ -244,7 +241,6 @@ DEPENDENCIES
   carrierwave (~> 1.0)
   coffee-rails (~> 4.2)
   devise
-  entity_storage
   enumerize
   erd (~> 0.4.0)
   font-awesome-rails (~> 4.7, >= 4.7.0.2)
