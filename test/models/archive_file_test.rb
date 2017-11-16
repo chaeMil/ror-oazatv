@@ -8,6 +8,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  archive_item_id :integer
+#  language_id     :integer
 #
 # Indexes
 #
