@@ -17,6 +17,6 @@
 
 class Photo < ApplicationRecord
   belongs_to :photo_album
-  validates :album, presence: true
+  validates :photo_album, presence: true
   mount_uploader :image, PhotoUploader
 end

@@ -1,4 +1,4 @@
-<%= simple_form_for @photo_album,
+<%= simple_form_for @photo_album, html: { multipart: true },
                     url: (@photo_album.new_record? ? admin_photo_albums_path : admin_photo_album_path(@photo_album)),
                     method: (@photo_album.new_record? ? :post : :put) do |form| %>
     <% if @photo_album.errors.any? %>
@@ -41,6 +41,11 @@
     <p>
       <%= form.label :published %> <br>
       <%= form.check_box :published %>
+    </p>
+
+    <p>
+      <%= form.label :photos %>
+      <%= file_field_tag "photos[]", type: :file, multiple: true %>
     </p>
 
     <div class="actions">

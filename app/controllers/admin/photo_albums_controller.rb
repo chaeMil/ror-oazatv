@@ -13,6 +13,11 @@ module Admin
     def create
       @photo_album = PhotoAlbum.new(photo_album_params)
       if @photo_album.save!
+        if params[:photos]
+          params[:photos].each do |image|
+            @photo_album.photos.create(image: image)
+          end
+        end
         redirect_to admin_photo_album_path(@photo_album), notice: 'Photo Album was successfully created'
       else
         render :new
@@ -21,6 +26,11 @@ module Admin
 
     def update
       if @photo_album.update(photo_album_params)
+        if params[:photos]
+          params[:photos].each do |image|
+            @photo_album.photos.create(image: image)
+          end
+        end
         redirect_to admin_photo_album_path(@photo_album), notice: 'Photo Album was successfully updated.'
       else
         render :edit
@@ -38,7 +48,7 @@ module Admin
     end
 
     def photo_album_params
-      params.require(:photo_album).permit(:title, :date, :days, :description, :published, :tags)
+      params.require(:photo_album).permit(:title, :date, :days, :description, :published, :tags, :photos)
     end
   end
 end

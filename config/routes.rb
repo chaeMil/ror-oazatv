@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     resources :categories
     resources :preachers
     resources :songs
-    resources :photo_albums
+    resources :photo_albums do
+      resources :photos
+    end
   end
 
 end
