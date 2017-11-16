@@ -19,6 +19,14 @@ module Admin
       end
     end
 
+    def update
+      if @language.update(language_params)
+        redirect_to admin_language_path(@language), notice: 'Language was successfully updated.'
+      else
+        render :edit
+      end
+    end
+
     def destroy
       @language.destroy
       redirect_to admin_languages_path, notice: 'Language was successfully destroyed.'
