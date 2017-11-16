@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :photo_albums
   get 'home/index'
   root 'home#index'
 
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :preachers
     resources :songs
+    resources :photo_albums
   end
 
 end

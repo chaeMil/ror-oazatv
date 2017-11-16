@@ -1,0 +1,49 @@
+<%= simple_form_for @photo_album,
+                    url: (@photo_album.new_record? ? admin_photo_albums_path : admin_photo_album_path(@photo_album)),
+                    method: (@photo_album.new_record? ? :post : :put) do |form| %>
+    <% if @photo_album.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@photo_album.errors.count, "error") %> prohibited this archive_item from being saved:</h2>
+
+          <ul>
+            <% @photo_album.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= form.label :title %> <br>
+      <%= form.text_field :title %>
+    </p>
+
+    <p>
+      <%= form.label :date %> <br>
+      <%= form.text_field :date %>
+    </p>
+
+    <p>
+      <%= form.label :days %> <br>
+      <%= form.text_field :days %>
+    </p>
+
+    <p>
+      <%= form.label :description %> <br>
+      <%= form.text_area :description %>
+    </p>
+
+    <p>
+      <%= form.label :tags %> <br>
+      <%= form.text_field :tags %>
+    </p>
+
+    <p>
+      <%= form.label :published %> <br>
+      <%= form.check_box :published %>
+    </p>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+<% end %>
