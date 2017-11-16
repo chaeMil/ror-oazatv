@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116102843) do
+ActiveRecord::Schema.define(version: 20171116104506) do
 
   create_table "archive_files", force: :cascade do |t|
     t.string "file"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20171116102843) do
     t.integer "archive_item_id"
     t.integer "language_id"
     t.index ["archive_item_id"], name: "index_archive_files_on_archive_item_id"
+    t.index ["language_id"], name: "index_archive_files_on_language_id"
   end
 
   create_table "archive_items", force: :cascade do |t|

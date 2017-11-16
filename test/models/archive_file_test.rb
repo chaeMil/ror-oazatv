@@ -13,6 +13,7 @@
 # Indexes
 #
 #  index_archive_files_on_archive_item_id  (archive_item_id)
+#  index_archive_files_on_language_id      (language_id)
 #
 
 require 'test_helper'

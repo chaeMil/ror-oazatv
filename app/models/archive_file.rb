@@ -13,10 +13,12 @@
 # Indexes
 #
 #  index_archive_files_on_archive_item_id  (archive_item_id)
+#  index_archive_files_on_language_id      (language_id)
 #
 
 class ArchiveFile < ApplicationRecord
   belongs_to :archive_item
+  has_one :language
 
   extend Enumerize
   mount_uploader :filename, ArchiveFileUploader
