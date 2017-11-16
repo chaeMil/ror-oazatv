@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116095635) do
+ActiveRecord::Schema.define(version: 20171116101147) do
 
   create_table "archive_files", force: :cascade do |t|
     t.string "file"
@@ -42,6 +42,13 @@ ActiveRecord::Schema.define(version: 20171116095635) do
   create_table "categories", force: :cascade do |t|
     t.string "title"
     t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.text "name"
+    t.text "locale"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

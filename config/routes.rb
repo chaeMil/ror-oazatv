@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :archive_files, only: [:create, :new, :show, :destroy]
     end
 
+    resources :languages
     resources :categories
   end
 
