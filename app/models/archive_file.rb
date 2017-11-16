@@ -19,9 +19,9 @@
 class ArchiveFile < ApplicationRecord
   belongs_to :archive_item
   belongs_to :language
+  mount_uploader :file, ArchiveFileUploader
 
   extend Enumerize
-  mount_uploader :filename, ArchiveFileUploader
 
   TYPES = {
     undefined: 0,
