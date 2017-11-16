@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: photo_albums
@@ -14,4 +16,6 @@
 #
 
 class PhotoAlbum < ApplicationRecord
+  has_many :photos, inverse_of: :photo_album, dependent: :destroy
+  accepts_nested_attributes_for :photos, allow_destroy: true
 end

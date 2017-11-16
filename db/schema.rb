@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116162932) do
+ActiveRecord::Schema.define(version: 20171116172556) do
 
   create_table "archive_files", force: :cascade do |t|
     t.string "file"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 20171116162932) do
     t.integer "days"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.integer "photo_album_id"
+    t.text "description"
+    t.integer "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image"
+    t.index ["photo_album_id"], name: "index_photos_on_photo_album_id"
   end
 
   create_table "preachers", force: :cascade do |t|
