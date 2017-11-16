@@ -3,8 +3,13 @@ module Admin
     before_action :set_archive_file, only: [:show, :edit, :update, :destroy]
 
     def new
+      @languages = Language.all
       @archive_item = ArchiveItem.find(params[:archive_item_id])
       @archive_file = ArchiveFile.new(archive_item_id: @archive_item.id)
+    end
+
+    def edit
+      @languages = Language.all
     end
 
     def create
@@ -41,7 +46,7 @@ module Admin
     end
 
     def archive_file_params
-      params.require(:archive_file).permit(:filename, :file, :file_type, :archive_item_id)
+      params.require(:archive_file).permit(:filename, :file, :file_type, :archive_item_id, :language_id)
     end
   end
 end

@@ -10,4 +10,5 @@
 #
 
 class Language < ApplicationRecord
+  has_many :archive_files
 end

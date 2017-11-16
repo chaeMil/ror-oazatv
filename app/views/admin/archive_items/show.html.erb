@@ -18,7 +18,7 @@
     <ul>
       <% @archive_files.each do |archive_file| %>
         <li>
-          <%= archive_file.id %> - <%= archive_file.file_type %>
+          <%= archive_file.id %> - <%= archive_file.file_type %> - <%= archive_file.language.title unless archive_file.language.nil? %>
         </li>
       <% end %>
     </ul>

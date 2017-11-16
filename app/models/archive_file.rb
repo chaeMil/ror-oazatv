@@ -18,7 +18,7 @@
 
 class ArchiveFile < ApplicationRecord
   belongs_to :archive_item
-  has_one :language
+  belongs_to :language
 
   extend Enumerize
   mount_uploader :filename, ArchiveFileUploader
@@ -37,5 +37,5 @@ class ArchiveFile < ApplicationRecord
     audio: TYPES[:audio],
     image: TYPES[:image],
     subtitles: TYPES[:subtitles]
-  }
+  }, default: TYPES[:undefined]
 end
