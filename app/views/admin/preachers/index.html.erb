@@ -1,0 +1,31 @@
+<h1>Preachers</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>
+      Title
+    </th>
+    <th>
+      Tags
+    </th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @preachers.each do |preacher| %>
+      <tr>
+        <td><%= preacher.title %></td>
+        <td><%= preacher.tags %></td>
+        <td><%= link_to 'Show', admin_preacher_path(preacher) %></td>
+        <td><%= link_to 'Edit', edit_admin_preacher_path(preacher) %></td>
+        <td><%= link_to 'Destroy', admin_preacher_path(preacher), method: :delete, data: {confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Preacher', new_admin_preacher_path %>

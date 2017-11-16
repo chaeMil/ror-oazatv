@@ -1,0 +1,34 @@
+<%= simple_form_for @preacher,
+                    url: (@preacher.new_record? ? admin_preachers_path : admin_preacher_path(@preacher)),
+                    method: (@preacher.new_record? ? :post : :put) do |form| %>
+    <% if @preacher.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@preacher.errors.count, "error") %> prohibited this archive_item from being saved:</h2>
+
+          <ul>
+            <% @preacher.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= form.label :title %> <br>
+      <%= form.text_field :title %>
+    </p>
+
+    <p>
+      <%= form.label :tags %> <br>
+      <%= form.text_field :tags %>
+    </p>
+
+    <p>
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </p>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+<% end %>

@@ -12,7 +12,7 @@ module Admin
 
     def create
       @language = Language.new(language_params)
-      if @language.save
+      if @language.save!
         redirect_to admin_language_path(@language), notice: 'Language was successfully created'
       else
         render :new

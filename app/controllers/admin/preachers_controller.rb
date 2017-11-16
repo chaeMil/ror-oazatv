@@ -7,12 +7,12 @@ module Admin
     end
 
     def new
-      @preacher = Prechaer.new
+      @preacher = Preacher.new
     end
 
     def create
       @preacher = Preacher.new(preacher_params)
-      if @preacher.save
+      if @preacher.save!
         redirect_to admin_preacher_path(@preacher), notice: 'Preacher was successfully created.'
       else
         render :new
@@ -31,14 +31,14 @@ module Admin
       @preacher.destroy
       redirect_to admin_preachers_path, notice: 'Preacher was successfully destroyed.'
     end
-  end
 
-  private
-  def set_preacher
-    @preacher = Preacher.find(params[:id])
-  end
+    private
+    def set_preacher
+      @preacher = Preacher.find(params[:id])
+    end
 
-  def preacher_params
-    params.require(:preacher).permit(:title, :tags, :description)
+    def preacher_params
+      params.require(:preacher).permit(:title, :tags, :description)
+    end
   end
 end

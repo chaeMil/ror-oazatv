@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>name: <%= @preacher.title %></p>
+
+<p>tags: <%= @preacher.tags %></p>
+
+<p>description: <%= @preacher.description %></p>
+
+<%= link_to 'Edit', edit_admin_preacher_path(@preacher) %> |
+<%= link_to 'Back', admin_preachers_path %>

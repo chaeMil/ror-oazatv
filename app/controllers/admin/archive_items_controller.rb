@@ -12,7 +12,7 @@ module Admin
 
     def create
       @archive_item = ArchiveItem.new(archive_item_params)
-      if @archive_item.save
+      if @archive_item.save!
         redirect_to admin_archive_item_path(@archive_item), notice: 'Archive item was successfully created.'
       else
         render :new
