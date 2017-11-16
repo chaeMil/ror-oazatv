@@ -13,6 +13,8 @@
         </div>
     <% end %>
 
+    <%= image_tag(@preacher.image.thumb.url) if @preacher.image? %>
+
     <p>
       <%= form.label :title %> <br>
       <%= form.text_field :title %>
