@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116154520) do
+ActiveRecord::Schema.define(version: 20171116162932) do
 
   create_table "archive_files", force: :cascade do |t|
     t.string "file"
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 20171116154520) do
   create_table "languages", force: :cascade do |t|
     t.text "title"
     t.text "locale"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "photo_albums", force: :cascade do |t|
+    t.boolean "published"
+    t.text "title"
+    t.text "description"
+    t.text "tags"
+    t.date "date"
+    t.integer "days"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

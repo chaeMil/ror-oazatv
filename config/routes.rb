@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :photo_albums
   get 'home/index'
   root 'home#index'
 

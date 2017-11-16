@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: photo_albums
+#
+#  id          :integer          not null, primary key
+#  published   :boolean
+#  title       :text
+#  description :text
+#  tags        :text
+#  date        :date
+#  days        :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  published: false
+  title: MyText
+  description: MyText
+  tags: MyText
+  date: 2017-11-16
+  days: 1
+
+two:
+  published: false
+  title: MyText
+  description: MyText
+  tags: MyText
+  date: 2017-11-16
+  days: 1
