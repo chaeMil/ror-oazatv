@@ -11,4 +11,6 @@
 
 class Category < ApplicationRecord
   has_and_belongs_to_many :archive_items
+  validates :title, presence: true
+  validates :color, presence: true
 end

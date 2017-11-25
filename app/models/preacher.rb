@@ -12,5 +12,7 @@
 #
 
 class Preacher < ApplicationRecord
+
   mount_uploader :image, PreacherUploader
+  validates :title, presence: true
 end

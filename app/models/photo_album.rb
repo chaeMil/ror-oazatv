@@ -18,4 +18,6 @@
 class PhotoAlbum < ApplicationRecord
   has_many :photos, inverse_of: :photo_album, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true
+  validates :title, presence: true
+  validates :date, presence: true
 end

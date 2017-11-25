@@ -11,4 +11,6 @@
 
 class Language < ApplicationRecord
   has_many :archive_files
+  validates :title, presence: true
+  validates :locale, presence: true
 end
