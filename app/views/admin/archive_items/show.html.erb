@@ -19,6 +19,8 @@
             <%= link_to admin_archive_item_archive_file_path(archive_item_id: @archive_item.id, id: archive_file.id) do %>
                 <%= archive_file.file_type %> - <%= archive_file.language.title unless archive_file.language.nil? %>
             <% end %>
+            <%= link_to 'delete', admin_archive_item_archive_file_path(archive_item_id: @archive_item.id, id: archive_file.id),
+              method: :delete %>
           </li>
       <% end %>
     </ul>

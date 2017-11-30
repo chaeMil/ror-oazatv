@@ -40,9 +40,9 @@ module Admin
     end
 
     def destroy
-      @archive_item = ArchiveItem.find(@archive_file.archive_item)
+      @archive_file = ArchiveFile.find(params[:id])
       @archive_file.destroy
-      redirect_to @archive_item, notice: 'Archive file was successfully destroyed.'
+      redirect_to admin_archive_item_path(@archive_item), notice: 'Archive file was successfully destroyed.'
     end
 
     private
