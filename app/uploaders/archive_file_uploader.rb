@@ -45,8 +45,14 @@ class ArchiveFileUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
   def filename
-    "#{SecureRandom.hex(8)}.#{file.extension}" if original_filename.present?
+    random_string
+  end
+
+  protected
+  def random_string
+    @string ||= "#{SecureRandom.hex(6)}.#{file.extension}"
   end
 
 end
