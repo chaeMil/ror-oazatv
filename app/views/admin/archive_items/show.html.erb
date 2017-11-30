@@ -13,17 +13,27 @@
 <p>note: <%= @archive_item.note %></p>
 
 <% if @archive_files.present? %>
-    <ul>
+    <div class="row">
       <% @archive_files.each do |archive_file| %>
-          <li>
-            <%= link_to admin_archive_item_archive_file_path(archive_item_id: @archive_item.id, id: archive_file.id) do %>
-                <%= archive_file.file_type %> - <%= archive_file.language.title unless archive_file.language.nil? %>
-            <% end %>
-            <%= link_to 'delete', admin_archive_item_archive_file_path(archive_item_id: @archive_item.id, id: archive_file.id),
-              method: :delete %>
-          </li>
+          <div class="col-md-3">
+            <div class="card">
+              <% if archive_file.file_type == ArchiveFile::TYPES[:image] %>
+                  <%= image_tag archive_file.file.url, class: 'card-img-top' if archive_file.file.present? %>
+              <% end %>
+              <div class="card-body">
+                <h4 class="card-title"><%= archive_file.file.identifier if archive_file.file.present? %></h4>
+                <p class="card-text"><%= archive_file.file_type %></p>
+                <%= link_to 'Show', admin_archive_item_archive_file_path(archive_item_id: @archive_item.id, id: archive_file.id),
+                  class: 'btn btn-primary' %>
+                <%= link_to 'Delete', admin_archive_item_archive_file_path(archive_item_id: @archive_item.id, id: archive_file.id),
+                            method: :delete, class: 'btn btn-warning' %>
+              </div>
+            </div>
+
+
+          </div>
       <% end %>
-    </ul>
+    </div>
 <% end %>
 
 <%= link_to 'Add File', new_admin_archive_item_archive_file_path(@archive_item) %>
