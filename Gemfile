@@ -33,15 +33,15 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
-gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
-gem 'simple_form', '~> 3.5'
-gem 'simple_form-magic_submit', '~> 1.2'
-gem 'enumerize'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'carrierwave', '~> 1.0'
 gem 'devise'
+gem 'enumerize'
+gem 'sprockets-rails', '>= 2.3.2'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'simple_form', '~> 3.5'
+gem 'simple_form-magic_submit', '~> 1.2'
 gem 'mini_magick'
 
 group :development, :test do
