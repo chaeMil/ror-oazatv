@@ -15,7 +15,7 @@
 #
 
 class ArchiveItem < ApplicationRecord
-  has_many :archive_files
+  has_many :archive_files, inverse_of: :archive_item, dependent: :destroy
   has_and_belongs_to_many :categories
   validates :title, presence: true
   validates :date, presence: true
