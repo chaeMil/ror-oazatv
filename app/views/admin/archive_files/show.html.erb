@@ -1,0 +1,5 @@
+<p>type: <%= @archive_file.file_type %></p>
+
+<p>language: <%= @archive_file.language.title unless @archive_file.language.nil? %></p>
+
+<%= link_to 'Edit', edit_admin_archive_item_archive_file_path(archive_item_id: @archive_item.id, id: @archive_file.id) %>

@@ -1,4 +1,6 @@
-<%= simple_form_for @archive_file, url: admin_archive_item_archive_files_path(@archive_item) do |form| %>
+<%= simple_form_for @archive_file,
+                    url: (@archive_file.new_record? ? admin_archive_item_archive_files_path(archive_item_id: @archive_item) : admin_archive_item_archive_file_path(archive_item_id: @archive_item.id, id: @archive_file.id)),
+                    method: (@archive_file.new_record? ? :post : :put) do |form| %>
     <% if @archive_file.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@archive_file.errors.count, "error") %> prohibited this archive_item from being saved:</h2>

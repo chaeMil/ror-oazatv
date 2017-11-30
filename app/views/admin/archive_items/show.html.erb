@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>name: <%= @archive_item.title %></p>
 
 <p>description: <%= @archive_item.description %></p>
@@ -17,9 +15,11 @@
 <% if @archive_files.present? %>
     <ul>
       <% @archive_files.each do |archive_file| %>
-        <li>
-          <%= archive_file.id %> - <%= archive_file.file_type %> - <%= archive_file.language.title unless archive_file.language.nil? %>
-        </li>
+          <li>
+            <%= link_to admin_archive_item_archive_file_path(archive_item_id: @archive_item.id, id: archive_file.id) do %>
+                <%= archive_file.file_type %> - <%= archive_file.language.title unless archive_file.language.nil? %>
+            <% end %>
+          </li>
       <% end %>
     </ul>
 <% end %>

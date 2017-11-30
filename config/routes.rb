@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#index', as: '/'
 
     resources :archive_items do
-      resources :archive_files, only: [:create, :new, :show, :destroy]
+      resources :archive_files
     end
 
     resources :languages

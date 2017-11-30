@@ -1,21 +1,25 @@
 module Admin
   class ArchiveFilesController < AdminController
-    before_action :set_archive_file, only: [:show, :edit, :update, :destroy]
+    before_action :set_archive_item
+
+    def show
+      @languages = Language.all
+      @archive_file = ArchiveFile.find(params[:id])
+    end
 
     def new
       @languages = Language.all
-      @archive_item = ArchiveItem.find(params[:archive_item_id])
       @archive_file = ArchiveFile.new(archive_item_id: @archive_item.id)
     end
 
     def edit
       @languages = Language.all
+      @archive_file = ArchiveFile.find(params[:id])
     end
 
     def create
-      archive_item = ArchiveItem.find(params[:archive_item_id])
       archive_file = ArchiveFile.new(archive_file_params)
-      archive_file.archive_item = archive_item
+      archive_file.archive_item = @archive_item
 
       if archive_file.save!
         redirect_to admin_archive_item_path(archive_file.archive_item_id),
@@ -26,8 +30,9 @@ module Admin
     end
 
     def update
+      @archive_file = ArchiveFile.find(params[:id])
       if @archive_file.update(archive_file_params)
-        redirect_to admin_archive_item_path(@archive_file.archive_item_id),
+        redirect_to admin_archive_item_archive_file_path(archive_item_id: @archive_item.id, id: @archive_file.id),
                     notice: 'Archive file was successfully updated.'
       else
         render :edit
@@ -41,8 +46,8 @@ module Admin
     end
 
     private
-    def set_archive_file
-      @archive_item = ArchiveItem.find(params[:id])
+    def set_archive_item
+      @archive_item = ArchiveItem.find(params[:archive_item_id])
     end
 
     def archive_file_params
