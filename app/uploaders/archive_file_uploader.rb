@@ -11,6 +11,8 @@ class ArchiveFileUploader < CarrierWave::Uploader::Base
     random_string
   end
 
+  #TODO add deleting of conditional variants for images
+
   version :thumb, if: :image? do
     process resize_to_fill: [256, 256]
   end
