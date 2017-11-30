@@ -10,24 +10,24 @@
 
 <body>
 <%= render 'admin/shared/navbar' if user_signed_in? %>
-<% if notice.present? || alert.present? %>
-    <div class="container-fluid">
-      <% if alert.present? %>
-          <div class="alert alert-warning">
-            <%= alert %>
-          </div>
-      <% end %>
-      <% if notice.present? %>
-          <div class="alert alert-info">
-            <%= notice %>
-          </div>
-      <% end %>
-    </div>
-<% end %>
 <div class="container-fluid">
   <div class="row">
     <%= render 'admin/shared/sidebar' if user_signed_in? %>
     <div class="col">
+      <% if notice.present? || alert.present? %>
+          <div class="container-fluid">
+            <% if alert.present? %>
+                <div class="alert alert-warning">
+                  <%= alert %>
+                </div>
+            <% end %>
+            <% if notice.present? %>
+                <div class="alert alert-info">
+                  <%= notice %>
+                </div>
+            <% end %>
+          </div>
+      <% end %>
       <%= yield %>
     </div>
   </div>
