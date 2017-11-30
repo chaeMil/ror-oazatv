@@ -1,6 +1,6 @@
 <h1>Archive Items</h1>
 
-<table>
+<table class="table table-hover table-responsive table-no-more">
   <thead>
     <tr>
       <th>
@@ -25,11 +25,11 @@
   <tbody>
     <% @archive_items.each do |archive_item| %>
       <tr>
-        <td><%= archive_item.title %></td>
-        <td><%= archive_item.description %></td>
-        <td><%= archive_item.published %></td>
-        <td><%= archive_item.hash_id %></td>
-        <td><%= archive_item.date %></td>
+        <td data-title="Title"><%= archive_item.title %></td>
+        <td data-title="Description"><%= archive_item.description %></td>
+        <td data-title="Published"><%= archive_item.published %></td>
+        <td data-title="Hash ID"><%= archive_item.hash_id %></td>
+        <td data-title="Date"><%= archive_item.date %></td>
         <td><%= link_to 'Show', admin_archive_item_path(archive_item) %></td>
         <td><%= link_to 'Edit', edit_admin_archive_item_path(archive_item) %></td>
         <td><%= link_to 'Destroy', admin_archive_item_path(archive_item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
