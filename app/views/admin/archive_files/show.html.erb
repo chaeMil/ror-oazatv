@@ -2,7 +2,7 @@
 
 <p>language: <%= @archive_file.language.title unless @archive_file.language.nil? %></p>
 
-<% if @archive_file.file_type == ArchiveFile::TYPES[:video] %>
+<% if @archive_file.video? %>
     <p>délka: <%= @video_info.duration %> sekund</p>
     <p>bitrate: <%= @video_info.bitrate %> kb/s</p>
     <p>velikost: <%= @video_info.size %></p>

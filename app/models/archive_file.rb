@@ -38,4 +38,8 @@ class ArchiveFile < ApplicationRecord
       image: TYPES[:image],
       subtitles: TYPES[:subtitles]
   }, default: TYPES[:undefined]
+
+  def video?
+    file_type == ArchiveFile::TYPES[:video]
+  end
 end
