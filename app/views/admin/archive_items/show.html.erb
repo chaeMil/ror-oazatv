@@ -17,7 +17,7 @@
       <% @archive_files.each do |archive_file| %>
           <div class="col-md-3">
             <div class="card">
-              <% if archive_file.file_type == ArchiveFile::TYPES[:image] %>
+              <% if archive_file.image? %>
                   <%= image_tag archive_file.file.url, class: 'card-img-top' if archive_file.file.present? %>
               <% end %>
               <div class="card-body">

@@ -23,23 +23,27 @@ class ArchiveFile < ApplicationRecord
 
   extend Enumerize
 
-  TYPES = {
+  enumerize :file_type, in: {
       undefined: 0,
       video: 1,
       audio: 2,
       image: 3,
       subtitles: 4
-  }.freeze
-
-  enumerize :file_type, in: {
-      undefined: TYPES[:undefined],
-      video: TYPES[:video],
-      audio: TYPES[:audio],
-      image: TYPES[:image],
-      subtitles: TYPES[:subtitles]
-  }, default: TYPES[:undefined]
+  }, default: 0
 
   def video?
-    file_type == ArchiveFile::TYPES[:video]
+    file_type == :video
+  end
+
+  def image?
+    file_type == :image
+  end
+
+  def audio?
+    file_type == :audio
+  end
+
+  def subtitles?
+    file_type == :subtitles
   end
 end
