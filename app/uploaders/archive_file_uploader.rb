@@ -8,10 +8,8 @@ class ArchiveFileUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    random_string
+    "#{secure_token}.#{file.extension}" if original_filename.present?
   end
-
-  #TODO add deleting of conditional variants for images
 
   version :thumb, if: :image? do
     process resize_to_fill: [256, 256]
@@ -38,8 +36,9 @@ class ArchiveFileUploader < CarrierWave::Uploader::Base
   end
 
   protected
-  def random_string
-    @string ||= "#{SecureRandom.hex(6)}.#{file.extension}"
+  def secure_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.hex(6))
   end
 
   private
