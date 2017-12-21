@@ -2,6 +2,10 @@
 
 <p>language: <%= @archive_file.language.title unless @archive_file.language.nil? %></p>
 
+<% if @archive_file.image? %>
+  <%= image_tag @archive_file.file, class: 'img-fluid' %>
+<% end %>
+
 <% if @archive_file.video? %>
     <p>délka: <%= @video_info.duration %> sekund</p>
     <p>bitrate: <%= @video_info.bitrate %> kb/s</p>
