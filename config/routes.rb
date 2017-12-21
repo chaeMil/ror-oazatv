@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to: 'dashboard#index', as: '/'
 
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+
     resources :archive_items do
       resources :archive_files do
         post :convert, on: :member
