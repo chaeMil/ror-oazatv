@@ -13,27 +13,31 @@
 <p>note: <%= @archive_item.note %></p>
 
 <% if @archive_files.present? %>
-    <div class="row">
-      <% @archive_files.each do |archive_file| %>
-          <div class="col-md-3">
-            <div class="card">
-              <% if archive_file.image? %>
-                  <%= image_tag archive_file.file.url, class: 'card-img-top' if archive_file.file.present? %>
-              <% end %>
-              <div class="card-body">
-                <h4 class="card-title"><%= archive_file.file.identifier if archive_file.file.present? %></h4>
-                <p class="card-text"><%= archive_file.file_type %></p>
-                <%= link_to 'Show', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
-                  class: 'btn btn-primary' %>
-                <%= link_to 'Delete', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
-                            method: :delete, class: 'btn btn-warning' %>
-                <%= link_to 'Convert', convert_admin_archive_item_archive_file_path(archive_item_id: @archive_item,
-                                                                                    id: archive_file.id), method: :post %>
-              </div>
-            </div>
+  <div class="row">
+    <% @archive_files.each do |archive_file| %>
+      <div class="col-md-3">
+        <div class="card">
+          <% if archive_file.image? %>
+            <%= image_tag archive_file.file.url, class: 'card-img-top' if archive_file.file.present? %>
+          <% end %>
+          <div class="card-body">
+            <h4 class="card-title"><%= archive_file.file.identifier if archive_file.file.present? %></h4>
+            <p class="card-text"><%= archive_file.file_type %></p>
+            <%= link_to 'Show', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
+                        class: 'btn btn-primary' %>
+            <%= link_to 'Delete', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
+                        method: :delete, class: 'btn btn-warning' %>
+            <% if archive_file.video? %>
+              <%= link_to 'Convert',
+                          convert_admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
+                          method: :post,
+                          class: 'btn btn-info' %>
+            <% end %>
           </div>
-      <% end %>
-    </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
 <%= link_to 'Add File', new_admin_archive_item_archive_file_path(@archive_item) %>
