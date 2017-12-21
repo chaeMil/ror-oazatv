@@ -7,9 +7,9 @@
 <% end %>
 
 <% if @archive_file.video? %>
-    <p>délka: <%= @video_info.duration %> sekund</p>
-    <p>bitrate: <%= @video_info.bitrate %> kb/s</p>
-    <p>velikost: <%= @video_info.size %></p>
+    <p>délka: <%= @archive_file.get_video_info.duration %> sekund</p>
+    <p>bitrate: <%= @archive_file.get_video_info.bitrate %> kb/s</p>
+    <p>velikost: <%= @archive_file.get_video_info.size %></p>
 
     <div class="card">
       <div class="card-block">
@@ -17,9 +17,9 @@
           Video
         </h4>
         <p class="card-text">
-          kodek: <%= @video_info.video_codec %> <br>
-          rozlišení: <%= @video_info.resolution %> <br>
-          framerate: <%= @video_info.frame_rate %> <br>
+          kodek: <%= @archive_file.get_video_info.video_codec %> <br>
+          rozlišení: <%= @archive_file.get_video_info.resolution %> <br>
+          framerate: <%= @archive_file.get_video_info.frame_rate %> <br>
         </p>
       </div>
     </div>
@@ -30,9 +30,9 @@
           Audio
         </h4>
         <p class="card-text">
-          kodek: <%= @video_info.audio_codec %> <br>
-          vzorkovací frekvence: <%= @video_info.audio_sample_rate %> <br>
-          kanály: <%= @video_info.audio_channels %> <br>
+          kodek: <%= @archive_file.get_video_info.audio_codec %> <br>
+          vzorkovací frekvence: <%= @archive_file.get_video_info.audio_sample_rate %> <br>
+          kanály: <%= @archive_file.get_video_info.audio_channels %> <br>
         </p>
       </div>
     </div>

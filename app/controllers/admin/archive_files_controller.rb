@@ -5,7 +5,6 @@ module Admin
     def show
       @languages = Language.all
       @archive_file = ArchiveFile.find(params[:id])
-      @video_info = ArchiveFileService.get_video_info(@archive_file.file.path)
     end
 
     def new

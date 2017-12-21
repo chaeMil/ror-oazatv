@@ -46,4 +46,21 @@ class ArchiveFile < ApplicationRecord
   def subtitles?
     file_type == :subtitles
   end
+
+  def get_video_info
+    if video?
+      FFMPEG::Movie.new(file.path)
+    else
+      throw 'File is not a video! Cannot get video info'
+    end
+  end
+
+  def convert
+    if video?
+      video = FFMPEG::Movie.new(file.path)
+
+    else
+      throw 'File is not a video! Cannot convert'
+    end
+  end
 end
