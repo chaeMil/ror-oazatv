@@ -45,6 +45,12 @@ module Admin
       redirect_to admin_archive_item_path(@archive_item), notice: 'Archive file was successfully destroyed.'
     end
 
+    def convert
+      @archive_file = ArchiveFile.find(params[:id])
+      @archive_file.convert
+      redirect_to admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: @archive_file)
+    end
+
     private
     def set_archive_item
       @archive_item = ArchiveItem.find(params[:archive_item_id])

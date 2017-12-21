@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#index', as: '/'
 
     resources :archive_items do
-      resources :archive_files
+      resources :archive_files do
+        post :convert, on: :member
+      end
     end
 
     resources :languages

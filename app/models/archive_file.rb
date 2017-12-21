@@ -58,7 +58,8 @@ class ArchiveFile < ApplicationRecord
   def convert
     if video?
       video = FFMPEG::Movie.new(file.path)
-
+      new_video_filename = SecureRandom.hex(6)
+      video.transcode("#{File.dirname(file.path)}/#{new_video_filename}.mkv") {|progress| puts progress}
     else
       throw 'File is not a video! Cannot convert'
     end
