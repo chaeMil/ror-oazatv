@@ -1,3 +1,4 @@
+:concurency: 1
 :queues:
   - video_conversion_queue
 :limits:

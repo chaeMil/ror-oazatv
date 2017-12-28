@@ -36,7 +36,13 @@
       <td data-title="Video"><%= job[:archive_item].title %></td>
       <td data-title="File"><%= job[:archive_file].file.to_s.split('/').last %></td>
       <td data-title="Created at"><%= job[:created_at] %></td>
-      <td data-title="Status">Processing, <%= (job[:progress].progress * 100).round(2) %>% done</td>
+      <td data-title="Status">
+        <% if job[:progress].progress != nil %>
+          Processing, <%= (job[:progress].progress * 100).round(2) %>% done
+        <% else %>
+          Waiting
+        <% end %>
+      </td>
       <td data-title="Finished at"></td>
     </tr>
   <% end %>
