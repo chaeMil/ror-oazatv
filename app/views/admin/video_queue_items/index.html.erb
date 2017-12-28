@@ -10,24 +10,31 @@
       File
     </th>
     <th>
-      Progress
+      Status
     </th>
   </tr>
   </thead>
 
   <tbody>
-  <% @running_conversions.each do |conversion| %>
+  <% @finished_jobs.each do |job| %>
     <tr>
-      <td data-title="Video"><%= conversion[:archive_item].title %></td>
-      <td data-title="File"><%= conversion[:archive_file].file.to_s.split('/').last %></td>
-      <td data-title="Progress"><%= conversion[:progress].progress %></td>
+      <td data-title="Video"><%= job[:archive_item].title %></td>
+      <td data-title="File"><%= job[:archive_file].file.to_s.split('/').last %></td>
+      <td data-title="Status">Done</td>
+    </tr>
+  <% end %>
+  <% @running_jobs.each do |job| %>
+    <tr>
+      <td data-title="Video"><%= job[:archive_item].title %></td>
+      <td data-title="File"><%= job[:archive_file].file.to_s.split('/').last %></td>
+      <td data-title="Status">Processing, <%= (job[:progress].progress * 100).round(2) %>% done</td>
     </tr>
   <% end %>
   <% @queued_jobs.each do |job| %>
     <tr>
       <td data-title="Video"><%= job[:archive_item].title %></td>
       <td data-title="File"><%= job[:archive_file].file.to_s.split('/').last %></td>
-      <td data-title="Progress">waiting</td>
+      <td data-title="Status">waiting</td>
     </tr>
   <% end %>
   </tbody>
