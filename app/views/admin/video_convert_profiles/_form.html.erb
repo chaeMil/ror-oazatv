@@ -1,0 +1,74 @@
+<%= simple_form_for @profile,
+                    url: (@profile.new_record? ? admin_video_convert_profiles_path : admin_video_convert_profile_path(@profile)),
+                    method: (@profile.new_record? ? :post : :put) do |form| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+        <% @profile.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :title %> <br>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.label :video_codec %> <br>
+    <%= form.text_field :video_codec %>
+  </p>
+
+  <p>
+    <%= form.label :video_bitrate %> <br>
+    <%= form.text_field :video_bitrate %>
+  </p>
+
+  <p>
+    <%= form.label :frame_rate %> <br>
+    <%= form.text_field :frame_rate %>
+  </p>
+
+  <p>
+    <%= form.label :resolution %> <br>
+    <%= form.text_field :resolution %>
+  </p>
+
+  <p>
+    <%= form.label :audio_codec %> <br>
+    <%= form.text_field :audio_codec %>
+  </p>
+
+  <p>
+    <%= form.label :audio_bitrate %> <br>
+    <%= form.text_field :audio_bitrate %>
+  </p>
+
+  <p>
+    <%= form.label :audio_sample_rate %> <br>
+    <%= form.text_field :audio_sample_rate %>
+  </p>
+
+  <p>
+    <%= form.label :audio_channels %> <br>
+    <%= form.text_field :audio_channels %>
+  </p>
+
+  <p>
+    <%= form.label :threads %> <br>
+    <%= form.text_field :threads %>
+  </p>
+
+  <p>
+    <%= form.label :custom %> <br>
+    <%= form.text_field :custom %>
+  </p>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

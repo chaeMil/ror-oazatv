@@ -3,7 +3,7 @@
                     method: (@preacher.new_record? ? :post : :put) do |form| %>
     <% if @preacher.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@preacher.errors.count, "error") %> prohibited this archive_item from being saved:</h2>
+          <h2><%= pluralize(@preacher.errors.count, "error") %> prohibited this preacher from being saved:</h2>
 
           <ul>
             <% @preacher.errors.full_messages.each do |message| %>

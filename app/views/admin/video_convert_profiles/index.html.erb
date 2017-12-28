@@ -1,2 +1,27 @@
-<h1>VideoConvertProfiles#index</h1>
-<p>Find me in app/views/video_convert_profiles/index.html.erb</p>
+<h1>Archive Items</h1>
+
+<table class="table table-hover table-responsive table-no-more">
+  <thead>
+  <tr>
+    <th>
+      Title
+    </th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @profiles.each do |profile| %>
+    <tr>
+      <td data-title="Title"><%= profile.title %></td>
+      <td><%= link_to 'Show', admin_video_convert_profile_path(profile) %></td>
+      <td><%= link_to 'Edit', edit_admin_video_convert_profile_path(profile) %></td>
+      <td><%= link_to 'Destroy', admin_video_convert_profile_path(profile), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Video Convert Profile', new_admin_video_convert_profile_path %>

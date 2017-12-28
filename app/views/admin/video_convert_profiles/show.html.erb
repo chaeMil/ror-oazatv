@@ -1,2 +1,25 @@
-<h1>VideoConvertProfiles#show</h1>
-<p>Find me in app/views/video_convert_profiles/show.html.erb</p>
+<h1>Video Convert Profile</h1>
+
+<p>Title: <%= @profile[:title] %></p>
+
+<p>Video Codec: <%= @profile[:video_codec] %></p>
+
+<p>Video Bitrate: <%= @profile[:video_bitrate] %></p>
+
+<p>Frame Rate: <%= @profile[:frame_rate] %></p>
+
+<p>Resolution: <%= @profile[:resolution] %></p>
+
+<p>Audio Codec: <%= @profile[:audio_codec] %></p>
+
+<p>Audio Bitrate: <%= @profile[:audio_bitrate] %></p>
+
+<p>Audio Sample Rate: <%= @profile[:audio_sample_rate] %></p>
+
+<p>Audio Channels: <%= @profile[:audio_channels] %></p>
+
+<p>Threads: <%= @profile[:threads] %></p>
+
+<p>Custom: <%= @profile[:custom] %></p>
+
+<%= link_to 'Edit', edit_admin_video_convert_profile_path(@profile) %>
