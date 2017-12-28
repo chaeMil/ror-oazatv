@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171228140447) do
+ActiveRecord::Schema.define(version: 20171228165004) do
 
   create_table "archive_files", force: :cascade do |t|
     t.string "file"
@@ -108,6 +108,22 @@ ActiveRecord::Schema.define(version: 20171228140447) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "video_convert_profiles", force: :cascade do |t|
+    t.text "title"
+    t.text "video_codec"
+    t.float "frame_rate"
+    t.text "resolution"
+    t.integer "video_bitrate"
+    t.text "audio_codec"
+    t.integer "audio_bitrate"
+    t.integer "audio_sample_rate"
+    t.integer "audio_channels"
+    t.integer "threads"
+    t.text "custom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "video_convert_progresses", force: :cascade do |t|
