@@ -17,7 +17,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :video_queue_items, only: [:index, :show, :destroy]
     resources :languages
     resources :categories
     resources :preachers
@@ -25,6 +24,8 @@ Rails.application.routes.draw do
     resources :photo_albums do
       resources :photos
     end
+    resources :video_queue_items, only: [:index, :show, :destroy]
+    resources :video_convert_profiles
   end
 
 end
