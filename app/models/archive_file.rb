@@ -55,11 +55,17 @@ class ArchiveFile < ApplicationRecord
     end
   end
 
-  def convert
+  def convert(video_convert_progress_id)
     if video?
       video = FFMPEG::Movie.new(file.path)
       new_video_filename = SecureRandom.hex(6)
-      video.transcode("#{File.dirname(file.path)}/#{new_video_filename}.mkv") {|progress| puts progress}
+      video_convert_progress = VideoConvertProgress.find(video_convert_progress_id)
+      video_convert_progress.update(archive_file_id: id)
+      video.transcode("#{File.dirname(file.path)}/#{new_video_filename}.mkv") do |progress|
+        video_convert_progress.update(progress: progress, status: VideoConvertProgress.status.find_value(:processing).value)
+        video_convert_progress.update(finished_at: DateTime.now, status: VideoConvertProgress.status.find_value(:done).value) if progress == 1.0
+        p progress
+      end
     else
       throw 'File is not a video! Cannot convert'
     end

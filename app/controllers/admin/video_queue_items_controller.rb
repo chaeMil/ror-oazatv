@@ -4,6 +4,7 @@ module Admin
 
     def index
       queue_name = 'video_conversion_queue'
+
       @running_conversions = []
       workers = Sidekiq::Workers.new
       workers.each do |process_id, thread_id, work|
@@ -11,12 +12,24 @@ module Admin
           arguments = work['payload']['args'][0]['arguments']
           running_conversion = {
               archive_file: ArchiveFile.find(arguments[1]),
-              archive_item: ArchiveItem.find(arguments[0])
+              archive_item: ArchiveItem.find(arguments[0]),
+              progress: VideoConvertProgress.find(arguments[2])
           }
           @running_conversions << running_conversion
         end
       end
-      @queue = Sidekiq::Queue.new(queue_name)
+
+      @queued_jobs = []
+      queue = Sidekiq::Queue.new(queue_name)
+      queue.each do |job|
+        arguments = job['args'][0]['arguments']
+        queued_job = {
+            archive_file: ArchiveFile.find(arguments[1]),
+            archive_item: ArchiveItem.find(arguments[0]),
+            progress: VideoConvertProgress.find(arguments[2])
+        }
+        @queued_jobs << queued_job
+      end
     end
 
     def show
