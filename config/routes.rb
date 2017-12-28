@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :video_queue_items, only: [:index, :show, :destroy]
     resources :languages
     resources :categories
     resources :preachers

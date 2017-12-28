@@ -47,7 +47,7 @@ module Admin
 
     def convert
       archive_file = ArchiveFile.find(params[:id])
-      ConvertVideoJob.perform_later(@archive_item, archive_file)
+      ConvertVideoJob.perform_later(@archive_item.id, archive_file.id)
       redirect_to admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file)
     end
 

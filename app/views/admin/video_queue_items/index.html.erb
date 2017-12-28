@@ -1,0 +1,30 @@
+<h1>Video conversion queue</h1>
+
+<table class="table table-hover table-responsive table-no-more">
+  <thead>
+  <tr>
+    <th>
+      Video
+    </th>
+    <th>
+      File
+    </th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @running_conversions.each do |conversion| %>
+    <tr>
+      <td data-title="Video"><%= conversion[:archive_item].title %></td>
+      <td data-title="File"><%= conversion[:archive_file].file.to_s.split('/').last %></td>
+    </tr>
+  <% end %>
+  <% @queue.each do |job| %>
+    <tr>
+      <td data-title="Video"><%= job.inspect %></td>
+      <td data-title="File"><%= archive_item.description %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

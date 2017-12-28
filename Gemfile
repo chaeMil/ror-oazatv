@@ -44,7 +44,9 @@ gem 'simple_form', '~> 3.5'
 gem 'simple_form-magic_submit', '~> 1.2'
 gem 'mini_magick'
 gem 'streamio-ffmpeg'
-gem 'sidekiq'
+gem 'sidekiq', '= 4.2'
+gem 'sidekiq-limit_fetch'
+gem 'sidekiq_status'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

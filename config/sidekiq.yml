@@ -1,2 +1,4 @@
 :queues:
   - video_conversion_queue
+:limits:
+  video_conversions_queue: 1
