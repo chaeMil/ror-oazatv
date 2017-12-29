@@ -1,6 +1,7 @@
 module Admin
   class VideoConvertProfilesController < AdminController
     before_action :set_profile, only: [:show, :edit, :update, :destroy]
+
     def index
       @profiles = VideoConvertProfile.all
     end
@@ -27,6 +28,8 @@ module Admin
     end
 
     def destroy
+      @profile.destroy
+      redirect_to admin_video_convert_profiles_path, notice: 'Vdieo convert profile was successfully destroyed.'
     end
 
     private
