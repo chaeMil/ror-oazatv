@@ -38,7 +38,7 @@ module Admin
     end
 
     def profile_params
-      params.require(:video_convert_profile).permit(:title, :video_codec, :video_bitrate, :threads, :resolution, :frame_rate, :custom, :audio_sample_rate, :audio_codec, :audio_channels, :audio_bitrate)
+      params.require(:video_convert_profile).permit(:title, :video_codec, :video_bitrate, :threads, :resolution, :frame_rate, :custom, :audio_sample_rate, :audio_codec, :audio_channels, :audio_bitrate, :extension)
     end
   end
 end
