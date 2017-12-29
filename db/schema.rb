@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171229114837) do
+ActiveRecord::Schema.define(version: 20171229115238) do
 
   create_table "archive_files", force: :cascade do |t|
     t.string "file"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 20171229114837) do
     t.datetime "updated_at", null: false
     t.datetime "finished_at"
     t.integer "archive_file_id"
+    t.datetime "started_at"
   end
 
 end

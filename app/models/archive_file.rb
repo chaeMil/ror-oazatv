@@ -64,7 +64,7 @@ class ArchiveFile < ApplicationRecord
                                          file_type: file_type)
       new_archive_file.save
       video_convert_progress = VideoConvertProgress.find(video_convert_progress_id)
-      video_convert_progress.update(archive_file_id: id)
+      video_convert_progress.update(archive_file_id: id, started_at: DateTime.now)
 
       video.transcode("#{File.dirname(file.path)}/#{new_video_filename}") do |progress|
         video_convert_progress.update(progress: progress,

@@ -13,6 +13,9 @@
       Created at
     </th>
     <th>
+      Started at
+    </th>
+    <th>
       Status
     </th>
     <th>
@@ -27,6 +30,7 @@
       <td data-title="Video"><%= job[:archive_item].title %></td>
       <td data-title="File"><%= job[:archive_file].file.to_s.split('/').last %></td>
       <td data-title="Created at"><%= job[:created_at] %></td>
+      <td data-title="Started at"><%= job[:started_at] %></td>
       <td data-title="Status">Done</td>
       <td data-title="Finished at"><%= job[:finished_at] %></td>
     </tr>
@@ -36,6 +40,7 @@
       <td data-title="Video"><%= job[:archive_item].title %></td>
       <td data-title="File"><%= job[:archive_file].file.to_s.split('/').last %></td>
       <td data-title="Created at"><%= job[:created_at] %></td>
+      <td data-title="Started at"><%= job[:started_at] %></td>
       <td data-title="Status">
         <% if job[:progress].progress != nil %>
           Processing, <%= (job[:progress].progress * 100).round(2) %>% done
@@ -50,6 +55,8 @@
     <tr>
       <td data-title="Video"><%= job[:archive_item].title %></td>
       <td data-title="File"><%= job[:archive_file].file.to_s.split('/').last %></td>
+      <td data-title="Created at"><%= job[:created_at] %></td>
+      <td data-title="Started at">Waiting</td>
       <td data-title="Status">Waiting</td>
       <td data-title="Finished at"></td>
     </tr>

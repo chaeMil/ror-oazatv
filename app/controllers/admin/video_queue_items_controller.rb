@@ -16,6 +16,7 @@ module Admin
               archive_item: ArchiveItem.find(arguments[0]),
               created_at: video_convert_progress[:created_at],
               finished_at: nil,
+              started_at: video_convert_progress[:started_at],
               progress: video_convert_progress
           }
           @running_jobs << running_conversion
@@ -31,6 +32,7 @@ module Admin
             archive_item: ArchiveItem.find(arguments[0]),
             created_at: job.created_at,
             finished_at: nil,
+            started_at: nil,
             progress: VideoConvertProgress.find(arguments[2])
         }
         @queued_jobs << queued_job
@@ -45,6 +47,7 @@ module Admin
             archive_item: archive_file.archive_item,
             created_at: job.created_at,
             finished_at: job.finished_at,
+            started_at: job.started_at,
             progress: VideoConvertProgress.status.find_value(:done).value
         }
         @finished_jobs << finished_job
