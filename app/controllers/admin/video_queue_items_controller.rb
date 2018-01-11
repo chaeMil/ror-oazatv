@@ -17,7 +17,9 @@ module Admin
               created_at: video_convert_progress[:created_at],
               finished_at: nil,
               started_at: video_convert_progress[:started_at],
-              progress: video_convert_progress
+              progress: video_convert_progress,
+              status: job.status,
+              error: job.error
           }
           @running_jobs << running_conversion
         end
@@ -33,6 +35,8 @@ module Admin
             created_at: job.created_at,
             finished_at: nil,
             started_at: nil,
+            status: job.status,
+            error: job.error,
             progress: VideoConvertProgress.find(arguments[2])
         }
         @queued_jobs << queued_job
@@ -41,16 +45,20 @@ module Admin
       finished = VideoConvertProgress.where(status: VideoConvertProgress.status.find_value(:done).value)
       @finished_jobs = []
       finished.each do |job|
-        archive_file = ArchiveFile.find(job.archive_file_id)
-        finished_job = {
-            archive_file: archive_file,
-            archive_item: archive_file.archive_item,
-            created_at: job.created_at,
-            finished_at: job.finished_at,
-            started_at: job.started_at,
-            progress: VideoConvertProgress.status.find_value(:done).value
-        }
-        @finished_jobs << finished_job
+        archive_file = ArchiveFile.find(job.archive_file_id) rescue nil
+        if archive_file != nil
+          finished_job = {
+              archive_file: archive_file,
+              archive_item: archive_file.archive_item,
+              created_at: job.created_at,
+              finished_at: job.finished_at,
+              started_at: job.started_at,
+              status: job.status,
+              error: job.error,
+              progress: VideoConvertProgress.status.find_value(:done).value
+          }
+          @finished_jobs << finished_job
+        end
       end
     end
 

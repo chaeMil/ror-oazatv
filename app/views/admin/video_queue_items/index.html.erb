@@ -31,7 +31,14 @@
       <td data-title="File"><%= job[:archive_file].file.to_s.split('/').last %></td>
       <td data-title="Created at"><%= job[:created_at] %></td>
       <td data-title="Started at"><%= job[:started_at] %></td>
-      <td data-title="Status">Done</td>
+      <td data-title="Status">
+        <% case job[:status]
+           when VideoConvertProgress.status.find_value(:done).value %>
+          Done
+        <% when VideoConvertProgress.status.find_value(:error).value %>
+          Error
+        <% end %>
+      </td>
       <td data-title="Finished at"><%= job[:finished_at] %></td>
     </tr>
   <% end %>

@@ -10,6 +10,7 @@
 #  finished_at     :datetime
 #  archive_file_id :integer
 #  started_at      :datetime
+#  error           :text
 #
 
 class VideoConvertProgress < ApplicationRecord

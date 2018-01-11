@@ -83,14 +83,23 @@ class ArchiveFile < ApplicationRecord
           audio_channels: convert_profile['audio_channels'],
           threads: convert_profile['threads']
       }
-      video.transcode("#{File.dirname(file.path)}/#{new_video_filename}", options) do |progress|
-        video_convert_progress.update(progress: progress,
-                                      status: VideoConvertProgress.status.find_value(:processing).value)
-        if progress == 1.0
-          video_convert_progress.update(finished_at: DateTime.now,
-                                        status: VideoConvertProgress.status.find_value(:done).value)
+
+      begin
+        video.transcode("#{File.dirname(file.path)}/#{new_video_filename}", options) do |progress|
+          video_convert_progress.update(progress: progress,
+                                        status: VideoConvertProgress.status.find_value(:processing).value)
+          if progress == 1.0
+            video_convert_progress.update(finished_at: DateTime.now,
+                                          status: VideoConvertProgress.status.find_value(:done).value)
+          end
+          p progress
         end
-        p progress
+      rescue StandardError => error
+        p '=======================error================'
+        p error
+        p '=================error======================='
+        video_convert_progress.update(error: error,
+                                      status: VideoConvertProgress.status.find_value(:error).value)
       end
     else
       throw 'File is not a video! Cannot convert'
