@@ -28,10 +28,23 @@
             <%= link_to 'Delete', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
                         method: :delete, class: 'btn btn-warning' %>
             <% if archive_file.video? %>
-              <%= link_to 'Convert',
-                          convert_admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
-                          method: :post,
-                          class: 'btn btn-info' %>
+              <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                  Convert
+                </button>
+                <div class="dropdown-menu">
+                  <% @convert_profiles.each do |convert_profile| %>
+                    <%= link_to convert_profile.title,
+                                convert_admin_archive_item_archive_file_path(archive_item_id: @archive_item,
+                                                                             id: archive_file.id,
+                                                                             convert_profile_id: convert_profile.id),
+                                method: :post,
+                                class: 'dropdown-item' %>
+                  <% end %>
+                </div>
+              </div>
+
             <% end %>
           </div>
         </div>

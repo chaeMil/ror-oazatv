@@ -12,6 +12,7 @@ module Admin
 
     def show
       @archive_files = ArchiveFile.where(archive_item_id: @archive_item.id)
+      @convert_profiles = VideoConvertProfile.all
     end
 
     def create

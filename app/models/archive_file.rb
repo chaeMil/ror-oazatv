@@ -55,10 +55,11 @@ class ArchiveFile < ApplicationRecord
     end
   end
 
-  def convert(video_convert_progress_id)
+  def convert(video_convert_progress_id, convert_profile_id)
     if video?
+      convert_profile = VideoConvertProfile.find(convert_profile_id)
       video = FFMPEG::Movie.new(file.path)
-      new_video_filename = "#{SecureRandom.hex(6)}.mkv"
+      new_video_filename = "#{SecureRandom.hex(6)}.#{convert_profile['extension']}"
       new_archive_file = ArchiveFile.new(archive_item: archive_item,
                                          language: language,
                                          file_type: file_type)
@@ -66,7 +67,18 @@ class ArchiveFile < ApplicationRecord
       video_convert_progress = VideoConvertProgress.find(video_convert_progress_id)
       video_convert_progress.update(archive_file_id: id, started_at: DateTime.now)
 
-      video.transcode("#{File.dirname(file.path)}/#{new_video_filename}") do |progress|
+      options = {
+          video_codec: convert_profile['video_codec'],
+          frame_rate: convert_profile['frame_rate'],
+          resolution: convert_profile['resolution'],
+          video_bitrate: convert_profile['video_bitrate'],
+          audio_codec: convert_profile['audio_codec'],
+          audio_bitrate: convert_profile['audio_bitrate'],
+          audio_sample_rate: convert_profile['audio_sample_rate'],
+          audio_channels: convert_profile['audio_channels'],
+          threads: convert_profile['threads']
+      }
+      video.transcode("#{File.dirname(file.path)}/#{new_video_filename}", options) do |progress|
         video_convert_progress.update(progress: progress,
                                       status: VideoConvertProgress.status.find_value(:processing).value)
         if progress == 1.0
