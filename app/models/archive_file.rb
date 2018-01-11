@@ -59,11 +59,16 @@ class ArchiveFile < ApplicationRecord
     if video?
       convert_profile = VideoConvertProfile.find(convert_profile_id)
       video = FFMPEG::Movie.new(file.path)
+
       new_video_filename = "#{SecureRandom.hex(6)}.#{convert_profile['extension']}"
       new_archive_file = ArchiveFile.new(archive_item: archive_item,
                                          language: language,
                                          file_type: file_type)
       new_archive_file.save
+
+      update_filename = "UPDATE archive_files SET file='#{new_video_filename}' WHERE id = #{new_archive_file.id}"
+      ActiveRecord::Base.connection.execute(update_filename)
+
       video_convert_progress = VideoConvertProgress.find(video_convert_progress_id)
       video_convert_progress.update(archive_file_id: id, started_at: DateTime.now)
 
