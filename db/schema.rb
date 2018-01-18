@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180118173459) do
+ActiveRecord::Schema.define(version: 20180118191633) do
 
   create_table "archive_files", force: :cascade do |t|
     t.string "file"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20180118173459) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.boolean "image_processing", default: false, null: false
     t.index ["photo_album_id"], name: "index_photos_on_photo_album_id"
   end
 

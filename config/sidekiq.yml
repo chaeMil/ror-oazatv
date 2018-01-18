@@ -1,5 +1,6 @@
 :concurency: 1
 :queues:
   - video_conversion_queue
+  - carrierwave
 :limits:
   video_conversions_queue: 1
