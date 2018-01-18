@@ -16,7 +16,7 @@
 class VideoConvertProgress < ApplicationRecord
   extend Enumerize
 
-  belongs_to :archive_file
+  belongs_to :archive_file, optional: true
 
   enumerize :status, in: {
       waiting: 0,
