@@ -50,7 +50,7 @@ module Admin
       convert_profile = VideoConvertProfile.find(params[:convert_profile_id])
       video_convert_progress = VideoConvertProgress.new
       video_convert_progress.save
-      ConvertVideoJob.perform_later(@archive_item.id, archive_file.id, video_convert_progress.id, convert_profile.id)
+      ConvertVideoJob.perform_later(@archive_item, archive_file, video_convert_progress, convert_profile)
       redirect_to admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file)
     end
 

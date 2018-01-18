@@ -1,8 +1,7 @@
 class ConvertVideoJob < ApplicationJob
   queue_as :video_conversion_queue
 
-  def perform(archive_item_id, archive_file_id, video_convert_progress_id, convert_profile_id)
-    archive_file = ArchiveFile.find(archive_file_id)
-    archive_file.convert(video_convert_progress_id, convert_profile_id)
+  def perform(archive_item, archive_file, video_convert_progress, convert_profile)
+    VideoConversionService.convert(archive_file, archive_item, video_convert_progress, convert_profile)
   end
 end
