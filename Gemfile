@@ -55,7 +55,6 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.6'
   gem 'factory_bot_rails'
-  gem 'awesome_print', :require => 'ap'
 end
 
 group :development do
@@ -68,6 +67,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'erd', '~> 0.4.0'
   gem 'rails-erd', '~> 1.5', '>= 1.5.2'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'awesome_print', :require => 'ap'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
