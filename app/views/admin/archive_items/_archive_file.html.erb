@@ -11,27 +11,26 @@
       <% if !archive_file.video_convert_progress.present? || archive_file.video_convert_progress['status'] != VideoConvertProgress.status.find_value(:processing).value %>
         <%= link_to 'Delete', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
                     method: :delete, class: 'btn btn-warning' %>
-      <% else %>
-        Processing, <%= (archive_file.video_convert_progress['progress'] * 100).round(2) %>% done
-      <% end %>
-      <% if archive_file.video? %>
-        <div class="dropdown">
-          <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-            Convert
-          </button>
-          <div class="dropdown-menu">
-            <% @convert_profiles.each do |convert_profile| %>
-              <%= link_to convert_profile.title,
-                          convert_admin_archive_item_archive_file_path(archive_item_id: @archive_item,
-                                                                       id: archive_file.id,
-                                                                       convert_profile_id: convert_profile.id),
-                          method: :post,
-                          class: 'dropdown-item' %>
-            <% end %>
+        <% if archive_file.video? %>
+          <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+              Convert
+            </button>
+            <div class="dropdown-menu">
+              <% @convert_profiles.each do |convert_profile| %>
+                <%= link_to convert_profile.title,
+                            convert_admin_archive_item_archive_file_path(archive_item_id: @archive_item,
+                                                                         id: archive_file.id,
+                                                                         convert_profile_id: convert_profile.id),
+                            method: :post,
+                            class: 'dropdown-item' %>
+              <% end %>
+            </div>
           </div>
-        </div>
-
+        <% end %>
+      <% else %>
+        <br>Processing, <%= (archive_file.video_convert_progress['progress'] * 100).round(2) %>% done
       <% end %>
     </div>
   </div>
