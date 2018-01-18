@@ -19,6 +19,7 @@
 class ArchiveFile < ApplicationRecord
   belongs_to :archive_item
   belongs_to :language
+  has_one :video_convert_progress, dependent: :delete
   mount_uploader :file, ArchiveFileUploader
 
   extend Enumerize

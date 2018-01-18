@@ -18,8 +18,8 @@ module Admin
               finished_at: nil,
               started_at: video_convert_progress[:started_at],
               progress: video_convert_progress,
-              status: job.status,
-              error: job.error
+              status: job['status'],
+              error: job['error']
           }
           @running_jobs << running_conversion
         end
@@ -32,11 +32,11 @@ module Admin
         queued_job = {
             archive_file: ArchiveFile.find(arguments[1]),
             archive_item: ArchiveItem.find(arguments[0]),
-            created_at: job.created_at,
+            created_at: job['created_at'],
             finished_at: nil,
             started_at: nil,
-            status: job.status,
-            error: job.error,
+            status: job['status'],
+            error: job['error'],
             progress: VideoConvertProgress.find(arguments[2])
         }
         @queued_jobs << queued_job
@@ -50,11 +50,11 @@ module Admin
           finished_job = {
               archive_file: archive_file,
               archive_item: archive_file.archive_item,
-              created_at: job.created_at,
-              finished_at: job.finished_at,
-              started_at: job.started_at,
-              status: job.status,
-              error: job.error,
+              created_at: job['created_at'],
+              finished_at: job['finished_at'],
+              started_at: job['started_at'],
+              status: job['status'],
+              error: job['error'],
               progress: VideoConvertProgress.status.find_value(:done).value
           }
           @finished_jobs << finished_job

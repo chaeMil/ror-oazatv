@@ -1,0 +1,38 @@
+<div class="col-md-3">
+  <div class="card">
+    <% if archive_file.image? %>
+      <%= image_tag archive_file.file.url, class: 'card-img-top' if archive_file.file.present? %>
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= archive_file.file.to_s.split('/').last if archive_file.file.present? %></h5>
+      <p class="card-text"><%= archive_file.file_type %></p>
+      <%= link_to 'Show', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
+                  class: 'btn btn-primary' %>
+      <% if !archive_file.video_convert_progress.present? || archive_file.video_convert_progress['status'] != VideoConvertProgress.status.find_value(:processing).value %>
+        <%= link_to 'Delete', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
+                    method: :delete, class: 'btn btn-warning' %>
+      <% else %>
+        Processing, <%= (archive_file.video_convert_progress['progress'] * 100).round(2) %>% done
+      <% end %>
+      <% if archive_file.video? %>
+        <div class="dropdown">
+          <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+            Convert
+          </button>
+          <div class="dropdown-menu">
+            <% @convert_profiles.each do |convert_profile| %>
+              <%= link_to convert_profile.title,
+                          convert_admin_archive_item_archive_file_path(archive_item_id: @archive_item,
+                                                                       id: archive_file.id,
+                                                                       convert_profile_id: convert_profile.id),
+                          method: :post,
+                          class: 'dropdown-item' %>
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

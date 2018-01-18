@@ -1,6 +1,11 @@
 class VideoConversionService
   class << self
-    def convert(archive_file, archive_item, video_convert_progress, convert_profile)
+    def convert(archive_item_id, archive_file_id, video_convert_progress_id, convert_profile_id)
+      archive_file = ArchiveFile.find(archive_file_id)
+      archive_item = ArchiveItem.find(archive_item_id)
+      convert_profile = VideoConvertProfile.find(convert_profile_id)
+      video_convert_progress = VideoConvertProgress.find(video_convert_progress_id)
+
       if archive_file.video?
         video = FFMPEG::Movie.new(archive_file.file.path)
 
