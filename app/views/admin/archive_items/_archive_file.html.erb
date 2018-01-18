@@ -8,9 +8,11 @@
       <p class="card-text"><%= archive_file.file_type %></p>
       <%= link_to 'Show', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
                   class: 'btn btn-primary' %>
-      <% if !archive_file.video_convert_progress.present? || archive_file.video_convert_progress['status'] != VideoConvertProgress.status.find_value(:processing).value %>
-        <%= link_to 'Delete', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
-                    method: :delete, class: 'btn btn-warning' %>
+      <% if !archive_file.video_being_processed %>
+        <% unless archive_file[:used_as_conversion_source] %>
+          <%= link_to 'Delete', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
+                      method: :delete, class: 'btn btn-warning' %>
+        <% end %>
         <% if archive_file.video? %>
           <div class="dropdown">
             <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"

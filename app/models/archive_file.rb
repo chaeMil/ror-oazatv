@@ -2,13 +2,14 @@
 #
 # Table name: archive_files
 #
-#  id              :integer          not null, primary key
-#  file            :string
-#  file_type       :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  archive_item_id :integer
-#  language_id     :integer
+#  id                        :integer          not null, primary key
+#  file                      :string
+#  file_type                 :integer
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  archive_item_id           :integer
+#  language_id               :integer
+#  used_as_conversion_source :boolean
 #
 # Indexes
 #
@@ -46,6 +47,10 @@ class ArchiveFile < ApplicationRecord
 
   def subtitles?
     file_type == :subtitles
+  end
+
+  def video_being_processed
+    !video_convert_progress.nil? && video_convert_progress['status'] == VideoConvertProgress.status.find_value(:processing).value
   end
 
   def get_video_info

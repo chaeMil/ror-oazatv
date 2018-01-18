@@ -15,7 +15,9 @@ class VideoConversionService
         update_filename = "UPDATE archive_files SET file='#{new_video_filename}' WHERE id = #{new_archive_file.id}"
         ActiveRecord::Base.connection.execute(update_filename)
 
-        video_convert_progress.update(archive_file_id: new_archive_file.id, started_at: DateTime.now)
+        video_convert_progress.update(original_archive_file_id: archive_file_id,
+                                      archive_file_id: new_archive_file.id,
+                                      started_at: DateTime.now)
 
         transcode(archive_file, new_video_filename, video, convert_profile, video_convert_progress)
       else
@@ -27,10 +29,11 @@ class VideoConversionService
     def transcode(archive_file, new_video_filename, video, convert_profile, video_convert_progress)
       options = create_transcode_options(convert_profile)
       begin
+        on_transcode_begin(archive_file)
         video.transcode("#{File.dirname(archive_file.file.path)}/#{new_video_filename}", options) do |progress|
           on_transcode_progress(progress, video_convert_progress)
           if progress == 1.0
-            on_transcode_finish(video_convert_progress)
+            on_transcode_finish(archive_file, video_convert_progress)
           end
         end
       rescue StandardError => error
@@ -38,12 +41,17 @@ class VideoConversionService
       end
     end
 
+    def on_transcode_begin(archive_file)
+      archive_file.update(used_as_conversion_source: true)
+    end
+
     def on_transcode_progress(progress, video_convert_progress)
       video_convert_progress.update(progress: progress,
                                     status: VideoConvertProgress.status.find_value(:processing).value)
     end
 
-    def on_transcode_finish(video_convert_progress)
+    def on_transcode_finish(source_archive_file, video_convert_progress)
+      source_archive_file.update(used_as_conversion_source: false)
       video_convert_progress.update(finished_at: DateTime.now,
                                     status: VideoConvertProgress.status.find_value(:done).value)
     end
