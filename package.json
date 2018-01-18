@@ -1,5 +1,7 @@
 {
   "name": "ror-oazatv",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootbox": "^4.4.0"
+  }
 }
