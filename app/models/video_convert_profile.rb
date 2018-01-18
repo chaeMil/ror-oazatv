@@ -20,5 +20,4 @@
 #
 
 class VideoConvertProfile < ApplicationRecord
-  belongs_to :archive_file
 end
