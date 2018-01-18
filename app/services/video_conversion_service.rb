@@ -65,17 +65,14 @@ class VideoConversionService
     end
 
     def create_transcode_options(convert_profile)
-      options = {
-          video_codec: convert_profile['video_codec'],
-          frame_rate: convert_profile['frame_rate'],
-          resolution: convert_profile['resolution'],
-          video_bitrate: convert_profile['video_bitrate'],
-          audio_codec: convert_profile['audio_codec'],
-          audio_bitrate: convert_profile['audio_bitrate'],
-          audio_sample_rate: convert_profile['audio_sample_rate'],
-          audio_channels: convert_profile['audio_channels'],
-          threads: convert_profile['threads']
-      }
+      options = {}
+
+      convert_profile_values = convert_profile.instance_values.symbolize_keys
+      convert_profile_values.each do |k, v|
+        options.store(k, v)
+      end
+
+      options
     end
   end
 end
