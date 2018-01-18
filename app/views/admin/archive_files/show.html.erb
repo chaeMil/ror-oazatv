@@ -19,35 +19,27 @@
     </div>
     <div class="col-md-3">
       <% if @archive_file.video? %>
-        <p>délka: <%= @archive_file.get_video_info.duration %> sekund</p>
-        <p>bitrate: <%= @archive_file.get_video_info.bitrate %> kb/s</p>
-        <p>velikost: <%= @archive_file.get_video_info.size %></p>
+        <p>délka: <%= format_video_duration(@archive_file.get_video_info.duration) %></p>
+        <p>bitrate: <%= number_to_human_size(@archive_file.get_video_info.bitrate) %>/s</p>
+        <p>velikost: <%= number_to_human_size(@archive_file.get_video_info.size) %></p>
 
-        <div class="card">
-          <div class="card-block">
-            <h4 class="card-title">
-              Video
-            </h4>
-            <p class="card-text">
-              kodek: <%= @archive_file.get_video_info.video_codec %> <br>
-              rozlišení: <%= @archive_file.get_video_info.resolution %> <br>
-              framerate: <%= @archive_file.get_video_info.frame_rate %> <br>
-            </p>
-          </div>
-        </div>
+        <h4>
+          Video
+        </h4>
+        <p>
+          kodek: <%= @archive_file.get_video_info.video_codec %> <br>
+          rozlišení: <%= @archive_file.get_video_info.resolution %> <br>
+          framerate: <%= @archive_file.get_video_info.frame_rate %> <br>
+        </p>
 
-        <div class="card">
-          <div class="card-block">
-            <h4 class="card-title">
-              Audio
-            </h4>
-            <p class="card-text">
-              kodek: <%= @archive_file.get_video_info.audio_codec %> <br>
-              vzorkovací frekvence: <%= @archive_file.get_video_info.audio_sample_rate %> <br>
-              kanály: <%= @archive_file.get_video_info.audio_channels %> <br>
-            </p>
-          </div>
-        </div>
+        <h4>
+          Audio
+        </h4>
+        <p>
+          kodek: <%= @archive_file.get_video_info.audio_codec %> <br>
+          vzorkovací frekvence: <%= @archive_file.get_video_info.audio_sample_rate %> <br>
+          kanály: <%= @archive_file.get_video_info.audio_channels %> <br>
+        </p>
 
       <% end %>
     </div>
