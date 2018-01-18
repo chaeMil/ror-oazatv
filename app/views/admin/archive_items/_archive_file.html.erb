@@ -6,8 +6,10 @@
     <div class="card-body">
       <h5 class="card-title"><%= archive_file.file.to_s.split('/').last if archive_file.file.present? %></h5>
       <p class="card-text"><%= archive_file.file_type %></p>
-      <%= link_to 'Show', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
-                  class: 'btn btn-primary' %>
+      <% unless archive_file.video_being_processed %>
+        <%= link_to 'Show', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
+                    class: 'btn btn-primary' %>
+      <% end %>
       <% if !archive_file.video_being_processed %>
         <% unless archive_file[:used_as_conversion_source] %>
           <%= link_to 'Delete', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),

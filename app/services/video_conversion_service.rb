@@ -56,10 +56,11 @@ class VideoConversionService
                                     status: VideoConvertProgress.status.find_value(:done).value)
     end
 
-    def on_transcode_error(error, video_convert_progress)
+    def on_transcode_error(archive_file, error, video_convert_progress)
       p '=================error======================='
       p error
       p '=================error======================='
+      archive_file.update(used_as_conversion_source: false)
       video_convert_progress.update(error: error,
                                     status: VideoConvertProgress.status.find_value(:error).value)
     end
