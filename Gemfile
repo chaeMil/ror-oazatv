@@ -55,6 +55,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.6'
   gem 'factory_bot_rails'
+  gem 'awesome_print', :require => 'ap'
 end
 
 group :development do
