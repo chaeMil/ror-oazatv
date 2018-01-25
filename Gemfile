@@ -47,6 +47,7 @@ gem 'streamio-ffmpeg'
 gem 'sidekiq'
 gem 'sidekiq-limit_fetch'
 gem 'carrierwave_backgrounder', :git => 'https://github.com/lardawge/carrierwave_backgrounder.git'
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

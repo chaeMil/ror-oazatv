@@ -1,5 +1,7 @@
 <h1>Archive Items</h1>
 
+<%= paginate @archive_items %>
+
 <table class="table table-hover table-responsive table-no-more">
   <thead>
     <tr>
@@ -37,6 +39,8 @@
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @archive_items %>
 
 <br>
 

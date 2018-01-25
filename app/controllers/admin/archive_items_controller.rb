@@ -3,7 +3,7 @@ module Admin
     before_action :set_archive_item, only: [:show, :edit, :update, :destroy]
 
     def index
-      @archive_items = ArchiveItem.all
+      @archive_items = ArchiveItem.page params[:page]
     end
 
     def new
