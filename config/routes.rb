@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    get '/', to: 'dashboard#index', as: '/'
+    get '/', to: 'dashboard#index'
 
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'
@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     end
     resources :video_queue_items, only: [:index, :show, :destroy]
     resources :video_convert_profiles
+
+    get '/livestream', to: 'live_stream#edit', method: 'get'
+    get '/livestream', to: 'live_stream#save', method: 'post'
   end
 
 end
