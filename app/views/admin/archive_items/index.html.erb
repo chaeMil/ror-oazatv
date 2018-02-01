@@ -4,39 +4,37 @@
 
 <table class="table table-hover table-responsive table-no-more">
   <thead>
-    <tr>
-      <th>
-        Title
-      </th>
-      <th>
-        Description
-      </th>
-      <th>
-        published
-      </th>
-      <th>
-        hash_id
-      </th>
-      <th>
-        date
-      </th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <%= render 'admin/shared/tables/localized_table_head', head_label: 'Title' %>
+    <th>
+      Description
+    </th>
+    <th>
+      published
+    </th>
+    <th>
+      hash_id
+    </th>
+    <th>
+      date
+    </th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @archive_items.each do |archive_item| %>
-      <tr>
-        <td data-title="Title"><%= archive_item.title %></td>
-        <td data-title="Description"><%= archive_item.description %></td>
-        <td data-title="Published"><%= archive_item.published %></td>
-        <td data-title="Hash ID"><%= archive_item.hash_id %></td>
-        <td data-title="Date"><%= archive_item.date %></td>
-        <td><%= link_to 'Show', admin_archive_item_path(archive_item) %></td>
-        <td><%= link_to 'Edit', edit_admin_archive_item_path(archive_item) %></td>
-        <td><%= link_to 'Destroy', admin_archive_item_path(archive_item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <% @archive_items.each do |archive_item| %>
+    <tr>
+      <%= render 'admin/shared/tables/localized_table_row', row_label: 'Title', model: archive_item, key: 'title' %>
+      <td data-title="Description"><%= archive_item.description %></td>
+      <td data-title="Published"><%= archive_item.published %></td>
+      <td data-title="Hash ID"><%= archive_item.hash_id %></td>
+      <td data-title="Date"><%= archive_item.date %></td>
+      <td><%= link_to 'Show', admin_archive_item_path(archive_item) %></td>
+      <td><%= link_to 'Edit', edit_admin_archive_item_path(archive_item) %></td>
+      <td><%= link_to 'Destroy', admin_archive_item_path(archive_item), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
 

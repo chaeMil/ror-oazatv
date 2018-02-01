@@ -1,0 +1,3 @@
+<% @languages.each do |language| %>
+  <td data-title="<%= row_label %> <%= language['title'] %>"><%= model.send("#{key}_#{language['locale']}") %></td>
+<% end %>
