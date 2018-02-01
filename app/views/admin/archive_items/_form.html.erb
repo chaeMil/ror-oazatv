@@ -13,15 +13,7 @@
     </div>
   <% end %>
 
-  <p>
-    <%= form.label :title_cs %> <br>
-    <%= form.text_field :title_cs %>
-  </p>
-
-  <p>
-    <%= form.label :title_en %> <br>
-    <%= form.text_field :title_en %>
-  </p>
+  <%= render 'admin/shared/localized_text_field', model: 'archive_item', name: 'title' %>
 
   <p>
     <%= form.label :description %> <br>

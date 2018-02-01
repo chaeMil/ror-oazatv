@@ -20,5 +20,5 @@ class ArchiveItem < ApplicationRecord
   validates :title, presence: true
   validates :date, presence: true
   translates :title, :description
-  globalize_accessors :locales => [:en, :cs], :attributes => [:title, :description]
+  globalize_accessors :attributes => [:title, :description]
 end

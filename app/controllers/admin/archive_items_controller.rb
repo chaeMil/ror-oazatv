@@ -16,6 +16,7 @@ module Admin
     end
 
     def create
+      p archive_item_params
       @archive_item = ArchiveItem.new(archive_item_params)
       @archive_item.hash_id = SecureRandom.hex(4)
       if @archive_item.save

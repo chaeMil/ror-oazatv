@@ -16,7 +16,5 @@ module RorOazatv
     # -- all .rb files in that directory are automatically loaded.
     #
     config.active_job.queue_adapter = :sidekiq
-
-    config.i18n.available_locales = [:en, :cs]
   end
 end
