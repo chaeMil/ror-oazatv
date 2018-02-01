@@ -15,5 +15,6 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require bootstrap4-tagsinput/tagsinput.js
 //= require admin/ui
 //= require_tree .
