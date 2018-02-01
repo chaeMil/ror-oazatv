@@ -7,7 +7,12 @@ module Admin
     end
 
     def new
+      @categories = Category.all
       @archive_item = ArchiveItem.new
+    end
+
+    def edit
+      @categories = Category.all
     end
 
     def show

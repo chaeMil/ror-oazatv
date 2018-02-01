@@ -32,8 +32,11 @@
 
   <p>
     <%= form.label :categories %>
-    <%= form.text_field :categories, value: (@archive_item.categories.map do |category| category.id end.join(',')),
-        data: {role: 'tagsinput'} %>
+    <%= form.text_field :categories, value: (@archive_item.categories.map do |category| category.id end.join(',')) %>
+    <br>
+    <% @categories.each do |category| %>
+      <a href="#" class="add-category" data-category-id="<%= category['id'] %>"><%= category['title'] %></a>
+    <% end %>
   </p>
 
   <p>
@@ -49,4 +52,30 @@
   <div class="actions">
     <%= form.submit %>
   </div>
+<% end %>
+
+<% content_for :scripts do %>
+  <script type="text/javascript" charset="utf-8">
+    var input = $('#archive_item_categories');
+    input.tagsinput({
+        confirmKeys: [13, 44],
+        itemValue: 'id',
+        itemText: 'text',
+    });
+
+    input.on('itemRemoved', function(e) {
+        $('[data-category-id="' + e.item.id + '"]').removeClass('d-none');
+    });
+
+    <% @archive_item.categories.each do |category| %>
+      input.tagsinput('add', { id: <%= category['id'] %>, text: '<%= category['title'] %>'});
+      $('[data-category-id="<%= category['id'] %>"]').addClass('d-none');
+    <% end %>
+
+    $('.add-category').click(function(e) {
+        e.preventDefault();
+        $(this).addClass('d-none');
+        input.tagsinput('add', { id: $(this).attr('data-category-id'), text: $(this).text()});
+    })
+  </script>
 <% end %>
