@@ -1,6 +1,6 @@
 <%= render 'admin/shared/forms/localized_text', name: 'Title', model: @archive_item, key: 'title' %>
 
-<p>description: <%= @archive_item.description %></p>
+<%= render 'admin/shared/forms/localized_html', name: 'Description', model: @archive_item, key: 'description' %>
 
 <p>published: <%= @archive_item.published %></p>
 
