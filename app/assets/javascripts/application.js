@@ -11,10 +11,11 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap4-tagsinput/tagsinput.js
+//= require summernote/summernote-bs4.min
+//= require turbolinks
 //= require admin/ui
 //= require_tree .

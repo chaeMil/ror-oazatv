@@ -15,10 +15,7 @@
 
   <%= render 'admin/shared/forms/localized_text_field', model: @archive_item, name: 'title' %>
 
-  <p>
-    <%= form.label :description %> <br>
-    <%= form.text_area :description %>
-  </p>
+  <%= render 'admin/shared/forms/localized_editor', model: @archive_item, name: 'description', horizontal: true %>
 
   <p>
     <%= form.label :published %> <br>
