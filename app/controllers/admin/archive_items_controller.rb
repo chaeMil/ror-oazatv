@@ -16,7 +16,6 @@ module Admin
     end
 
     def create
-      p archive_item_params
       @archive_item = ArchiveItem.new(archive_item_params)
       @archive_item.hash_id = SecureRandom.hex(4)
       if @archive_item.save
@@ -45,8 +44,13 @@ module Admin
     end
 
     def archive_item_params
-      permitted = ArchiveItem.globalize_attribute_names + [:published, :hash_id, :date, :tags, :note]
+      permitted = ArchiveItem.globalize_attribute_names + [:published, :description, :hash_id, :date, :tags, :note, :categories]
       params.require(:archive_item).permit(*permitted)
+      category_ids = params[:archive_item][:categories].split(',')
+      categories = Category.find(category_ids)
+      new_params = params[:archive_item].as_json
+      new_params['categories'] = categories
+      new_params.to_hash
     end
   end
 end

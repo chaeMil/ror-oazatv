@@ -12,6 +12,8 @@
 
 <p>note: <%= @archive_item.note %></p>
 
+<p>categories: <%= @archive_item.categories.map do |category| category.title end.join(', ') %></p>
+
 <% if @archive_files.present? %>
   <div class="row">
     <% @archive_files.each do |archive_file| %>
