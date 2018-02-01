@@ -1,4 +1,5 @@
 .sidebar {
+  position: fixed;
   margin-top: -15px;
   padding-top: 15px;
   background-color: $secondary;
@@ -6,4 +7,8 @@
   @include media-breakpoint-up(md) {
     height: calc(100vh - #{$navbar-brand-height});
   }
+}
+
+.sidebar + .col {
+  margin-left:248px;
 }
