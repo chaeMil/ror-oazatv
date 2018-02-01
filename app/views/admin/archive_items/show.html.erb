@@ -1,6 +1,4 @@
-<p>name EN: <%= @archive_item.title_en %></p>
-
-<p>name CS: <%= @archive_item.title_cs %></p>
+<%= render 'admin/shared/forms/localized_text', name: 'Title', model: @archive_item, key: 'title' %>
 
 <p>description: <%= @archive_item.description %></p>
 

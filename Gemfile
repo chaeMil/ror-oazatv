@@ -52,6 +52,7 @@ gem 'moneta'
 gem 'rails-i18n'
 gem 'globalize'
 gem 'globalize-accessors'
+gem 'globalize-validations'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

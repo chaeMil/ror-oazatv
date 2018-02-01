@@ -125,6 +125,9 @@ GEM
       request_store (~> 1.0)
     globalize-accessors (0.2.1)
       globalize (~> 5.0, >= 5.0.0)
+    globalize-validations (0.0.4)
+      globalize (>= 3)
+      globalize-accessors (~> 0.1)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -322,6 +325,7 @@ DEPENDENCIES
   font-awesome-rails (~> 4.7, >= 4.7.0.2)
   globalize
   globalize-accessors
+  globalize-validations
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3, >= 4.3.1)
   kaminari

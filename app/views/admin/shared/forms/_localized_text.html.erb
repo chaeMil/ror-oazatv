@@ -1,0 +1,5 @@
+<% @languages.each do |language| %>
+  <p>
+    <%="#{name}_#{language['locale']}" %>: <%= model.send("#{key}_#{language['locale']}") %>
+  </p>
+<% end %>
