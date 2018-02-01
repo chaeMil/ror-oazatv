@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require bootstrap4-tagsinput/tagsinput.js
 //= require summernote/summernote-bs4.min
+//= require bootstrap-datepicker/js/bootstrap-datepicker.js
 //= require turbolinks
 //= require admin/ui
 //= require_tree .

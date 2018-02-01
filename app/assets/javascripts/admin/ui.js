@@ -17,4 +17,8 @@ $(document).on('turbolinks:load', function(e) {
             ]
         });
     });
+
+    $('[data-provider="datepicker"]').each(function() {
+        $(this).datepicker();
+    })
 });
