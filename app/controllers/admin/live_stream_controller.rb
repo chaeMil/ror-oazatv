@@ -16,7 +16,7 @@ module Admin
 
     private
     def setup_moneta
-      @store = Moneta.new(:File, dir: 'livestream')
+      @store = Moneta.new(:File, dir: 'local_config/livestream')
     end
   end
 end
