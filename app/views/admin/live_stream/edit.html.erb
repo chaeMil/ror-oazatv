@@ -1,2 +1,15 @@
-<h1>LiveStreamController#edit</h1>
-<p>Find me in app/views/live_stream_controller/edit.html.erb</p>
+<h1>Live stream</h1>
+
+<%= form_tag url: admin_livestream_path, method: :post do %>
+  <p>
+    <%= label_tag :youtube_id, 'Youtube video ID' %>
+    <%= text_field_tag :youtube_id, @store['youtube_id'] %>
+  </p>
+
+  <p>
+    <%= label_tag :online, 'Online' %>
+    <%= check_box_tag :online, true, (true if @store['online']) %>
+  </p>
+
+  <%= submit_tag 'submit' %>
+<% end %>

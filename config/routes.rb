@@ -27,8 +27,8 @@ Rails.application.routes.draw do
     resources :video_queue_items, only: [:index, :show, :destroy]
     resources :video_convert_profiles
 
-    get '/livestream', to: 'live_stream#edit', method: 'get'
-    get '/livestream', to: 'live_stream#save', method: 'post'
+    get '/livestream', to: 'live_stream#edit'
+    post '/livestream', to: 'live_stream#save'
   end
 
 end
