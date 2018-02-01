@@ -1,49 +1,54 @@
 <%= simple_form_for @archive_item,
                     url: (@archive_item.new_record? ? admin_archive_items_path : admin_archive_item_path(id: @archive_item.id)),
                     method: (@archive_item.new_record? ? :post : :put) do |form| %>
-    <% if @archive_item.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@archive_item.errors.count, "error") %> prohibited this archive_item from being saved:</h2>
+  <% if @archive_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@archive_item.errors.count, "error") %> prohibited this archive_item from being saved:</h2>
 
-          <ul>
-            <% @archive_item.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-    <p>
-      <%= form.label :title %> <br>
-      <%= form.text_field :title %>
-    </p>
-
-    <p>
-      <%= form.label :description %> <br>
-      <%= form.text_area :description %>
-    </p>
-
-    <p>
-      <%= form.label :published %> <br>
-      <%= form.check_box :published %>
-    </p>
-
-    <p>
-      <%= form.label :date %> <br>
-      <%= form.text_field :date %>
-    </p>
-
-    <p>
-      <%= form.label :tags %>
-      <%= form.text_area :tags %>
-    </p>
-
-    <p>
-      <%= form.label :note %>
-      <%= form.text_area :note %>
-    </p>
-
-    <div class="actions">
-      <%= form.submit %>
+      <ul>
+        <% @archive_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
+
+  <p>
+    <%= form.label :title_cs %> <br>
+    <%= form.text_field :title_cs %>
+  </p>
+
+  <p>
+    <%= form.label :title_en %> <br>
+    <%= form.text_field :title_en %>
+  </p>
+
+  <p>
+    <%= form.label :description %> <br>
+    <%= form.text_area :description %>
+  </p>
+
+  <p>
+    <%= form.label :published %> <br>
+    <%= form.check_box :published %>
+  </p>
+
+  <p>
+    <%= form.label :date %> <br>
+    <%= form.text_field :date %>
+  </p>
+
+  <p>
+    <%= form.label :tags %>
+    <%= form.text_area :tags %>
+  </p>
+
+  <p>
+    <%= form.label :note %>
+    <%= form.text_area :note %>
+  </p>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 <% end %>

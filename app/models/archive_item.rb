@@ -19,4 +19,6 @@ class ArchiveItem < ApplicationRecord
   has_and_belongs_to_many :categories
   validates :title, presence: true
   validates :date, presence: true
+  translates :title, :description
+  globalize_accessors :locales => [:en, :cs], :attributes => [:title, :description]
 end

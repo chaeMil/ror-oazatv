@@ -44,7 +44,8 @@ module Admin
     end
 
     def archive_item_params
-      params.require(:archive_item).permit(:title, :description, :published, :hash_id, :date, :tags, :note)
+      permitted = ArchiveItem.globalize_attribute_names + [:published, :hash_id, :date, :tags, :note]
+      params.require(:archive_item).permit(*permitted)
     end
   end
 end
