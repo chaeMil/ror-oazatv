@@ -13,23 +13,32 @@
     </div>
   <% end %>
 
-  <%= render 'admin/shared/forms/localized_text_field', model: @archive_item, name: 'title' %>
+  <div class="row">
+    <div class="col-md-9">
+      <%= render 'admin/shared/forms/localized_text_field', model: @archive_item, name: 'title' %>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <%= form.check_box :published, class: 'custom-control-input' %>
+          <%= form.label :published, class: 'custom-control-label' %>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <%= render 'admin/shared/forms/localized_editor', model: @archive_item, name: 'description', horizontal: true %>
 
   <p>
-    <%= form.label :published %> <br>
-    <%= form.check_box :published %>
-  </p>
-
-  <p>
     <%= form.label :date %> <br>
-    <%= form.text_field :date, data: {provider: 'datepicker'} %>
+    <%= form.text_field :date, class: 'form-control', data: {provider: 'datepicker'} %>
   </p>
 
   <p>
     <%= form.label :categories %>
-    <%= form.text_field :categories, value: (@archive_item.categories.map do |category| category.id end.join(',')) %>
+    <%= form.text_field :categories, value: (@archive_item.categories.map do |category|
+      category.id
+    end.join(',')) %>
     <br>
     <% @categories.each do |category| %>
       <a href="#" class="add-category" data-category-id="<%= category['id'] %>"><%= category['title'] %></a>
@@ -53,26 +62,26 @@
 
 <% content_for :scripts do %>
   <script type="text/javascript" charset="utf-8">
-    var input = $('#archive_item_categories');
-    input.tagsinput({
-        confirmKeys: [13, 44],
-        itemValue: 'id',
-        itemText: 'text',
-    });
+      var input = $('#archive_item_categories');
+      input.tagsinput({
+          confirmKeys: [13, 44],
+          itemValue: 'id',
+          itemText: 'text',
+      });
 
-    input.on('itemRemoved', function(e) {
-        $('[data-category-id="' + e.item.id + '"]').removeClass('d-none');
-    });
+      input.on('itemRemoved', function (e) {
+          $('[data-category-id="' + e.item.id + '"]').removeClass('d-none');
+      });
 
-    <% @archive_item.categories.each do |category| %>
-      input.tagsinput('add', { id: <%= category['id'] %>, text: '<%= category['title'] %>'});
+      <% @archive_item.categories.each do |category| %>
+      input.tagsinput('add', {id: <%= category['id'] %>, text: '<%= category['title'] %>'});
       $('[data-category-id="<%= category['id'] %>"]').addClass('d-none');
-    <% end %>
+      <% end %>
 
-    $('.add-category').click(function(e) {
-        e.preventDefault();
-        $(this).addClass('d-none');
-        input.tagsinput('add', { id: $(this).attr('data-category-id'), text: $(this).text()});
-    })
+      $('.add-category').click(function (e) {
+          e.preventDefault();
+          $(this).addClass('d-none');
+          input.tagsinput('add', {id: $(this).attr('data-category-id'), text: $(this).text()});
+      })
   </script>
 <% end %>

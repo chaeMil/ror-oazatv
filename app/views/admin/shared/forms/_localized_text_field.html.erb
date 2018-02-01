@@ -1,6 +1,10 @@
 <% @languages.each do |language| %>
-  <p>
-    <%= label_tag "#{name}_#{language['locale']}" %>
-    <%= text_field_tag "#{model.class.name.underscore}[#{name}_#{language['locale']}]", model.send("#{name}_#{language['locale']}") %>
-  </p>
+  <div class="form-group row">
+    <%= label_tag "#{name}_#{language['locale']}", "#{name.capitalize} (#{language['locale'].upcase})", class: 'col-1 col-form-label' %>
+    <div class="col-11">
+      <%= text_field_tag "#{model.class.name.underscore}[#{name}_#{language['locale']}]",
+                         model.send("#{name}_#{language['locale']}"),
+                         class: 'form-control' %>
+    </div>
+  </div>
 <% end %>
