@@ -32,7 +32,8 @@
 
   <p>
     <%= form.label :categories %>
-    <%= form.text_field :categories, data: {role: 'tagsinput'} %>
+    <%= form.text_field :categories, value: (@archive_item.categories.map do |category| category.id end.join(',')),
+        data: {role: 'tagsinput'} %>
   </p>
 
   <p>
