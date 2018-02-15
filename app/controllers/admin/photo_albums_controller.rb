@@ -3,7 +3,7 @@ module Admin
     before_action :set_photo_album, only: [:show, :edit, :update, :destroy]
 
     def index
-      @photo_albums = PhotoAlbum.all
+      @photo_albums = PhotoAlbum.page params[:page]
     end
 
     def new
