@@ -12,9 +12,9 @@
 
 <p>tags: <%= @photo_album.tags %></p>
 
-<div>
+<div class="photos-grid">
   <% @photo_album.photos.each do |photo| %>
-      <span class="thumbnail pull-left">
+      <span class="grid-photo">
         <%= image_tag photo.image.thumb.url %>
         <p><%= photo.description %></p>
       </span>
