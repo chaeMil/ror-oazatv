@@ -48,7 +48,8 @@ module Admin
     end
 
     def photo_album_params
-      params.require(:photo_album).permit(:title, :date, :days, :description, :published, :tags, :photos)
+      permitted = PhotoAlbum.globalize_attribute_names + [:title, :date, :days, :description, :published, :tags, :photos]
+      params.require(:photo_album).permit(*permitted)
     end
   end
 end
