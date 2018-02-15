@@ -1,5 +1,16 @@
 .table {
+  &.table-no-more {
+    display: table;
+  }
+
   tr {
     background-color: #303030;
+  }
+
+  .action-buttons {
+    .btn {
+      display: block;
+      margin-bottom: 5px;
+    }
   }
 }

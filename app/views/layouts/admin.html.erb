@@ -12,7 +12,6 @@
 <%= render 'admin/shared/navbar' if user_signed_in? %>
 <div class="container-fluid">
   <div class="row">
-    <%= render 'admin/shared/sidebar' if user_signed_in? %>
     <div class="col">
       <% if notice.present? || alert.present? %>
           <div class="container-fluid">
