@@ -1,42 +1,21 @@
 <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
   <div class="container-fluid">
-    <a href="../" class="navbar-brand">Oáza.tv 3.0 alpha</a>
+    <a href="<%= admin_path %>" class="navbar-brand">Oáza.tv 3.0 alpha</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <%= link_to 'Dashboard', admin_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Livestream', admin_livestream_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Archive', admin_archive_items_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Video convert queue', admin_video_queue_items_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Video convert profiles', admin_video_convert_profiles_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Categories', admin_categories_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Languages', admin_languages_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Preachers', admin_preachers_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Songs', admin_songs_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Photo albums', admin_photo_albums_path, class: 'nav-link' %>
-        </li>
+        <%= nav_link 'Livestream', admin_livestream_path, 'nav-item', 'nav-link' %>
+        <%= nav_link 'Archive', admin_archive_items_path, 'nav-item', 'nav-link' %>
+        <%= nav_link 'Video convert queue', admin_video_queue_items_path, 'nav-item', 'nav-link' %>
+        <%= nav_link 'Video convert profiles', admin_video_convert_profiles_path, 'nav-item', 'nav-link' %>
+        <%= nav_link 'Categories', admin_categories_path, 'nav-item', 'nav-link' %>
+        <%= nav_link 'Languages', admin_languages_path, 'nav-item', 'nav-link' %>
+        <%= nav_link 'Preachers', admin_preachers_path, 'nav-item', 'nav-link' %>
+        <%= nav_link 'Songs', admin_songs_path, 'nav-item', 'nav-link' %>
+        <%= nav_link 'Photo albums', admin_photo_albums_path, 'nav-item', 'nav-link' %>
       </ul>
 
       <ul class="nav navbar-nav ml-auto">
