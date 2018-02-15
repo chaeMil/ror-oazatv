@@ -91,8 +91,10 @@
 
           input.tagsinput();
 
-          <% @archive_item.tags.split(',').each do |tag| %>
-            input.tagsinput('add', '<%= tag %>');
+          <% if @archive_item.tags.present? %>
+            <% @archive_item.tags.split(',').each do |tag| %>
+              input.tagsinput('add', '<%= tag %>');
+            <% end %>
           <% end %>
       }
 
