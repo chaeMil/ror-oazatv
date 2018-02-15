@@ -14,4 +14,6 @@ class Category < ApplicationRecord
   validates :title, presence: true
   validates :color, presence: true
   translates :title
+  globalize_accessors :attributes => [:title]
+  globalize_validations locales: [:en]
 end
