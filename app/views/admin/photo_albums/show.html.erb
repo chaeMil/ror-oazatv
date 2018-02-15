@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>name: <%= @photo_album.title %></p>
+<%= render 'admin/shared/forms/localized_text', name: 'Title', model: @photo_album, key: 'title' %>
 
 <p>date: <%= @photo_album.date %></p>
 
 <p>days: <%= @photo_album.days %></p>
 
-<p>description: <%= @photo_album.description %></p>
+<%= render 'admin/shared/forms/localized_html', name: 'Title', model: @photo_album, key: 'description' %>
 
 <p>published: <%= @photo_album.published %></p>
 
