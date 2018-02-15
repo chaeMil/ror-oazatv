@@ -20,4 +20,7 @@ class PhotoAlbum < ApplicationRecord
   accepts_nested_attributes_for :photos, allow_destroy: true
   validates :title, presence: true
   validates :date, presence: true
+  translates :title, :description
+  globalize_accessors :attributes => [:title, :description]
+  globalize_validations locales: [:en]
 end
