@@ -1,11 +1,9 @@
 <h1>Categories</h1>
 
-<table>
+<table class="table table-hover table-responsive table-no-more">
   <thead>
   <tr>
-    <th>
-      Title
-    </th>
+    <%= render 'admin/shared/tables/localized_table_head', head_label: 'Title' %>
     <th>
       Color
     </th>
@@ -15,13 +13,13 @@
 
   <tbody>
   <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.title %></td>
-        <td><%= category.color %></td>
-        <td><%= link_to 'Show', admin_category_path(category) %></td>
-        <td><%= link_to 'Edit', edit_admin_category_path(category) %></td>
-        <td><%= link_to 'Destroy', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <%= render 'admin/shared/tables/localized_table_row', row_label: 'Title', model: category, key: 'title' %>
+      <td><%= category.color %></td>
+      <td><%= link_to 'Show', admin_category_path(category) %></td>
+      <td><%= link_to 'Edit', edit_admin_category_path(category) %></td>
+      <td><%= link_to 'Destroy', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
   <% end %>
   </tbody>
 </table>

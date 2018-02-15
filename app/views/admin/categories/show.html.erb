@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>name: <%= @category.title %></p>
+<%= render 'admin/shared/forms/localized_text', name: 'Title', model: @category, key: 'title' %>
 
 <p>color: <%= @category.color %></p>
 
