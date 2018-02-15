@@ -38,7 +38,8 @@ module Admin
     end
 
     def category_params
-      params.require(:category).permit(:title, :color)
+      permitted = Category.globalize_attribute_names + [:title, :color]
+      params.require(:category).permit(*permitted)
     end
   end
 end
