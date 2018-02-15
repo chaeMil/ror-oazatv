@@ -8,8 +8,12 @@ module Admin
     end
 
     def save
+      @languages = Language.all
       @store['youtube_id'] = params['youtube_id']
       @store['online'] = params['online']
+      @languages.each do |language|
+        @store["text_#{language['locale']}"] = params["text_#{language['locale']}"]
+      end
       @store.close
       redirect_to admin_livestream_path, notice: 'Saved'
     end

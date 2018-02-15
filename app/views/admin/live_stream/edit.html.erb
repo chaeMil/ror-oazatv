@@ -11,5 +11,15 @@
     <%= check_box_tag :online, true, (true if @store['online']) %>
   </p>
 
+  <div class="row">
+    <% @languages.each do |language| %>
+      <div class="col-lg-6">
+        <%= label_tag "text_#{language['locale']}", "Text (#{language['locale'].upcase})" %>
+        <%= text_area_tag "text_#{language['locale']}", @store["text_#{language['locale']}"],
+                          data: {provider: 'summernote'} %>
+      </div>
+    <% end %>
+  </div>
+
   <%= submit_tag 'submit' %>
 <% end %>
