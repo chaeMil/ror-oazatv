@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215095115) do
+ActiveRecord::Schema.define(version: 20180321185704) do
 
   create_table "archive_files", force: :cascade do |t|
     t.string "file"
@@ -85,28 +85,6 @@ ActiveRecord::Schema.define(version: 20180215095115) do
     t.text "description"
     t.index ["locale"], name: "index_photo_album_translations_on_locale"
     t.index ["photo_album_id"], name: "index_photo_album_translations_on_photo_album_id"
-  end
-
-  create_table "photo_albums", force: :cascade do |t|
-    t.boolean "published"
-    t.text "title"
-    t.text "description"
-    t.text "tags"
-    t.date "date"
-    t.integer "days"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "photos", force: :cascade do |t|
-    t.integer "photo_album_id"
-    t.text "description"
-    t.integer "order"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "image"
-    t.boolean "image_processing", default: false, null: false
-    t.index ["photo_album_id"], name: "index_photos_on_photo_album_id"
   end
 
   create_table "preachers", force: :cascade do |t|
