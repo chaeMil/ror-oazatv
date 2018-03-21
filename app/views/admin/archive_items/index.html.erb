@@ -45,10 +45,12 @@
       <td data-title="Date"><%= archive_item.date %></td>
       <td data-title="Note"><%= archive_item.note %></td>
       <td class="action-buttons">
-        <%= link_to 'Show', admin_archive_item_path(archive_item), class: 'btn btn-primary' %>
-        <%= link_to 'Edit', edit_admin_archive_item_path(archive_item), class: 'btn btn-warning' %>
-        <%= link_to 'Destroy', admin_archive_item_path(archive_item), method: :delete,
-                    data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+        <div class="btn-group">
+          <%= link_to 'Show', admin_archive_item_path(archive_item), class: 'btn btn-primary' %>
+          <%= link_to 'Edit', edit_admin_archive_item_path(archive_item), class: 'btn btn-warning' %>
+          <%= link_to 'Destroy', admin_archive_item_path(archive_item), method: :delete,
+                      data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+        </div>
       </td>
     </tr>
   <% end %>
