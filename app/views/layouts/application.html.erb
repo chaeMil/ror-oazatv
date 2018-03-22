@@ -3,14 +3,15 @@
 <head>
   <title>RorOazatv</title>
   <%= csrf_meta_tags %>
-
+  <%= render 'application/shared/meta' %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%= yield %>
+<%= render 'application/shared/navbar'%>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<%= yield %>
 </body>
 </html>
