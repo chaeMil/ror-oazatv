@@ -1,31 +1,86 @@
 <%= simple_form_for @archive_file,
                     url: (@archive_file.new_record? ? admin_archive_item_archive_files_path(archive_item_id: @archive_item) : admin_archive_item_archive_file_path(archive_item_id: @archive_item.id, id: @archive_file.id)),
                     method: (@archive_file.new_record? ? :post : :put) do |form| %>
-    <% if @archive_file.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@archive_file.errors.count, "error") %> prohibited this archive_item from being saved:</h2>
+  <% if @archive_file.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@archive_file.errors.count, "error") %> prohibited this archive_item from being saved:</h2>
 
-          <ul>
-            <% @archive_file.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-    <p>
-      <%= form.input :file_type, required: true %>
-    </p>
-
-    <p>
-      <%= form.association :language, required: true %>
-    </p>
-
-    <p>
-      <%= form.input :file, as: :file, required: true %>
-    </p>
-
-    <div class="actions">
-      <%= form.submit %>
+      <ul>
+        <% @archive_file.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
+
+  <p>
+    <%= form.input :file_type, required: true %>
+  </p>
+
+  <p>
+    <%= form.association :language, required: true %>
+  </p>
+
+  <div>
+    <div id="drop-target"></div>
+    <input type="button" class="btn btn-primary" id="browse-button" value="Browse"/>
+  </div>
+
+  <br>
+
+  <div class="progress">
+    <div id="upload-progress"
+         class="progress-bar" style="width: 0" role="progressbar"
+         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+
+  <br>
+
+  <div class="actions">
+    <%= form.submit id: 'upload' %>
+  </div>
+<% end %>
+
+<%= content_for :scripts do %>
+  <script type="text/javascript" charset="utf-8">
+      var resumable = new Resumable({
+          target: '<%= admin_archive_files_chunk_path %>',
+          headers: {
+              'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+          },
+          query: {
+              'file_type': $('#archive_file_file_type').find(":selected").text(),
+              'language': $('#archive_file_language_id').find(":selected").text(),
+              'archive_item_id': '<%= @archive_item.id %>'
+          }
+      });
+
+      resumable.assignBrowse($('#browse-button'));
+      resumable.assignDrop($('#drop-target'));
+
+      $('#upload').click(function (e) {
+          e.preventDefault();
+          resumable.upload();
+      });
+
+      function updateProgress(progress) {
+          $('#upload-progress')
+              .css('width', progress * 100 + '%')
+              .attr('aria-volumenow', progress * 100);
+      }
+
+      resumable.on('progress', function () {
+          updateProgress(resumable.progress());
+      });
+      resumable.on('fileAdded', function (file, event) {
+          console.log(file);
+          console.log('file added: ' + file);
+      });
+      resumable.on('fileSuccess', function (file, message) {
+
+      });
+      resumable.on('fileError', function (file, message) {
+          alert(message);
+      });
+  </script>
 <% end %>

@@ -17,6 +17,9 @@ Rails.application.routes.draw do
       end
     end
 
+    post '/archive_files/chunk', to: 'archive_files#post_chunk'
+    get '/archive_files/chunk', to: 'archive_files#get_chunk'
+
     resources :languages
     resources :categories
     resources :preachers

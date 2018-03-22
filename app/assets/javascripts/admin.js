@@ -18,5 +18,6 @@
 //= require summernote/summernote-bs4.min
 //= require bootstrap-datepicker/js/bootstrap-datepicker.js
 //= require turbolinks
+//= require resumablejs
 //= require admin/ui
 //= require_tree .
