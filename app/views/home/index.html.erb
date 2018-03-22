@@ -1,3 +1,5 @@
 <div class="container">
-  <p>HomeController Index</p>
+  <%= @latest_videos.each do |video| %>
+    <p><%= video.title %></p>
+  <% end %>
 </div>
