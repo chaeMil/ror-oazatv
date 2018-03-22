@@ -4,10 +4,12 @@
 
 // Variables ===================================================================
 
-$web-font-path: "https://fonts.googleapis.com/css?family=Raleway:400,700" !default;
+$web-font-path: "https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" !default;
 @import url($web-font-path);
+$sans-web-font-path: "https://fonts.googleapis.com/css?family=Bitter:400,400i,700&amp;subset=latin-ext";
+@import url($sans-web-font-path);
 
-$font-family-serif:      Georgia, Cambria, "Times New Roman", Times, serif !default;
+$font-family-serif: 'Bitter', serif !default;
 
 // Navbar ======================================================================
 
