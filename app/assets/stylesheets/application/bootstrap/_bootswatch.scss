@@ -37,7 +37,7 @@ $font-family-serif: 'Bitter', serif !default;
 // Buttons =====================================================================
 
 .btn {
-  border-radius: 1.078em;
+  border-radius: 2em;
   font-family: $font-family-sans-serif;
   font-size: 0.875em;
 
@@ -56,6 +56,12 @@ $font-family-serif: 'Bitter', serif !default;
   &-warning:hover {
     color: $white;
   }
+}
+
+// Inputs =====================================================================
+
+.form-control {
+  border-radius: 2em;
 }
 
 // Typography ==================================================================
