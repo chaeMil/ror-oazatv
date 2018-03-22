@@ -54,7 +54,6 @@ gem 'globalize'
 gem 'globalize-accessors'
 gem 'globalize-validations'
 gem 'summernote-rails', '~> 0.8.9.2'
-gem 'rails-uploader'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

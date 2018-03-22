@@ -11,8 +11,6 @@ Rails.application.routes.draw do
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'
 
-    mount Uploader::Engine => '/uploader'
-
     resources :archive_items do
       resources :archive_files do
         post :convert, on: :member
