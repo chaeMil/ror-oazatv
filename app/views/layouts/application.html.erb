@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RorOazatv</title>
+  <title>Oáza.tv</title>
   <%= csrf_meta_tags %>
   <%= render 'application/shared/meta' %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,8 +10,10 @@
 
 <body>
 <%= render 'application/shared/navbar'%>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<%= yield %>
+<div class="container-fluid">
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
+</div>
 </body>
 </html>
