@@ -5,6 +5,7 @@ module Admin
     def show
       @languages = Language.all
       @archive_file = ArchiveFile.find(params[:id])
+      @convert_profiles = VideoConvertProfile.all
     end
 
     def new

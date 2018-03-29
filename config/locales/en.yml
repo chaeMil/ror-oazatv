@@ -40,6 +40,7 @@ en:
       add_file: "Add file"
       delete: "Delete"
       new: "New"
+      convert: "Convert"
     label:
       type: "Type"
       language: "Language"

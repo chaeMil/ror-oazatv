@@ -1,20 +1,23 @@
-<div class="row toolbar">
-  <div class="col-md-5">
+<div class="row toolbar" style="padding-right: 15px;">
+  <div class="col">
     <h3><%= @archive_item.title %></h3>
   </div>
-  <div class="col">
+  <div class="col-1">
     <p><%= t('admin.label.type') %>: <%= @archive_file.file_type %></p>
   </div>
-  <div class="col">
+  <div class="col-2">
     <p><%= t('admin.label.language') %>: <%= @archive_file.language.title unless @archive_file.language.nil? %></p>
   </div>
-  <div class="col text-right">
+  <div class="col-5 text-right">
     <%= link_to t('admin.action.back'), admin_archive_item_path(id: @archive_item.id),
                 class: 'btn btn-secondary' %>
     <%= link_to t('admin.action.edit'),
                 edit_admin_archive_item_archive_file_path(archive_item_id: @archive_item.id,
                                                           id: @archive_file.id),
                 class: 'btn btn-warning' %>
+    <%= render 'admin/shared/convert_dropdown',
+               archive_item: @archive_item,
+               archive_file: @archive_file %>
   </div>
 </div>
 

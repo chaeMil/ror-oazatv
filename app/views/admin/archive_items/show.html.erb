@@ -1,65 +1,77 @@
-<div class="row toolbar">
-  <div class="col">
-    <p><%= t('admin.label.hash_id') %>: <%= @archive_item.hash_id %></p>
-  </div>
-  <div class="col">
-    <p><%= t('admin.label.published') %>: <%= @archive_item.published %></p>
-  </div>
-  <div class="col">
-    <p><%= t('admin.label.date') %>: <%= @archive_item.date %></p>
-  </div>
-  <div class="col text-right">
-    <%= link_to t('admin.action.back'),
-                admin_archive_items_path,
-                class: 'btn btn-secondary' %>
-    <%= link_to t('admin.actions.add_file'),
-                new_admin_archive_item_archive_file_path(@archive_item),
-                class: 'btn btn-primary' %>
-    <%= link_to t('admin.actions.edit'),
-                edit_admin_archive_item_path(@archive_item),
-                class: 'btn btn-warning' %>
-  </div>
-</div>
-<div class="container-fluid">
-  <div class="row">
+<div class="archive-item-view">
+  <div class="row toolbar">
     <div class="col">
-      <%= render 'admin/shared/forms/localized_text',
-                 name: t('admin.label.title'),
-                 model: @archive_item,
-                 key: 'title' %>
+      <p><%= t('admin.label.hash_id') %>: <%= @archive_item.hash_id %></p>
     </div>
     <div class="col">
-      <p><%= t('admin.label.tags') %>: <%= @archive_item.tags %></p>
-      <p><%= t('admin.label.categories') %>: <%= @archive_item.categories.map do |category|
-        category.title
-      end.join(', ') %></p>
+      <p><%= t('admin.label.published') %>:
+        <% if @archive_item.published %>
+          <%= fa_icon 'check' %>
+        <% else %>
+          <%= fa_icon 'times' %>
+        <% end %>
+      </p>
     </div>
     <div class="col">
-      <%= render 'admin/shared/forms/localized_html',
-                 name: t('admin.label.description'),
-                 model: @archive_item,
-                 key: 'description',
-                 css_class: 'row' %>
-      <div class="row">
-        <p><%= t('admin.label.note') %>: <%= @archive_item.note %></p>
+      <p><%= t('admin.label.date') %>: <%= @archive_item.date %></p>
+    </div>
+    <div class="col text-right">
+      <%= link_to t('admin.action.back'),
+                  admin_archive_items_path,
+                  class: 'btn btn-secondary' %>
+      <%= link_to t('admin.actions.add_file'),
+                  new_admin_archive_item_archive_file_path(@archive_item),
+                  class: 'btn btn-primary' %>
+      <%= link_to t('admin.action.delete'),
+                  admin_archive_item_path(@archive_item),
+                  method: :delete,
+                  data: {confirm: t('admin.confirm.delete')},
+                  class: 'btn btn-danger' %>
+      <%= link_to t('admin.actions.edit'),
+                  edit_admin_archive_item_path(@archive_item),
+                  class: 'btn btn-warning' %>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <%= render 'admin/shared/forms/localized_text',
+                   name: t('admin.label.title'),
+                   model: @archive_item,
+                   key: 'title' %>
+      </div>
+      <div class="col">
+        <p><%= t('admin.label.tags') %>: <%= @archive_item.tags %></p>
+        <p><%= t('admin.label.categories') %>: <%= @archive_item.categories.map do |category|
+          category.title
+        end.join(', ') %></p>
+      </div>
+      <div class="col">
+        <%= render 'admin/shared/forms/localized_html',
+                   name: t('admin.label.description'),
+                   model: @archive_item,
+                   key: 'description',
+                   css_class: 'row' %>
+        <div class="row">
+          <p><%= t('admin.label.note') %>: <%= @archive_item.note %></p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <br>
+    <br>
 
-  <div class="row">
-    <div class="col">
+    <div class="row">
+      <div class="col">
+        <% if @archive_files.present? %>
+          <div class="card-columns archive-files-cards">
+            <% @archive_files.each do |archive_file| %>
+              <%= render 'archive_file', archive_file: archive_file %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
 
-      <% if @archive_files.present? %>
-        <div class="row">
-          <% @archive_files.each do |archive_file| %>
-            <%= render 'archive_file', archive_file: archive_file %>
-          <% end %>
-        </div>
-      <% end %>
     </div>
-
   </div>
 </div>
 

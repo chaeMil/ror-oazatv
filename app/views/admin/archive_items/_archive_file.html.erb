@@ -1,46 +1,24 @@
-<div class="col-md-3">
-  <div class="card">
-    <% if archive_file.image? %>
-      <%= image_tag archive_file.file.url, class: 'card-img-top' if archive_file.file.present? %>
-    <% end %>
-    <div class="card-body">
-      <h5 class="card-title"><%= archive_file.file.to_s.split('/').last if archive_file.file.present? %></h5>
-      <p class="card-text">
-        <%= archive_file.file_type %>,
-        <%= archive_file.language.title %>,
-        <%= number_to_human_size(archive_file.get_video_info.size) if archive_file.video?  %>
-      </p>
+<div class="card">
+  <% if archive_file.image? %>
+    <%= image_tag archive_file.file.url, class: 'card-img-top' if archive_file.file.present? %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= archive_file.file.to_s.split('/').last if archive_file.file.present? %></h5>
+    <p class="card-text">
+      <%= archive_file.file_type %>,
+      <%= archive_file.language.title %>,
+      <%= number_to_human_size(archive_file.get_video_info.size) if archive_file.video? %>
+    </p>
+    <div class="btn-group">
       <% unless archive_file.video_being_processed %>
-        <%= link_to 'Show', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
+        <%= link_to t('admin.label.show'),
+                    admin_archive_item_archive_file_path(archive_item_id: @archive_item,
+                                                         id: archive_file.id),
                     class: 'btn btn-primary' %>
       <% end %>
-      <% if !archive_file.video_being_processed %>
-        <% unless archive_file[:used_as_conversion_source] %>
-          <%= link_to 'Delete', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
-                      data: {confirm: t('admin.confirm.delete')},
-                      method: :delete, class: 'btn btn-warning' %>
-        <% end %>
-        <% if archive_file.video? %>
-          <div class="dropdown">
-            <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-              Convert
-            </button>
-            <div class="dropdown-menu">
-              <% @convert_profiles.each do |convert_profile| %>
-                <%= link_to convert_profile.title,
-                            convert_admin_archive_item_archive_file_path(archive_item_id: @archive_item,
-                                                                         id: archive_file.id,
-                                                                         convert_profile_id: convert_profile.id),
-                            method: :post,
-                            class: 'dropdown-item' %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <br>Processing, <%= (archive_file.video_convert_progress['progress'] * 100).round(2) %>% done
-      <% end %>
+      <%= render 'admin/shared/convert_dropdown',
+                 archive_item: @archive_item,
+                 archive_file: archive_file %>
     </div>
   </div>
 </div>
