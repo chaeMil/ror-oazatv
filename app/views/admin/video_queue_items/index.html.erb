@@ -1,25 +1,29 @@
-<h1>Video conversion queue</h1>
+<div class="row toolbar">
+  <div class="col">
+    <h3><%= t('admin.menu.video_conversion_queue') %></h3>
+  </div>
+</div>
 
 <table class="table table-hover table-responsive table-no-more">
   <thead>
   <tr>
     <th>
-      Video
+      <%= t('admin.label.video') %>
     </th>
     <th>
-      File
+      <%= t('admin.label.file') %>
     </th>
     <th>
-      Created at
+      <%= t('admin.label.created_at') %>
     </th>
     <th>
-      Started at
+      <%= t('admin.label.started_at') %>
     </th>
     <th>
-      Status
+      <%= t('admin.label.status') %>
     </th>
     <th>
-      Finished at
+      <%= t('admin.label.finished_at') %>
     </th>
   </tr>
   </thead>
@@ -27,11 +31,19 @@
   <tbody>
   <% @jobs_with_error.each do |job| %>
     <tr>
-      <td data-title="Video"><%= job[:archive_item].title %></td>
-      <td data-title="File"><%= job[:archive_file].file.to_s.split('/').last %></td>
-      <td data-title="Created at"><%= job[:created_at] %></td>
-      <td data-title="Started at"><%= job[:started_at] %></td>
-      <td data-title="Status">
+      <td data-title="<%= t('admin.label.video') %>">
+        <%= job[:archive_item].title %>
+      </td>
+      <td data-title="<%= t('admin.label.file') %>">
+        <%= job[:archive_file].file.to_s.split('/').last %>
+      </td>
+      <td data-title="<%= t('admin.label.created_at') %>">
+        <%= job[:created_at] %>
+      </td>
+      <td data-title="<%= t('admin.label.started_at') %>">
+        <%= job[:started_at] %>
+      </td>
+      <td data-title="<%= t('admin.label.status') %>">
         <% case job[:status]
              when VideoConvertProgress.status.find_value(:done).value %>
           Done
@@ -40,53 +52,84 @@
                   data-toggle="popover"
                   title="Popover title"
                   data-placement="left"
-                  data-content="<%= job[:error] %>">Error</button>
+                  data-content="<%= job[:error] %>"><%= t('admin.label.error') %>
+          </button>
         <% end %>
       </td>
-      <td data-title="Finished at"><%= job[:finished_at] %></td>
+      <td data-title="<%= t('admin.label.finished_at') %>">
+        <%= job[:finished_at] %>
+      </td>
     </tr>
   <% end %>
   <% @finished_jobs.each do |job| %>
     <tr>
-      <td data-title="Video"><%= job[:archive_item].title %></td>
-      <td data-title="File"><%= job[:archive_file].file.to_s.split('/').last %></td>
-      <td data-title="Created at"><%= job[:created_at] %></td>
-      <td data-title="Started at"><%= job[:started_at] %></td>
-      <td data-title="Status">
+      <td data-title="<%= t('admin.label.video') %>">
+        <%= job[:archive_item].title %>
+      </td>
+      <td data-title="<%= t('admin.label.file') %>">
+        <%= job[:archive_file].file.to_s.split('/').last %>
+      </td>
+      <td data-title="<%= t('admin.label.created_at') %>">
+        <%= job[:created_at] %>
+      </td>
+      <td data-title="<%= t('admin.label.started_at') %>">
+        <%= job[:started_at] %>
+      </td>
+      <td data-title="<%= t('admin.label.status') %>">
         <% case job[:status]
-           when VideoConvertProgress.status.find_value(:done).value %>
+             when VideoConvertProgress.status.find_value(:done).value %>
           Done
         <% when VideoConvertProgress.status.find_value(:error).value %>
           Error
         <% end %>
       </td>
-      <td data-title="Finished at"><%= job[:finished_at] %></td>
+      <td data-title="<%= t('admin.label.finished_at') %>">
+        <%= job[:finished_at] %>
+      </td>
     </tr>
   <% end %>
   <% @running_jobs.each do |job| %>
     <tr>
-      <td data-title="Video"><%= job[:archive_item].title %></td>
-      <td data-title="File"><%= job[:archive_file].file.to_s.split('/').last %></td>
-      <td data-title="Created at"><%= job[:created_at] %></td>
-      <td data-title="Started at"><%= job[:started_at] %></td>
-      <td data-title="Status">
+      <td data-title="<%= t('admin.label.video') %>">
+        <%= job[:archive_item].title %>
+      </td>
+      <td data-title="<%= t('admin.label.file') %>">
+        <%= job[:archive_file].file.to_s.split('/').last %>
+      </td>
+      <td data-title="<%= t('admin.label.created_at') %>">
+        <%= job[:created_at] %>
+      </td>
+      <td data-title="<%= t('admin.label.started_at') %>">
+        <%= job[:started_at] %>
+      </td>
+      <td data-title="<%= t('admin.label.status') %>">
         <% if job[:progress].progress != nil %>
           Processing, <%= (job[:progress].progress * 100).round(2) %>% done
         <% else %>
-          Waiting
+          <%= t('admin.status.waiting') %>
         <% end %>
       </td>
-      <td data-title="Finished at"></td>
+      <td data-title="<%= t('admin.label.finished_at') %>"></td>
     </tr>
   <% end %>
   <% @queued_jobs.each do |job| %>
     <tr>
-      <td data-title="Video"><%= job[:archive_item].title %></td>
-      <td data-title="File"><%= job[:archive_file].file.to_s.split('/').last %></td>
-      <td data-title="Created at"><%= job[:created_at] %></td>
-      <td data-title="Started at">Waiting</td>
-      <td data-title="Status">Waiting</td>
-      <td data-title="Finished at"></td>
+      <td data-title="<%= t('admin.label.video') %>">
+        <%= job[:archive_item].title %>
+      </td>
+      <td data-title="<%= t('admin.label.file') %>">
+        <%= job[:archive_file].file.to_s.split('/').last %>
+      </td>
+      <td data-title="<%= t('admin.label.created_at') %>">
+        <%= job[:created_at] %>
+      </td>
+      <td data-title="<%= t('admin.label.started_at') %>">
+        <%= t('admin.status.waiting') %>
+      </td>
+      <td data-title="<%= t('admin.label.status') %>">
+        <%= t('admin.status.waiting') %>
+      </td>
+      <td data-title="<%= t('admin.label.finished_at') %>"></td>
     </tr>
   <% end %>
   </tbody>
