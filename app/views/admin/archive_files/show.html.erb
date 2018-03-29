@@ -12,11 +12,11 @@
     </div>
     <div class="col text-right">
       <%= link_to t('admin.action.back'), admin_archive_item_path(id: @archive_item.id),
-              class: 'btn btn-primary'%>
+                  class: 'btn btn-primary' %>
       <%= link_to t('admin.actions.edit'),
                   edit_admin_archive_item_archive_file_path(archive_item_id: @archive_item.id,
                                                             id: @archive_file.id),
-                class: 'btn btn-warning' %>
+                  class: 'btn btn-warning' %>
     </div>
   </div>
 
@@ -27,6 +27,8 @@
       <%= render 'image_view' %>
     <% elsif @archive_file.video? %>
       <%= render 'video_view' %>
+    <% elsif @archive_file.subtitles? %>
+      <%= render 'subtitles_view' %>
     <% end %>
   </div>
 </div>

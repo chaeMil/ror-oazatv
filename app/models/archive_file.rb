@@ -69,4 +69,18 @@ class ArchiveFile < ApplicationRecord
       throw 'File is not a image! Cannot get image info'
     end
   end
+
+  def get_subtitles_info
+    if subtitles?
+      data = File.read(file.path)
+      filesize = File.size(file.path)
+      info = {
+          data: data,
+          filesize: filesize
+      }
+      info
+    else
+      throw 'File is not a subtitles! Cannot get subtitles info'
+    end
+  end
 end
