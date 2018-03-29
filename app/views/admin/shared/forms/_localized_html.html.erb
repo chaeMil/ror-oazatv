@@ -1,10 +1,8 @@
-<div class="row">
-  <% @languages.each do |language| %>
-    <div class="col-lg-6">
-      <%= "#{name}_#{language['locale']}" %>
-      <div class="localized-html">
-        <%= raw(model.send("#{key}_#{language['locale']}")) %>
-      </div>
+<% @languages.each do |language| %>
+  <div class="<%= css_class %>">
+    <%= "#{name} (#{language['title']})" %>
+    <div class="localized-html">
+      <%= raw(model.send("#{key}_#{language['locale']}")) %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

@@ -1,27 +1,70 @@
-<%= render 'admin/shared/forms/localized_text', name: 'Title', model: @archive_item, key: 'title' %>
-
-<%= render 'admin/shared/forms/localized_html', name: 'Description', model: @archive_item, key: 'description' %>
-
-<p>published: <%= @archive_item.published %></p>
-
-<p>hash_id: <%= @archive_item.hash_id %></p>
-
-<p>date: <%= @archive_item.date %></p>
-
-<p>tags: <%= @archive_item.tags %></p>
-
-<p>note: <%= @archive_item.note %></p>
-
-<p>categories: <%= @archive_item.categories.map do |category| category.title end.join(', ') %></p>
-
-<% if @archive_files.present? %>
-  <div class="row">
-    <% @archive_files.each do |archive_file| %>
-      <%= render 'archive_file', archive_file: archive_file %>
-    <% end %>
+<div class="row toolbar">
+  <div class="col">
+    <p><%= t('admin.label.hash_id') %>: <%= @archive_item.hash_id %></p>
   </div>
-<% end %>
+  <div class="col">
+    <p><%= t('admin.label.published') %>: <%= @archive_item.published %></p>
+  </div>
+  <div class="col">
+    <p><%= t('admin.label.date') %>: <%= @archive_item.date %></p>
+  </div>
+  <div class="col text-right">
+    <%= link_to t('admin.action.back'),
+                admin_archive_items_path,
+                class: 'btn btn-secondary' %>
+    <%= link_to t('admin.actions.add_file'),
+                new_admin_archive_item_archive_file_path(@archive_item),
+                class: 'btn btn-primary' %>
+    <%= link_to t('admin.actions.edit'),
+                edit_admin_archive_item_path(@archive_item),
+                class: 'btn btn-warning' %>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <%= render 'admin/shared/forms/localized_text',
+                 name: t('admin.label.title'),
+                 model: @archive_item,
+                 key: 'title' %>
+    </div>
+    <div class="col">
+      <p><%= t('admin.label.tags') %>: <%= @archive_item.tags %></p>
+      <p><%= t('admin.label.categories') %>: <%= @archive_item.categories.map do |category|
+        category.title
+      end.join(', ') %></p>
+    </div>
+    <div class="col">
+      <%= render 'admin/shared/forms/localized_html',
+                 name: t('admin.label.description'),
+                 model: @archive_item,
+                 key: 'description',
+                 css_class: 'row' %>
+      <div class="row">
+        <p><%= t('admin.label.note') %>: <%= @archive_item.note %></p>
+      </div>
+    </div>
+  </div>
 
-<%= link_to 'Add File', new_admin_archive_item_archive_file_path(@archive_item) %>
-<%= link_to 'Edit', edit_admin_archive_item_path(@archive_item) %> |
-<%= link_to 'Back', admin_archive_items_path %>
+  <br>
+
+  <div class="row">
+    <div class="col">
+
+      <% if @archive_files.present? %>
+        <div class="row">
+          <% @archive_files.each do |archive_file| %>
+            <%= render 'archive_file', archive_file: archive_file %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+.toolbar {
+  margin-top: -15px;
+  background-color: darken($primary, 15);
+  margin-bottom: 10px;
+  padding-left: 15px;
+  padding-top: 4px;
+  padding-bottom: 2px;
+
+  .col {
+    p {
+      margin-bottom: 0;
+      line-height: 38px;
+    }
+  }
+}
