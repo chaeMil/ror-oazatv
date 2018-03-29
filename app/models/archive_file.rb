@@ -16,7 +16,6 @@
 #  index_archive_files_on_archive_item_id  (archive_item_id)
 #  index_archive_files_on_language_id      (language_id)
 #
-require 'exifr/jpeg'
 
 class ArchiveFile < ApplicationRecord
   belongs_to :archive_item
@@ -55,32 +54,14 @@ class ArchiveFile < ApplicationRecord
   end
 
   def get_video_info
-    if video?
-      FFMPEG::Movie.new(file.path)
-    else
-      throw 'File is not a video! Cannot get video info'
-    end
+    FileInfoService::get_video_info(self)
   end
 
   def get_image_info
-    if image?
-      EXIFR::JPEG.new(file.path)
-    else
-      throw 'File is not a image! Cannot get image info'
-    end
+    FileInfoService::get_image_info(self)
   end
 
   def get_subtitles_info
-    if subtitles?
-      data = File.read(file.path)
-      filesize = File.size(file.path)
-      info = {
-          data: data,
-          filesize: filesize
-      }
-      info
-    else
-      throw 'File is not a subtitles! Cannot get subtitles info'
-    end
+    FileInfoService::get_subtitles_info(self)
   end
 end

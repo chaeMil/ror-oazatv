@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180322110627) do
+ActiveRecord::Schema.define(version: 20180329151133) do
 
   create_table "archive_files", force: :cascade do |t|
     t.string "file"
@@ -139,6 +139,8 @@ ActiveRecord::Schema.define(version: 20180322110627) do
     t.integer "archive_file_id"
     t.datetime "started_at"
     t.text "error"
+    t.integer "original_archive_file_id"
+    t.index ["original_archive_file_id"], name: "index_video_convert_progresses_on_original_archive_file_id"
   end
 
 end
