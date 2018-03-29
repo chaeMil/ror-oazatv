@@ -52,6 +52,9 @@
                     $('#progress-bar-id-' + progressId)
                         .css('width', progress + '%')
                         .text(parseFloat(progress).toFixed(2) + '%');
+                    if (progress === 100) {
+                        location.reload();
+                    }
                 }
             });
         }
