@@ -42,6 +42,7 @@ en:
       new: "New"
       convert: "Convert"
       submit: "Submit"
+      save: "Save"
     label:
       type: "Type"
       language: "Language"

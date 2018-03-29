@@ -9,6 +9,10 @@
     <%= link_to t('admin.label.show'),
                 admin_video_convert_profile_path(@profile),
                 class: 'btn btn-primary' %>
+    <a href="#" data-submit-form="video_convert_profile_form"
+       class="btn btn-success">
+      <%= t('admin.action.save') %>
+    </a>
   </div>
 </div>
 

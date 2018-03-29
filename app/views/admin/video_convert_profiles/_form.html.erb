@@ -1,5 +1,6 @@
 <%= simple_form_for @profile,
                     url: (@profile.new_record? ? admin_video_convert_profiles_path : admin_video_convert_profile_path(@profile)),
+                    html: {id: 'video_convert_profile_form'},
                     method: (@profile.new_record? ? :post : :put) do |form| %>
   <% if @profile.errors.any? %>
     <div id="error_explanation">
