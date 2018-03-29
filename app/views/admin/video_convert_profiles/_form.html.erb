@@ -13,67 +13,82 @@
     </div>
   <% end %>
 
-  <p>
-    <%= form.label :title %> <br>
-    <%= form.text_field :title %>
-  </p>
+  <br>
 
-  <p>
-    <%= form.label :video_codec %> <br>
-    <%= form.text_field :video_codec %>
-  </p>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <%= form.label :title %>
+          <%= form.text_field :title, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <%= form.label :video_codec %> <br>
+          <%= form.text_field :video_codec, class: 'form-control' %>
+        </div>
 
-  <p>
-    <%= form.label :video_bitrate %> <br>
-    <%= form.text_field :video_bitrate %>
-  </p>
+        <div class="form-group">
+          <%= form.label :video_bitrate %> <br>
+          <%= form.text_field :video_bitrate, class: 'form-control' %>
+        </div>
 
-  <p>
-    <%= form.label :frame_rate %> <br>
-    <%= form.text_field :frame_rate %>
-  </p>
+        <div class="form-group">
+          <%= form.label :frame_rate %> <br>
+          <%= form.text_field :frame_rate, class: 'form-control' %>
+        </div>
 
-  <p>
-    <%= form.label :resolution %> <br>
-    <%= form.text_field :resolution %>
-  </p>
+        <div class="form-group">
+          <%= form.label :resolution %> <br>
+          <%= form.text_field :resolution, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <%= form.label :audio_codec %> <br>
+          <%= form.text_field :audio_codec, class: 'form-control' %>
+        </div>
 
-  <p>
-    <%= form.label :audio_codec %> <br>
-    <%= form.text_field :audio_codec %>
-  </p>
+        <div class="form-group">
+          <%= form.label :audio_bitrate %> <br>
+          <%= form.text_field :audio_bitrate, class: 'form-control' %>
+        </div>
 
-  <p>
-    <%= form.label :audio_bitrate %> <br>
-    <%= form.text_field :audio_bitrate %>
-  </p>
+        <div class="form-group">
+          <%= form.label :audio_sample_rate %> <br>
+          <%= form.text_field :audio_sample_rate, class: 'form-control' %>
+        </div>
 
-  <p>
-    <%= form.label :audio_sample_rate %> <br>
-    <%= form.text_field :audio_sample_rate %>
-  </p>
+        <div class="form-group">
+          <%= form.label :audio_channels %> <br>
+          <%= form.text_field :audio_channels, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <%= form.label :extension %> <br>
+          <%= form.text_field :extension, class: 'form-control' %>
+        </div>
 
-  <p>
-    <%= form.label :audio_channels %> <br>
-    <%= form.text_field :audio_channels %>
-  </p>
-
-  <p>
-    <%= form.label :extension %> <br>
-    <%= form.text_field :extension %>
-  </p>
-
-  <p>
-    <%= form.label :threads %> <br>
-    <%= form.text_field :threads %>
-  </p>
-
-  <p>
-    <%= form.label :custom %> <br>
-    <%= form.text_field :custom %>
-  </p>
-
-  <div class="actions">
-    <%= form.submit %>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <%= form.label :threads %> <br>
+          <%= form.text_field :threads, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <%= form.label :custom %> <br>
+          <%= form.text_field :custom, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
   </div>
+
 <% end %>

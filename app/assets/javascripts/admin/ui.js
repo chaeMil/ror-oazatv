@@ -22,5 +22,13 @@ $(document).on('turbolinks:load', function(e) {
         $(this).datepicker({
             format: 'yyyy-mm-dd'
         });
-    })
+    });
+
+    $('[data-submit-form]').each(function() {
+        $(this).off().on('click', function(e) {
+            e.preventDefault();
+            console.log('fsdsff');
+            var formId = $(this).attr('data-submit-form');
+        });
+    });
 });

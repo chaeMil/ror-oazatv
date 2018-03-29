@@ -41,6 +41,7 @@ en:
       delete: "Delete"
       new: "New"
       convert: "Convert"
+      submit: "Submit"
     label:
       type: "Type"
       language: "Language"
@@ -70,3 +71,4 @@ en:
       show: "Show"
     menu:
       archive: "Archive"
+      video_convert_profiles: "Video convert profiles"

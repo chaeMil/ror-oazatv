@@ -1,5 +1,16 @@
-<h1>Create Video Convert Profile</h1>
+<div class="row toolbar">
+  <div class="col">
+    <h3><%= t('admin.menu.video_convert_profiles') %> > <%= t('admin.action.new') %> </h3>
+  </div>
+  <div class="col text-right">
+    <%= link_to t('admin.action.back'),
+                admin_video_convert_profiles_path,
+                class: 'btn btn-secondary' %>
+    <a href="#" data-submit-form="new_video_convert_profile"
+       class="btn btn-success">
+      <%= t('admin.action.submit') %>
+    </a>
+  </div>
+</div>
 
 <%= render 'form', profile: @profile %>
-
-<%= link_to 'Back', admin_video_convert_profiles_path %>

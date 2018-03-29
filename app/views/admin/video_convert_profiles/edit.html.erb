@@ -1,6 +1,16 @@
-<h1>Editing Video Convert Profile</h1>
+<div class="row toolbar">
+  <div class="col">
+    <h3><%= t('admin.menu.video_convert_profiles') %> > <%= @profile.title %> </h3>
+  </div>
+  <div class="col text-right">
+    <%= link_to t('admin.action.back'),
+                admin_video_convert_profiles_path,
+                class: 'btn btn-secondary' %>
+    <%= link_to t('admin.label.show'),
+                admin_video_convert_profile_path(@profile),
+                class: 'btn btn-primary' %>
+  </div>
+</div>
 
 <%= render 'form', profile: @profile %>
 
-<%= link_to 'Show', admin_video_convert_profile_path(@profile) %> |
-<%= link_to 'Back', admin_video_convert_profiles_path %>
