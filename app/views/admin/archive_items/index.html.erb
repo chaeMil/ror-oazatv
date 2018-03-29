@@ -2,14 +2,15 @@
   <div class="col">
     <h3><%= t('admin.menu.archive') %></h3>
   </div>
+  <div class="col text-center">
+    <%= paginate @archive_items %>
+  </div>
   <div class="col text-right">
     <%= link_to t('admin.action.new'),
                 new_admin_archive_item_path,
                 class: 'btn btn-primary' %>
   </div>
 </div>
-
-<%= paginate @archive_items %>
 
 <table class="table table-hover table-responsive table-no-more">
   <thead>
