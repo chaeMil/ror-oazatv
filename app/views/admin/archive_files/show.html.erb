@@ -11,13 +11,13 @@
   <div class="col-5 text-right">
     <%= link_to t('admin.action.back'), admin_archive_item_path(id: @archive_item.id),
                 class: 'btn btn-secondary' %>
+    <%= render 'admin/shared/convert_dropdown',
+               archive_item: @archive_item,
+               archive_file: @archive_file %>
     <%= link_to t('admin.action.edit'),
                 edit_admin_archive_item_archive_file_path(archive_item_id: @archive_item.id,
                                                           id: @archive_file.id),
                 class: 'btn btn-warning' %>
-    <%= render 'admin/shared/convert_dropdown',
-               archive_item: @archive_item,
-               archive_file: @archive_file %>
   </div>
 </div>
 
