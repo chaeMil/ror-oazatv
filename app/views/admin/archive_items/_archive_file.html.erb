@@ -17,6 +17,7 @@
       <% if !archive_file.video_being_processed %>
         <% unless archive_file[:used_as_conversion_source] %>
           <%= link_to 'Delete', admin_archive_item_archive_file_path(archive_item_id: @archive_item, id: archive_file.id),
+                      data: {confirm: t('admin.confirm.delete')},
                       method: :delete, class: 'btn btn-warning' %>
         <% end %>
         <% if archive_file.video? %>
