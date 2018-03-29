@@ -69,6 +69,22 @@ en:
       categories: "Categories"
       thumb: "Thumb"
       show: "Show"
+      other: "Other"
     menu:
       archive: "Archive"
       video_convert_profiles: "Video convert profiles"
+  simple_form:
+    labels:
+      video_convert_profile:
+        title: "Title"
+        video_codec: "Codec"
+        video_bitrate: "Bitrate"
+        framerate: "Framerate"
+        resolution: "Resolution"
+        audio_codec: "Codec"
+        audio_bitrate: "Bitrate"
+        audio_sample_rate: "Sample rate"
+        audio_channels: "Channels"
+        extension: "File extension"
+        threads: "Threads"
+        custom: "Custom parameter"

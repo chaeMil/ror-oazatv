@@ -26,69 +26,96 @@
     </div>
     <div class="row">
       <div class="col">
-        <div class="form-group">
-          <%= form.label :video_codec %> <br>
-          <%= form.text_field :video_codec, class: 'form-control' %>
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">
+              <%= t('admin.label.video') %>
+            </h3>
+            <div class="form-group">
+              <%= form.label :video_codec %> <br>
+              <%= form.text_field :video_codec, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label :video_bitrate %> <br>
+              <%= form.text_field :video_bitrate, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label :frame_rate %> <br>
+              <%= form.text_field :frame_rate, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label :resolution %> <br>
+              <%= form.text_field :resolution, class: 'form-control' %>
+            </div>
+          </div>
         </div>
 
-        <div class="form-group">
-          <%= form.label :video_bitrate %> <br>
-          <%= form.text_field :video_bitrate, class: 'form-control' %>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :frame_rate %> <br>
-          <%= form.text_field :frame_rate, class: 'form-control' %>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :resolution %> <br>
-          <%= form.text_field :resolution, class: 'form-control' %>
-        </div>
       </div>
       <div class="col">
-        <div class="form-group">
-          <%= form.label :audio_codec %> <br>
-          <%= form.text_field :audio_codec, class: 'form-control' %>
-        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">
+              <%= t('admin.label.audio') %>
+            </h3>
+            <div class="form-group">
+              <%= form.label :audio_codec %> <br>
+              <%= form.text_field :audio_codec, class: 'form-control' %>
+            </div>
 
-        <div class="form-group">
-          <%= form.label :audio_bitrate %> <br>
-          <%= form.text_field :audio_bitrate, class: 'form-control' %>
-        </div>
+            <div class="form-group">
+              <%= form.label :audio_bitrate %> <br>
+              <%= form.text_field :audio_bitrate, class: 'form-control' %>
+            </div>
 
-        <div class="form-group">
-          <%= form.label :audio_sample_rate %> <br>
-          <%= form.text_field :audio_sample_rate, class: 'form-control' %>
-        </div>
+            <div class="form-group">
+              <%= form.label :audio_sample_rate %> <br>
+              <%= form.text_field :audio_sample_rate, class: 'form-control' %>
+            </div>
 
-        <div class="form-group">
-          <%= form.label :audio_channels %> <br>
-          <%= form.text_field :audio_channels, class: 'form-control' %>
+            <div class="form-group">
+              <%= form.label :audio_channels %> <br>
+              <%= form.text_field :audio_channels, class: 'form-control' %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <br>
     <div class="row">
       <div class="col">
-        <div class="form-group">
-          <%= form.label :extension %> <br>
-          <%= form.text_field :extension, class: 'form-control' %>
-        </div>
-
-      </div>
-      <div class="col">
-        <div class="form-group">
-          <%= form.label :threads %> <br>
-          <%= form.text_field :threads, class: 'form-control' %>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group">
-          <%= form.label :custom %> <br>
-          <%= form.text_field :custom, class: 'form-control' %>
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">
+              <%= t('admin.label.other') %>
+            </h3>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <%= form.label :extension %> <br>
+                  <%= form.text_field :extension, class: 'form-control' %>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <%= form.label :threads %> <br>
+                  <%= form.text_field :threads, class: 'form-control' %>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <%= form.label :custom %> <br>
+                  <%= form.text_field :custom, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <br>
 
 <% end %>
