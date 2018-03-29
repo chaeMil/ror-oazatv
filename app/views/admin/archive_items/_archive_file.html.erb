@@ -23,7 +23,7 @@
                  archive_file: archive_file %>
     </div>
     <% if archive_file.video_being_processed %>
-      <% progress = (archive_file.video_convert_progress[:progress] * 100).round(2) %>
+      <% progress = (archive_file.video_convert_progress[:progress] * 100).round(0) %>
       <% progress_id = archive_file.video_convert_progress[:id] %>
       <div class="progress-lg">
         <div class="progress-bar progress-lg bg-warning progress-bar-striped progress-bar-animated"
@@ -51,7 +51,7 @@
                     var progress = response.progress * 100;
                     $('#progress-bar-id-' + progressId)
                         .css('width', progress + '%')
-                        .text(parseFloat(progress).toFixed(2) + '%');
+                        .text(parseFloat(progress).toFixed(0) + '%');
                     if (progress === 100) {
                         location.reload();
                     }
