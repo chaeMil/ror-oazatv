@@ -37,6 +37,10 @@ var JsRoutesRails = (function() {
     return format('/admin/archive_items/:id', options);
   };
   
+  routes['status_admin_video_queue_item_path'] = function(options) {
+    return format('/admin/video_queue_items/:id/status', options);
+  };
+  
 
   function format(string, options) {
     var str = string.toString();

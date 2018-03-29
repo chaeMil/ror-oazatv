@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     resources :photo_albums do
       resources :photos
     end
-    resources :video_queue_items, only: [:index, :show, :destroy]
+    resources :video_queue_items, only: [:index, :show, :destroy] do
+      get :status, on: :member, export: true
+    end
     resources :video_convert_profiles
 
     get '/livestream', to: 'live_stream#edit'

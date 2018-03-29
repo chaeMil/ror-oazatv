@@ -19,6 +19,11 @@ module Admin
 
     end
 
+    def status
+      video_convert_progress = VideoConvertProgress.find(params[:id])
+      render json: video_convert_progress
+    end
+
     private
     def get_jobs_with_error
       with_error = VideoConvertProgress.where(status: VideoConvertProgress.status.find_value(:error).value)

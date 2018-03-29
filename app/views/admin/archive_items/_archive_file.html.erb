@@ -7,7 +7,9 @@
     <p class="card-text">
       <%= archive_file.file_type %>,
       <%= archive_file.language.title %>,
-      <%= number_to_human_size(archive_file.get_video_info.size) if archive_file.video? %>
+      <% unless archive_file.video_being_processed %>
+        <%= number_to_human_size(archive_file.get_video_info.size) if archive_file.video? %>
+      <% end %>
     </p>
     <div class="btn-group">
       <% unless archive_file.video_being_processed %>
@@ -21,9 +23,11 @@
                  archive_file: archive_file %>
     </div>
     <% if archive_file.video_being_processed %>
-      <% progress = (archive_file.video_convert_progress['progress'] * 100).round(2) %>
-      <div class="progress">
-        <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
+      <% progress = (archive_file.video_convert_progress[:progress] * 100).round(2) %>
+      <% progress_id = archive_file.video_convert_progress[:id] %>
+      <div class="progress-lg">
+        <div class="progress-bar progress-lg bg-warning progress-bar-striped progress-bar-animated"
+             id="progress-bar-id-<%= progress_id %>"
              style="width: <%= progress %>%"
              role="progressbar"
              aria-valuenow="<%= progress %>%"
@@ -35,3 +39,26 @@
     <% end %>
   </div>
 </div>
+
+<% if archive_file.video_being_processed %>
+  <% content_for :scripts do %>
+    <script type="text/javascript" charset="utf-8">
+        function getConversionStatus(progressId) {
+            var url = JsRoutesRails.status_admin_video_queue_item_path({id: progressId});
+            $.ajax({
+                url: url,
+                success: function (response) {
+                    var progress = response.progress * 100;
+                    $('#progress-bar-id-' + progressId)
+                        .css('width', progress + '%')
+                        .text(parseFloat(progress).toFixed(2) + '%');
+                }
+            });
+        }
+
+        setInterval(function () {
+            getConversionStatus(<%= archive_file.video_convert_progress[:id] %>);
+        }, 2000);
+    </script>
+  <% end %>
+<% end %>
