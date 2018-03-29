@@ -1,4 +1,4 @@
-<% if !archive_file.video_being_processed %>
+<% unless archive_file.video_being_processed %>
   <% unless archive_file[:used_as_conversion_source] %>
     <%= link_to t('admin.action.delete'),
                 admin_archive_item_archive_file_path(archive_item_id: @archive_item,
@@ -23,6 +23,4 @@
       <% end %>
     </div>
   <% end %>
-<% else %>
-  <br>Processing, <%= (archive_file.video_convert_progress['progress'] * 100).round(2) %>% done
 <% end %>

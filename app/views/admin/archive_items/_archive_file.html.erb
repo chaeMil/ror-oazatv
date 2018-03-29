@@ -20,5 +20,18 @@
                  archive_item: @archive_item,
                  archive_file: archive_file %>
     </div>
+    <% if archive_file.video_being_processed %>
+      <% progress = (archive_file.video_convert_progress['progress'] * 100).round(2) %>
+      <div class="progress">
+        <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
+             style="width: <%= progress %>%"
+             role="progressbar"
+             aria-valuenow="<%= progress %>%"
+             aria-valuemin="0"
+             aria-valuemax="100">
+          <%= progress %>%
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
