@@ -45,12 +45,14 @@
   <script type="text/javascript" charset="utf-8">
       var resumable = new Resumable({
           target: '<%= admin_archive_files_chunk_path %>',
+          simultaneousUploads: 1,
+          chunkSize: 1 * 1024 * 1024,
           headers: {
               'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
           },
           query: {
-              'file_type': $('#archive_file_file_type').find(":selected").text(),
-              'language': $('#archive_file_language_id').find(":selected").text(),
+              'file_type': '',
+              'language': '',
               'archive_item_id': '<%= @archive_item.id %>'
           }
       });
@@ -60,6 +62,8 @@
 
       $('#upload').click(function (e) {
           e.preventDefault();
+          resumable.opts.query.file_type = $('#archive_file_file_type').find(":selected").val();
+          resumable.opts.query.language = $('#archive_file_language_id').find(":selected").val();
           resumable.upload();
       });
 
@@ -76,8 +80,13 @@
           console.log(file);
           console.log('file added: ' + file);
       });
-      resumable.on('fileSuccess', function (file, message) {
-
+      resumable.on('fileSuccess', function (file, response) {
+          var jsonResponse = $.parseJSON(response);
+          var url = JsRoutesRails.admin_archive_item_archive_file_path({
+              archive_item_id: <%= @archive_item.id %>,
+              archive_file_id: jsonResponse.id
+          });
+          window.location.href = url.replace(':id', jsonResponse.id);
       });
       resumable.on('fileError', function (file, message) {
           alert(message);

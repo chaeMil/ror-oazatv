@@ -81,7 +81,7 @@ module Admin
 
       # Create chunks directory when not present on system
       if !File.directory?(dir)
-        FileUtils.mkdir(dir, :mode => 0700)
+        FileUtils.mkdir(dir, mode: 0700)
       elsif params[:resumableChunkNumber].to_i == 1
         FileUtils.rm_rf Dir.glob("#{dir}/*")
       end
@@ -91,11 +91,11 @@ module Admin
 
       # Concatenate all the partial files into the original file
 
-      currentSize = params[:resumableChunkNumber].to_i * params[:resumableChunkSize].to_i
+      current_size = params[:resumableChunkNumber].to_i * params[:resumableChunkSize].to_i
       filesize = params[:resumableTotalSize].to_i
 
       # When all chunks are uploaded
-      if (currentSize + params[:resumableCurrentChunkSize].to_i) >= filesize
+      if (current_size + params[:resumableCurrentChunkSize].to_i) >= filesize
 
         # Create a target file
         File.open("#{dir}/#{params[:resumableFilename]}", "a") do |target|
@@ -110,25 +110,24 @@ module Admin
             end
 
             # Deleting chunk
-            FileUtils.rm "#{dir}/#{params[:resumableFilename]}.part#{i}", :force => true
+            FileUtils.rm "#{dir}/#{params[:resumableFilename]}.part#{i}", force: true
           end
         end
         # You can use the file now
-        puts "File saved to #{dir}/#{params[:resumableFilename]}"
         uploaded_file = File.open("#{dir}/#{params[:resumableFilename]}")
         file_type = params[:file_type]
         language_id = params[:language]
         archive_item_id = params[:archive_item_id]
-        p language_id
-        p archive_item_id
-        language = Language.find(language_id)
-        archive_item = ArchiveItem.find(archive_item_id)
-        archive_file = ArchiveFile.new(file_type: file_type, language_id: language, archive_item: archive_item)
+        archive_file = ArchiveFile.new(file_type: file_type,
+                                       language_id: language_id,
+                                       archive_item_id: archive_item_id)
         archive_file.file = uploaded_file
-        puts archive_file.save!
-      end
+        archive_file.save!
 
-      render body: false, status: 200
+        render json: archive_file,  content_type: 'application/json'
+      else
+        render body: false, status: 200
+      end
     end
 
     private
