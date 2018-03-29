@@ -52,3 +52,6 @@ en:
       audio: "Audio"
       sample_rate: "Sample rate"
       channels: "Channels"
+      width: "Width"
+      height: "Height"
+      date_time: "Date time"

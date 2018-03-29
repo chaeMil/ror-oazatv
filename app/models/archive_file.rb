@@ -16,6 +16,7 @@
 #  index_archive_files_on_archive_item_id  (archive_item_id)
 #  index_archive_files_on_language_id      (language_id)
 #
+require 'exifr/jpeg'
 
 class ArchiveFile < ApplicationRecord
   belongs_to :archive_item
@@ -58,6 +59,14 @@ class ArchiveFile < ApplicationRecord
       FFMPEG::Movie.new(file.path)
     else
       throw 'File is not a video! Cannot get video info'
+    end
+  end
+
+  def get_image_info
+    if image?
+      EXIFR::JPEG.new(file.path)
+    else
+      throw 'File is not a image! Cannot get image info'
     end
   end
 end

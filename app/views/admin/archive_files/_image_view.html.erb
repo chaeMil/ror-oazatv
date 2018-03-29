@@ -1,9 +1,21 @@
-<div class="col-md-9">
-  <% if @archive_file.image? %>
-    <%= image_tag @archive_file.file, class: 'img-fluid' %>
-  <% end %>
-
+<div class="col-lg-9">
+  <%= image_tag @archive_file.file, class: 'img-fluid' %>
+  <br><br>
 </div>
-<div class="col-md-3">
+<div class="col-lg-3">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">
+        <%= t('admin.label.basic_info') %>
+      </H3>
+      <p class="card-text">
+        <%= t('admin.label.width') %>: <%= @archive_file.get_image_info.width %>px <br>
+        <%= t('admin.label.height') %>: <%= @archive_file.get_image_info.height %>px <br>
+        <%= t('admin.label.date_time') %>: <%= @archive_file.get_image_info.date_time %> <br>
+      </p>
+    </div>
+  </div>
+
+  <br>
 
 </div>
