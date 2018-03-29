@@ -1,27 +1,80 @@
-<h1>Video Convert Profile</h1>
+<div class="row toolbar">
+  <div class="col">
+    <h3><%= t('admin.menu.video_convert_profiles') %> > <%= @profile[:title] %> </h3>
+  </div>
+  <div class="col text-right">
+    <%= link_to t('admin.action.back'),
+                admin_video_convert_profiles_path,
+                class: 'btn btn-secondary' %>
+    <%= link_to t('admin.action.edit'),
+                edit_admin_video_convert_profile_path(@profile),
+                class: 'btn btn-warning' %>
+  </div>
+</div>
 
-<p>Title: <%= @profile[:title] %></p>
+<br>
 
-<p>Video Codec: <%= @profile[:video_codec] %></p>
-
-<p>Video Bitrate: <%= @profile[:video_bitrate] %></p>
-
-<p>Frame Rate: <%= @profile[:frame_rate] %></p>
-
-<p>Resolution: <%= @profile[:resolution] %></p>
-
-<p>Audio Codec: <%= @profile[:audio_codec] %></p>
-
-<p>Audio Bitrate: <%= @profile[:audio_bitrate] %></p>
-
-<p>Audio Sample Rate: <%= @profile[:audio_sample_rate] %></p>
-
-<p>Audio Channels: <%= @profile[:audio_channels] %></p>
-
-<p>Extension: .<%= @profile[:extension] %></p>
-
-<p>Threads: <%= @profile[:threads] %></p>
-
-<p>Custom: <%= @profile[:custom] %></p>
-
-<%= link_to 'Edit', edit_admin_video_convert_profile_path(@profile) %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">
+            <%= t('admin.label.video') %>
+          </h3>
+          <p class="card-text">
+            <%= t('admin.label.codec') %>: <%= @profile[:video_codec] %> <br>
+            <%= t('admin.label.bitrate') %>: <%= @profile[:video_bitrate] %> kb/s <br>
+            <%= t('admin.label.framerate') %>: <%= @profile[:frame_rate] %> <br>
+            <%= t('admin.label.resolution') %>: <%= @profile[:resolution] %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">
+            <%= t('admin.label.audio') %>
+          </h3>
+          <p class="card-text">
+            <%= t('admin.label.codec') %>: <%= @profile[:audio_codec] %> <br>
+            <%= t('admin.label.bitrate') %>: <%= @profile[:audio_bitrate] %> kb/s <br>
+            <%= t('admin.label.sample_rate') %>: <%= @profile[:audio_sample_rate] %> <br>
+            <%= t('admin.label.channels') %>: <%= @profile[:audio_channels] %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">
+            <%= t('admin.label.other') %>
+          </h3>
+          <div class="row">
+            <div class="col">
+              <p>
+                <%= t('admin.label.extension') %>: .<%= @profile[:extension] %>
+              </p>
+            </div>
+            <div class="col">
+              <p>
+                <%= t('admin.label.threads') %>: <%= @profile[:threads] %>
+              </p>
+            </div>
+            <div class="col">
+              <p>
+                <%= t('admin.label.custom_parameter') %>: <%= @profile[:custom] %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>

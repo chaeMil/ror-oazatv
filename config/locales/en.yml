@@ -70,6 +70,9 @@ en:
       thumb: "Thumb"
       show: "Show"
       other: "Other"
+      extension: "File extension"
+      threads: "Threads"
+      custom_parameter: "Custom parameter"
     menu:
       archive: "Archive"
       video_convert_profiles: "Video convert profiles"
