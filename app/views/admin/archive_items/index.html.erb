@@ -40,7 +40,12 @@
     <tr>
       <td>
         <% if archive_item.archive_files.present? && archive_item.archive_files.length > 0 %>
-          <%= image_tag archive_item.archive_files.first.file.tiny.url if archive_item.archive_files.first.image? %>
+          <% archive_item.archive_files.each do |archive_file| %>
+            <% if archive_file.image? %>
+              <%= image_tag archive_file.file.tiny.url %>
+              <% break %>
+            <% end %>
+          <% end %>
         <% end %>
       </td>
       <%= render 'admin/shared/tables/localized_table_row',
