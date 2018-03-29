@@ -1,49 +1,32 @@
-<p>type: <%= @archive_file.file_type %></p>
-
-<p>language: <%= @archive_file.language.title unless @archive_file.language.nil? %></p>
-
 <div class="container-fluid">
+
   <div class="row">
-    <div class="col-md-9">
-      <% if @archive_file.image? %>
-        <%= image_tag @archive_file.file, class: 'img-fluid' %>
-      <% end %>
-
-      <% if @archive_file.video? %>
-        <div class="embed-responsive embed-responsive-16by9">
-          <video class="embed-responsive-item" controls>
-            <source src="<%= @archive_file.file.url %>" type="video/<%= File.extname(@archive_file.file.url).gsub('.', '') %>">
-          </video>
-        </div>
-      <% end %>
+    <div class="col-md-5">
+      <h3><%= @archive_item.title %></h3>
     </div>
-    <div class="col-md-3">
-      <% if @archive_file.video? %>
-        <p>délka: <%= format_video_duration(@archive_file.get_video_info.duration) %></p>
-        <p>bitrate: <%= number_to_human_size(@archive_file.get_video_info.bitrate) %>/s</p>
-        <p>velikost: <%= number_to_human_size(@archive_file.get_video_info.size) %></p>
-
-        <h4>
-          Video
-        </h4>
-        <p>
-          kodek: <%= @archive_file.get_video_info.video_codec %> <br>
-          rozlišení: <%= @archive_file.get_video_info.resolution %> <br>
-          framerate: <%= @archive_file.get_video_info.frame_rate %> <br>
-        </p>
-
-        <h4>
-          Audio
-        </h4>
-        <p>
-          kodek: <%= @archive_file.get_video_info.audio_codec %> <br>
-          vzorkovací frekvence: <%= @archive_file.get_video_info.audio_sample_rate %> <br>
-          kanály: <%= @archive_file.get_video_info.audio_channels %> <br>
-        </p>
-
-      <% end %>
+    <div class="col">
+      <p><%= t('admin.label.type') %>: <%= @archive_file.file_type %></p>
+    </div>
+    <div class="col">
+      <p><%= t('admin.label.language') %>: <%= @archive_file.language.title unless @archive_file.language.nil? %></p>
+    </div>
+    <div class="col text-right">
+      <%= link_to t('admin.action.back'), admin_archive_item_path(id: @archive_item.id),
+              class: 'btn btn-primary'%>
+      <%= link_to t('admin.actions.edit'),
+                  edit_admin_archive_item_archive_file_path(archive_item_id: @archive_item.id,
+                                                            id: @archive_file.id),
+                class: 'btn btn-warning' %>
     </div>
   </div>
-</div>
 
-<%= link_to 'Edit', edit_admin_archive_item_archive_file_path(archive_item_id: @archive_item.id, id: @archive_file.id) %>
+  <br>
+
+  <div class="row">
+    <% if @archive_file.image? %>
+      <%= render 'image_view' %>
+    <% elsif @archive_file.video? %>
+      <%= render 'video_view' %>
+    <% end %>
+  </div>
+</div>

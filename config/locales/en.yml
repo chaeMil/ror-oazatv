@@ -34,3 +34,21 @@ en:
   admin:
     confirm:
       delete: "Are you shure you want to delete this item?"
+    actions:
+      edit: "Edit"
+    action:
+      back: "Back"
+    label:
+      type: "Type"
+      language: "Language"
+      basic_info: "Basic info"
+      length: "Length"
+      bitrate: "Bitrate"
+      size: "Size"
+      video: "Video"
+      codec: "Codec"
+      resolution: "Resolution"
+      framerate: "Framerate"
+      audio: "Audio"
+      sample_rate: "Sample rate"
+      channels: "Channels"
