@@ -1,4 +1,13 @@
-<h1>Archive Items</h1>
+<div class="row toolbar">
+  <div class="col">
+    <h3><%= t('admin.menu.archive') %></h3>
+  </div>
+  <div class="col text-right">
+    <%= link_to t('admin.action.new'),
+                new_admin_archive_item_path,
+                class: 'btn btn-primary' %>
+  </div>
+</div>
 
 <%= paginate @archive_items %>
 
@@ -6,20 +15,20 @@
   <thead>
   <tr>
     <th>
-      Thumb
+      <%= t('admin.label.thumb') %>
     </th>
-    <%= render 'admin/shared/tables/localized_table_head', head_label: 'Title' %>
+    <%= render 'admin/shared/tables/localized_table_head', head_label: t('admin.label.title') %>
     <th>
-      Published
-    </th>
-    <th>
-      Hash ID
+      <%= t('admin.label.published') %>
     </th>
     <th>
-      Date
+      <%= t('admin.label.hash_id') %>
     </th>
     <th>
-      Note
+      <%= t('admin.label.date') %>
+    </th>
+    <th>
+      <%= t('admin.label.note') %>
     </th>
     <th colspan="1"></th>
   </tr>
@@ -33,23 +42,33 @@
           <%= image_tag archive_item.archive_files.first.file.tiny.url if archive_item.archive_files.first.image? %>
         <% end %>
       </td>
-      <%= render 'admin/shared/tables/localized_table_row', row_label: 'Title', model: archive_item, key: 'title' %>
-      <td data-title="Published">
+      <%= render 'admin/shared/tables/localized_table_row',
+                 row_label: t('admin.label.title'),
+                 model: archive_item,
+                 key: 'title' %>
+      <td data-title="<%= t('admin.label.published') %>">
         <% if archive_item.published %>
           <%= fa_icon 'check' %>
         <% else %>
           <%= fa_icon 'times' %>
         <% end %>
       </td>
-      <td data-title="Hash ID"><%= archive_item.hash_id %></td>
-      <td data-title="Date"><%= archive_item.date %></td>
-      <td data-title="Note"><%= archive_item.note %></td>
+      <td data-title="<%= t('admin.label.hash_id') %>"><%= archive_item.hash_id %></td>
+      <td data-title="<%= t('admin.label.date') %>"><%= archive_item.date %></td>
+      <td data-title="<%= t('admin.label.note') %>"><%= archive_item.note %></td>
       <td class="action-buttons">
         <div class="btn-group">
-          <%= link_to 'Show', admin_archive_item_path(archive_item), class: 'btn btn-primary' %>
-          <%= link_to 'Edit', edit_admin_archive_item_path(archive_item), class: 'btn btn-warning' %>
-          <%= link_to 'Destroy', admin_archive_item_path(archive_item), method: :delete,
-                      data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+          <%= link_to t('admin.label.show'),
+                      admin_archive_item_path(archive_item),
+                      class: 'btn btn-primary' %>
+          <%= link_to t('admin.action.edit'),
+                      edit_admin_archive_item_path(archive_item),
+                      class: 'btn btn-warning' %>
+          <%= link_to t('admin.action.delete'),
+                      admin_archive_item_path(archive_item),
+                      method: :delete,
+                      data: {confirm: t('admin.confirm.delete')},
+                      class: 'btn btn-danger' %>
         </div>
       </td>
     </tr>
@@ -58,7 +77,3 @@
 </table>
 
 <%= paginate @archive_items %>
-
-<br>
-
-<%= link_to 'New Archive Item', new_admin_archive_item_path %>

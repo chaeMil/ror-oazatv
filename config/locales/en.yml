@@ -38,6 +38,8 @@ en:
       edit: "Edit"
       back: "Back"
       add_file: "Add file"
+      delete: "Delete"
+      new: "New"
     label:
       type: "Type"
       language: "Language"
@@ -63,3 +65,7 @@ en:
       tags: "Tags"
       note: "Note"
       categories: "Categories"
+      thumb: "Thumb"
+      show: "Show"
+    menu:
+      archive: "Archive"
