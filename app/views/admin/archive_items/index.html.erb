@@ -2,8 +2,8 @@
   <div class="col">
     <h3><%= t('admin.menu.archive') %></h3>
   </div>
-  <div class="col text-center">
-    <%= paginate @archive_items %>
+  <div class="col pagination-wrapper">
+    <%= paginate @archive_items, theme: 'twitter-bootstrap-4', pagination_class: 'pagination-sm' %>
   </div>
   <div class="col text-right">
     <%= link_to t('admin.action.new'),
@@ -82,4 +82,18 @@
   </tbody>
 </table>
 
-<%= paginate @archive_items %>
+<br>
+
+<div class="row toolbar">
+  <div class="col">
+    <h3><%= t('admin.menu.archive') %></h3>
+  </div>
+  <div class="col pagination-wrapper">
+    <%= paginate @archive_items, theme: 'twitter-bootstrap-4', pagination_class: 'pagination-sm' %>
+  </div>
+  <div class="col text-right">
+    <%= link_to t('admin.action.new'),
+                new_admin_archive_item_path,
+                class: 'btn btn-primary' %>
+  </div>
+</div>

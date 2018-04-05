@@ -11,5 +11,17 @@
       margin-bottom: 0;
       line-height: 38px;
     }
+
+    &.pagination-wrapper {
+      text-align: center;
+
+      nav {
+        padding-top: 6px;
+
+        .pagination {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
 }
