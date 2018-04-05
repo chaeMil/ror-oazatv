@@ -16,9 +16,11 @@
       text-align: center;
 
       nav {
+        display: inline-block;
         padding-top: 6px;
 
         .pagination {
+          display: inline-flex;
           margin-bottom: 0;
         }
       }
