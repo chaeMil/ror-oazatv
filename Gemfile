@@ -80,6 +80,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'awesome_print', :require => 'ap'
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
