@@ -24,14 +24,15 @@ def rand_in_range(from, to)
   rand * (to - from) + from
 end
 
-100.times do |i|
+30.times do |i|
   archive_item = ArchiveItem.create(
-      id: i,
       published: rand(2) == 1,
       hash_id: SecureRandom.hex(4),
       date: rand_time(14.days.ago),
       tags: Faker::Lorem.words(rand(6)).join(','),
       note: Faker::Lorem.sentence)
+
+  archive_item.id = i
 
   I18n.locale = :en
   archive_item.title = Faker::Lorem.words(rand_int(1, 4)).join(' ')
@@ -42,4 +43,19 @@ end
   archive_item.description = Faker::Lorem.sentences(rand(5)).join(' ')
 
   archive_item.save!
+
+  archive_files_count = rand_int(0, 2)
+  archive_files_count.times do |y|
+
+    file = File.open(Rails.root + "app/assets/seeds/images/#{rand_int(1, 15)}.jpg")
+
+    archive_file = ArchiveFile.create(
+      file: file,
+      file_type: 3, #just images for now
+      language_id: rand_int(1, 2)
+    )
+
+    archive_file.archive_item_id = archive_item.id
+    archive_file.save!
+  end
 end
