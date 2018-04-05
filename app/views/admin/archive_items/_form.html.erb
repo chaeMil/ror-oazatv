@@ -1,4 +1,5 @@
 <%= simple_form_for @archive_item,
+                    html: {id: 'archive_item_form'},
                     url: (@archive_item.new_record? ? admin_archive_items_path : admin_archive_item_path(id: @archive_item.id)),
                     method: (@archive_item.new_record? ? :post : :put) do |form| %>
   <% if @archive_item.errors.any? %>
@@ -14,10 +15,16 @@
   <% end %>
 
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-7">
       <%= render 'admin/shared/forms/localized_text_field', model: @archive_item, name: 'title' %>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
+      <p>
+        <%= form.label :note %>
+        <%= form.text_area :note, class: 'form-control' %>
+      </p>
+    </div>
+    <div class="col-md-1">
       <div class="form-group">
         <div class="custom-control custom-checkbox">
           <%= form.check_box :published, class: 'custom-control-input' %>
@@ -27,35 +34,38 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col">
+      <p>
+        <%= form.label :date %> <br>
+        <%= form.text_field :date, class: 'form-control', data: {provider: 'datepicker'} %>
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        <%= form.label :categories %>
+        <%= form.text_field :categories, value: (@archive_item.categories.map do |category|
+          category.id
+        end.join(',')) %>
+        <br>
+        <% @categories.each do |category| %>
+          <a href="#" class="add-category" data-category-id="<%= category['id'] %>"><%= category['title'] %></a>
+        <% end %>
+      </p>
+    </div>
+    <div class="col">
+      <p>
+        <%= form.label :tags %>
+        <%= form.text_area :tags, class: 'tags-input' %>
+      </p>
+    </div>
+  </div>
+
   <%= render 'admin/shared/forms/localized_editor', model: @archive_item, name: 'description', horizontal: true %>
 
-  <p>
-    <%= form.label :date %> <br>
-    <%= form.text_field :date, class: 'form-control', data: {provider: 'datepicker'} %>
-  </p>
+  <br>
 
-  <p>
-    <%= form.label :categories %>
-    <%= form.text_field :categories, value: (@archive_item.categories.map do |category|
-      category.id
-    end.join(',')) %>
-    <br>
-    <% @categories.each do |category| %>
-      <a href="#" class="add-category" data-category-id="<%= category['id'] %>"><%= category['title'] %></a>
-    <% end %>
-  </p>
-
-  <p>
-    <%= form.label :tags%>
-    <%= form.text_area :tags, class: 'tags-input'  %>
-  </p>
-
-  <p>
-    <%= form.label :note %>
-    <%= form.text_area :note %>
-  </p>
-
-  <div class="actions">
+  <div class="actions d-none">
     <%= form.submit %>
   </div>
 <% end %>
@@ -75,8 +85,8 @@
           });
 
           <% @archive_item.categories.each do |category| %>
-            input.tagsinput('add', {id: <%= category['id'] %>, text: '<%= category['title'] %>'});
-            $('[data-category-id="<%= category['id'] %>"]').addClass('d-none');
+          input.tagsinput('add', {id: <%= category['id'] %>, text: '<%= category['title'] %>'});
+          $('[data-category-id="<%= category['id'] %>"]').addClass('d-none');
           <% end %>
 
           $('.add-category').click(function (e) {
@@ -92,14 +102,16 @@
           input.tagsinput();
 
           <% if @archive_item.tags.present? %>
-            <% @archive_item.tags.split(',').each do |tag| %>
-              input.tagsinput('add', '<%= tag %>');
-            <% end %>
+          <% @archive_item.tags.split(',').each do |tag| %>
+          input.tagsinput('add', '<%= tag %>');
+          <% end %>
           <% end %>
       }
 
-      setupCategoriesInput();
-      setupTagsInput();
+      $(document).on('turbolinks:load', function () {
+          setupCategoriesInput();
+          setupTagsInput();
+      });
 
   </script>
 <% end %>
