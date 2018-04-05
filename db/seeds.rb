@@ -8,6 +8,10 @@
 
 require 'faker'
 
+archive_items_count = 60
+archive_files_images_max_count = 2
+archive_files_images_min_count = 0
+
 def rand_int(from, to)
   rand_in_range(from, to).to_i
 end
@@ -24,7 +28,7 @@ def rand_in_range(from, to)
   rand * (to - from) + from
 end
 
-30.times do |i|
+archive_items_count.times do |i|
   archive_item = ArchiveItem.create(
       published: rand(2) == 1,
       hash_id: SecureRandom.hex(4),
@@ -44,18 +48,21 @@ end
 
   archive_item.save!
 
-  archive_files_count = rand_int(0, 2)
-  archive_files_count.times do |y|
+  archive_files_images_count = rand_int(archive_files_images_min_count, archive_files_images_max_count)
+  archive_files_images_count.times do |y|
 
     file = File.open(Rails.root + "app/assets/seeds/images/#{rand_int(1, 15)}.jpg")
 
     archive_file = ArchiveFile.create(
-      file: file,
-      file_type: 3, #just images for now
-      language_id: rand_int(1, 2)
+        file: file,
+        file_type: 3, #just images for now
+        language_id: rand_int(1, 2)
     )
 
     archive_file.archive_item_id = archive_item.id
     archive_file.save!
   end
+
+  puts "archive_item #{archive_item.id} saved"
+  puts "#{i}/#{archive_items_count}"
 end
