@@ -22,5 +22,7 @@
 //= require select2
 //= require select2_locale_cs
 //= require select2_simple_form
+//= require jquery.minicolors
+//= require jquery.minicolors.simple_form
 //= require admin/ui
 //= require_tree .

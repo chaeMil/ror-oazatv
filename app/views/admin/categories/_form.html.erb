@@ -18,14 +18,24 @@
 
   <div class="form-group row">
     <div class="col">
-      <%= form.label :color, class: 'col-form-label'  %> <br>
+      <%= form.label :color, class: 'col-form-label' %> <br>
     </div>
     <div class="col-10">
-      <%= form.text_field :color, class: 'form-control' %>
+      <%= form.text_field :color, as: :minicolors, class: 'form-control' %>
     </div>
   </div>
 
   <div class="actions d-none">
     <%= form.submit %>
   </div>
+<% end %>
+
+<% content_for :scripts do %>
+  <script type="text/javascript" charset="utf-8">
+      $(document).on('turbolinks:load', function () {
+          $('#category_color').minicolors({
+              theme: 'bootstrap'
+          });
+      });
+  </script>
 <% end %>
