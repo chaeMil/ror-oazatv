@@ -1,0 +1,35 @@
+<script type="text/javascript" charset="utf-8">
+  function setupToastr() {
+      toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "newestOnTop": true,
+          "progressBar": true,
+          "positionClass": "toast-bottom-right",
+          "preventDuplicates": true,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+      }
+  }
+</script>
+<% if notice.present? || alert.present? %>
+  <% if alert.present? %>
+    <script type="text/javascript" charset="utf-8">
+        setupToastr();
+        toastr.warning('<%= alert %>');
+    </script>
+  <% end %>
+  <% if notice.present? %>
+    <script type="text/javascript" charset="utf-8">
+        setupToastr();
+        toastr.info('<%= notice %>');
+    </script>
+  <% end %>
+<% end %>

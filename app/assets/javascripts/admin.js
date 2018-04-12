@@ -24,5 +24,6 @@
 //= require select2_simple_form
 //= require jquery.minicolors
 //= require jquery.minicolors.simple_form
+//= require toastr
 //= require admin/ui
 //= require_tree .
