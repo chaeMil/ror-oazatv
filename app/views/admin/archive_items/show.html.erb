@@ -42,9 +42,12 @@
       </div>
       <div class="col">
         <p><%= t('admin.label.tags') %>: <%= @archive_item.tags %></p>
-        <p><%= t('admin.label.categories') %>: <%= @archive_item.categories.map do |category|
-          category.title
-        end.join(', ') %></p>
+        <p>
+          <%= t('admin.label.categories') %>:
+          <% @archive_item.categories.map do |category| %>
+            <%= link_to category.title, admin_category_path(category), class: 'btn btn-primary btn-sm' %>
+          <% end %>
+        </p>
       </div>
       <div class="col">
         <%= render 'admin/shared/forms/localized_html',
