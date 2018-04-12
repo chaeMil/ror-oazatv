@@ -16,9 +16,10 @@
       <p><%= t('admin.label.date') %>: <%= @archive_item.date %></p>
     </div>
     <div class="col text-right">
-      <%= link_to t('admin.action.back'),
-                  admin_archive_items_path,
-                  class: 'btn btn-secondary' %>
+      <buton class="btn btn-secondary"
+             onclick="javascript:history.back();">
+        <%= t('admin.action.back') %>
+      </buton>
       <%= link_to t('admin.action.add_file'),
                   new_admin_archive_item_archive_file_path(@archive_item),
                   class: 'btn btn-primary' %>

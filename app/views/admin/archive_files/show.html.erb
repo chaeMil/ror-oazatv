@@ -9,8 +9,10 @@
     <p><%= t('admin.label.language') %>: <%= @archive_file.language.title unless @archive_file.language.nil? %></p>
   </div>
   <div class="col-5 text-right">
-    <%= link_to t('admin.action.back'), admin_archive_item_path(id: @archive_item.id),
-                class: 'btn btn-secondary' %>
+    <buton class="btn btn-secondary"
+           onclick="javascript:history.back();">
+      <%= t('admin.action.back') %>
+    </buton>
     <%= render 'admin/shared/convert_dropdown',
                archive_item: @archive_item,
                archive_file: @archive_file %>

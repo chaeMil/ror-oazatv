@@ -3,9 +3,10 @@
     <h3><%= t('admin.menu.video_convert_profiles') %> > <%= t('admin.action.new') %> </h3>
   </div>
   <div class="col text-right">
-    <%= link_to t('admin.action.back'),
-                admin_video_convert_profiles_path,
-                class: 'btn btn-secondary' %>
+    <buton class="btn btn-secondary"
+           onclick="javascript:history.back();">
+      <%= t('admin.action.back') %>
+    </buton>
     <a href="#" data-submit-form="video_convert_profile_form"
        class="btn btn-success">
       <%= t('admin.action.submit') %>
