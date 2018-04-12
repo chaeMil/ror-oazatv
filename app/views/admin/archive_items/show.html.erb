@@ -45,7 +45,9 @@
         <p>
           <%= t('admin.label.categories') %>:
           <% @archive_item.categories.map do |category| %>
-            <%= link_to category.title, admin_category_path(category), class: 'btn btn-primary btn-sm' %>
+            <%= link_to category.title, admin_category_path(category),
+                        class: 'btn btn-primary btn-sm',
+                        style: "background-color: #{category.color}"%>
           <% end %>
         </p>
       </div>
