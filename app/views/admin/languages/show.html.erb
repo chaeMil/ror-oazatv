@@ -1,8 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="row toolbar">
+  <div class="col text-right">
+    <buton class="btn btn-secondary"
+           onclick="javascript:history.back();">
+      <%= t('admin.action.back') %>
+    </buton>
+    <%= link_to t('admin.action.delete'),
+                admin_language_path(@language),
+                method: :delete,
+                data: {confirm: t('admin.confirm.delete')},
+                class: 'btn btn-danger' %>
+    <%= link_to t('admin.action.edit'),
+                edit_admin_language_path(@language),
+                class: 'btn btn-warning' %>
+  </div>
+</div>
 
-<p>name: <%= @language.title %></p>
+<div class="container">
+  <div class="row">
+    <div class="col">
 
-<p>locale: <%= @language.locale %></p>
+      <p><%= t('admin.label.title') %>: <%= @language.title %></p>
 
-<%= link_to 'Edit', edit_admin_language_path(@language) %> |
-<%= link_to 'Back', admin_languages_path %>
+      <p><%= t('admin.label.locale') %>: <%= @language.locale %></p>
+
+    </div>
+  </div>
+</div>

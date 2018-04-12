@@ -1,8 +1,9 @@
 <div class="row toolbar">
   <div class="col text-right">
-    <%= link_to t('admin.action.back'),
-                admin_categories_path,
-                class: 'btn btn-secondary' %>
+    <buton class="btn btn-secondary"
+           onclick="javascript:history.back();">
+      <%= t('admin.action.back') %>
+    </buton>
     <%= link_to t('admin.action.delete'),
                 admin_category_path(@category),
                 method: :delete,
