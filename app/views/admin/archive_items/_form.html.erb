@@ -43,7 +43,10 @@
     </div>
     <div class="col">
       <p>
-        <%= form.input :categories, as: :select2, collection: Category.all, multiple: true %>
+        <%= form.input :categories,
+                       as: :select2, collection: Category.includes(:translations).all,
+                       selected: @archive_item.categories.map(&:id),
+                       include_blank: false, multiple: true %>
       </p>
     </div>
     <div class="col">
@@ -65,29 +68,6 @@
 
 <% content_for :scripts do %>
   <script type="text/javascript" charset="utf-8">
-      function setupCategoriesInput() {
-          var input = $('#archive_item_categories');
-          input.tagsinput({
-              confirmKeys: [13, 44],
-              itemValue: 'id',
-              itemText: 'text'
-          });
-
-          input.on('itemRemoved', function (e) {
-              $('[data-category-id="' + e.item.id + '"]').removeClass('d-none');
-          });
-
-          <% @archive_item.categories.each do |category| %>
-          input.tagsinput('add', {id: <%= category['id'] %>, text: '<%= category['title'] %>'});
-          $('[data-category-id="<%= category['id'] %>"]').addClass('d-none');
-          <% end %>
-
-          $('.add-category').click(function (e) {
-              e.preventDefault();
-              $(this).addClass('d-none');
-              input.tagsinput('add', {id: $(this).attr('data-category-id'), text: $(this).text()});
-          });
-      }
 
       function setupTagsInput() {
           var input = $('.tags-input');
@@ -102,7 +82,6 @@
       }
 
       $(document).on('turbolinks:load', function () {
-          setupCategoriesInput();
           setupTagsInput();
       });
 

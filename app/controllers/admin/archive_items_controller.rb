@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 module Admin
   class ArchiveItemsController < AdminController
-    before_action :set_archive_item, only: [:show, :edit, :update, :destroy]
+    before_action :set_archive_item, only: %i[show edit update destroy]
 
     def index
       @archive_items = ArchiveItem.page(params[:page]).per(30)
@@ -51,10 +52,10 @@ module Admin
     def archive_item_params
       permitted = ArchiveItem.globalize_attribute_names + [:published, :description, :hash_id, :date, :tags, :note, :categories]
       params.require(:archive_item).permit(*permitted)
-      category_ids = params[:archive_item][:categories].split(',')
-      categories = Category.find(category_ids)
       new_params = params[:archive_item].as_json
-      new_params['categories'] = categories
+      category_ids = params[:archive_item][:categories].reject {|c| c.empty?}
+      categories_db = Category.find(category_ids)
+      new_params['categories'] = categories_db
       new_params.to_hash
     end
   end

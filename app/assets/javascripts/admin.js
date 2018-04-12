@@ -20,6 +20,7 @@
 //= require turbolinks
 //= require resumablejs
 //= require select2
-//= //require select2_simple_form
+//= require select2_locale_cs
+//= require select2_simple_form
 //= require admin/ui
 //= require_tree .
