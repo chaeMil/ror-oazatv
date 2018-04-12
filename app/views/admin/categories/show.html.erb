@@ -1,8 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="row toolbar">
+  <div class="col text-right">
+    <%= link_to t('admin.action.back'),
+                admin_categories_path,
+                class: 'btn btn-secondary' %>
+    <%= link_to t('admin.action.delete'),
+                admin_category_path(@category),
+                method: :delete,
+                data: {confirm: t('admin.confirm.delete')},
+                class: 'btn btn-danger' %>
+    <%= link_to t('admin.action.edit'),
+                edit_admin_category_path(@category),
+                class: 'btn btn-warning' %>
+  </div>
+</div>
 
-<%= render 'admin/shared/forms/localized_text', name: 'Title', model: @category, key: 'title' %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <%= render 'admin/shared/forms/localized_text', name: 'Title', model: @category, key: 'title' %>
 
-<p>color: <%= @category.color %></p>
+      <p><%= t('admin.label.color') %>:
+        <span style="border-radius: 3px; padding: 5px; background-color: <%= @category.color %>"><%= @category.color %></span>
+      </p>
 
-<%= link_to 'Edit', edit_admin_category_path(@category) %> |
-<%= link_to 'Back', admin_categories_path %>
+    </div>
+  </div>
+</div>

@@ -90,6 +90,7 @@ en:
       waiting: "Waiting"
     entity:
       archive_item: "Archive Item"
+      category: "Category"
   simple_form:
     labels:
       video_convert_profile:

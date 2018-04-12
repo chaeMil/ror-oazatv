@@ -1,4 +1,5 @@
 <%= simple_form_for @category,
+                    html: {id: 'category_form'},
                     url: (@category.new_record? ? admin_categories_path : admin_category_path(@category)),
                     method: (@category.new_record? ? :post : :put) do |form| %>
   <% if @category.errors.any? %>
@@ -15,12 +16,16 @@
 
   <%= render 'admin/shared/forms/localized_text_field', model: @category, name: 'title' %>
 
-  <p>
-    <%= form.label :color %> <br>
-    <%= form.text_field :color %>
-  </p>
+  <div class="form-group row">
+    <div class="col">
+      <%= form.label :color, class: 'col-form-label'  %> <br>
+    </div>
+    <div class="col-10">
+      <%= form.text_field :color, class: 'form-control' %>
+    </div>
+  </div>
 
-  <div class="actions">
+  <div class="actions d-none">
     <%= form.submit %>
   </div>
 <% end %>

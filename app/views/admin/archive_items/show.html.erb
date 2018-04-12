@@ -19,7 +19,7 @@
       <%= link_to t('admin.action.back'),
                   admin_archive_items_path,
                   class: 'btn btn-secondary' %>
-      <%= link_to t('admin.actions.add_file'),
+      <%= link_to t('admin.action.add_file'),
                   new_admin_archive_item_archive_file_path(@archive_item),
                   class: 'btn btn-primary' %>
       <%= link_to t('admin.action.delete'),
@@ -27,7 +27,7 @@
                   method: :delete,
                   data: {confirm: t('admin.confirm.delete')},
                   class: 'btn btn-danger' %>
-      <%= link_to t('admin.actions.edit'),
+      <%= link_to t('admin.action.edit'),
                   edit_admin_archive_item_path(@archive_item),
                   class: 'btn btn-warning' %>
     </div>

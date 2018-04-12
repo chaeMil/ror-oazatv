@@ -1,5 +1,19 @@
-<h1>New Category</h1>
+<div class="row toolbar">
+  <div class="col">
+    <h3><%= t('admin.entity.category') %></h3>
+  </div>
+  <div class="col text-right">
+    <buton class="btn btn-secondary"
+           onclick="javascritp:history.back();">
+      <%= t('admin.action.back') %>
+    </buton>
+    <a href="#" data-submit-form="category_form"
+       class="btn btn-success">
+      <%= t('admin.action.submit') %>
+    </a>
+  </div>
+</div>
 
 <%= render 'form', category: @category %>
 
-<%= link_to 'Back', admin_categories_path %>
+<br>
