@@ -1,31 +1,67 @@
-<h1>Preachers</h1>
+<div class="row toolbar">
+  <div class="col">
+    <h3><%= t('admin.label.preachers') %></h3>
+  </div>
+  <div class="col pagination-wrapper">
+    <%= paginate @preachers, theme: 'twitter-bootstrap-4', pagination_class: 'pagination-sm' %>
+  </div>
+  <div class="col text-right">
+    <%= link_to t('admin.action.new'),
+                new_admin_preacher_path,
+                class: 'btn btn-primary' %>
+  </div>
+</div>
 
-<table>
+<table class="table table-hover table-responsive table-no-more">
   <thead>
   <tr>
     <th>
-      Title
+      <%= t('admin.label.title') %>
     </th>
     <th>
-      Tags
+      <%= t('admin.label.tags') %>
     </th>
-    <th colspan="3"></th>
+    <th colspan="1"></th>
   </tr>
   </thead>
 
   <tbody>
   <% @preachers.each do |preacher| %>
-      <tr>
-        <td><%= preacher.title %></td>
-        <td><%= preacher.tags %></td>
-        <td><%= link_to 'Show', admin_preacher_path(preacher) %></td>
-        <td><%= link_to 'Edit', edit_admin_preacher_path(preacher) %></td>
-        <td><%= link_to 'Destroy', admin_preacher_path(preacher), method: :delete, data: {confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td data-title="<%= t('admin.label.title') %>"><%= preacher.title %></td>
+      <td data-title="<%= t('admin.label.tags') %>"><%= preacher.tags %></td>
+      <td class="action-buttons">
+        <div class="btn-group">
+          <%= link_to t('admin.label.show'),
+                      admin_preacher_path(preacher),
+                      class: 'btn btn-primary' %>
+          <%= link_to t('admin.action.edit'),
+                      edit_admin_preacher_path(preacher),
+                      class: 'btn btn-warning' %>
+          <%= link_to t('admin.action.delete'),
+                      admin_preacher_path(preacher),
+                      method: :delete,
+                      data: {confirm: t('admin.confirm.delete')},
+                      class: 'btn btn-danger' %>
+        </div>
+      </td>
+    </tr>
   <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Preacher', new_admin_preacher_path %>
+<div class="row toolbar">
+  <div class="col">
+    <h3><%= t('admin.label.preachers') %></h3>
+  </div>
+  <div class="col pagination-wrapper">
+    <%= paginate @preachers, theme: 'twitter-bootstrap-4', pagination_class: 'pagination-sm' %>
+  </div>
+  <div class="col text-right">
+    <%= link_to t('admin.action.new'),
+                new_admin_preacher_path,
+                class: 'btn btn-primary' %>
+  </div>
+</div>

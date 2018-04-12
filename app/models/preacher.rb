@@ -13,6 +13,7 @@
 
 class Preacher < ApplicationRecord
 
+  translates :description
   mount_uploader :image, PreacherUploader
   validates :title, presence: true
 end

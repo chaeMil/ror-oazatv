@@ -3,7 +3,7 @@ module Admin
     before_action :set_preacher, only: [:show, :edit, :update, :destroy]
 
     def index
-      @preachers = Preacher.all
+      @preachers = Preacher.page(params[:page]).per(30)
     end
 
     def new

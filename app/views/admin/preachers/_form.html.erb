@@ -1,4 +1,5 @@
 <%= simple_form_for @preacher,
+                    html: {id: 'preacher_form'},
                     url: (@preacher.new_record? ? admin_preachers_path : admin_preacher_path(@preacher)),
                     method: (@preacher.new_record? ? :post : :put) do |form| %>
     <% if @preacher.errors.any? %>
@@ -16,26 +17,48 @@
     <%= image_tag(@preacher.image.thumb.url) if @preacher.image? %>
 
     <p>
-      <%= form.label :title %> <br>
-      <%= form.text_field :title %>
+      <%= form.label :title, class: 'col-form-label' %> <br>
+      <%= form.text_field :title, class: 'form-control' %>
     </p>
 
     <p>
-      <%= form.label :image %>
-      <%= form.file_field :image %>
+      <%= form.label :image, class: 'col-form-label' %>
+      <%= form.file_field :image, class: 'form-control' %>
     </p>
 
     <p>
-      <%= form.label :tags %> <br>
-      <%= form.text_field :tags %>
+      <%= form.label :tags, class: 'col-form-label' %> <br>
+      <%= form.text_field :tags, class: 'form-control tags-input' %>
     </p>
 
     <p>
-      <%= form.label :description %>
-      <%= form.text_area :description %>
+      <%= form.label :description, class: 'col-form-label' %>
+      <%= form.text_area :description, data: {provider: 'summernote'}, class: 'form-control' %>
     </p>
 
-    <div class="actions">
+    <div class="actions d-none">
       <%= form.submit %>
     </div>
+<% end %>
+
+<% content_for :scripts do %>
+  <script type="text/javascript" charset="utf-8">
+
+      function setupTagsInput() {
+          var input = $('.tags-input');
+
+          input.tagsinput();
+
+          <% if @preacher.tags.present? %>
+          <% @preacher.tags.split(',').each do |tag| %>
+          input.tagsinput('add', '<%= tag %>');
+          <% end %>
+          <% end %>
+      }
+
+      $(document).on('turbolinks:load', function () {
+          setupTagsInput();
+      });
+
+  </script>
 <% end %>

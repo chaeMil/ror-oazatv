@@ -1,10 +1,31 @@
-<p id="notice"><%= notice %></p>
+<div class="row toolbar">
+  <div class="col text-right">
+    <buton class="btn btn-secondary"
+           onclick="javascript:history.back();">
+      <%= t('admin.action.back') %>
+    </buton>
+    <%= link_to t('admin.action.delete'),
+                admin_preacher_path(@preacher),
+                method: :delete,
+                data: {confirm: t('admin.confirm.delete')},
+                class: 'btn btn-danger' %>
+    <%= link_to t('admin.action.edit'),
+                edit_admin_preacher_path(@preacher),
+                class: 'btn btn-warning' %>
+  </div>
+</div>
 
-<p>name: <%= @preacher.title %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <%= image_tag @preacher.image, class: 'img-fluid' %>
+    </div>
+    <div class="col">
+      <h3><%= @preacher.title %></h3>
 
-<p>tags: <%= @preacher.tags %></p>
+      <p><%= t('admin.label.tags') %>: <%= @preacher.tags %></p>
 
-<p>description: <%= @preacher.description %></p>
-
-<%= link_to 'Edit', edit_admin_preacher_path(@preacher) %> |
-<%= link_to 'Back', admin_preachers_path %>
+      <p><%= t('admin.label.description') %>: <%= @preacher.description.html_safe %></p>
+    </div>
+  </div>
+</div>

@@ -44,6 +44,7 @@ en:
       submit: "Submit"
       save: "Save"
     label:
+      archive: "Archive"
       type: "Type"
       language: "Language"
       basic_info: "Basic info"
@@ -84,8 +85,9 @@ en:
       color: "Color"
       languages: "Languages"
       locale: "Locale"
+      preachers: "Preachers"
+      name: "Name"
     menu:
-      archive: "Archive"
       video_convert_profiles: "Video convert profiles"
       video_conversion_queue: "Video conversion queue"
     status:
@@ -94,6 +96,7 @@ en:
       archive_item: "Archive Item"
       category: "Category"
       language: "Language"
+      preacher: "Preacher"
   simple_form:
     labels:
       video_convert_profile:
