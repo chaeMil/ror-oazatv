@@ -1,4 +1,5 @@
 <%= simple_form_for @language,
+                    html: {id: 'language_form'},
                     url: (@language.new_record? ? admin_languages_path : admin_language_path(@language)),
                     method: (@language.new_record? ? :post : :put) do |form| %>
     <% if @language.errors.any? %>
@@ -14,16 +15,16 @@
     <% end %>
 
     <p>
-      <%= form.label :title %> <br>
-      <%= form.text_field :title %>
+      <%= form.label :title, class: 'col-form-label' %> <br>
+      <%= form.text_field :title, class: 'form-control' %>
     </p>
 
     <p>
-      <%= form.label :locale %> <br>
-      <%= form.text_field :locale %>
+      <%= form.label :locale, class: 'col-form-label' %> <br>
+      <%= form.text_field :locale, class: 'form-control' %>
     </p>
 
-    <div class="actions">
+    <div class="actions d-none">
       <%= form.submit %>
     </div>
 <% end %>

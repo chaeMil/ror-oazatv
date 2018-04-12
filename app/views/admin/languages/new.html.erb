@@ -1,5 +1,24 @@
-<h1>New Language</h1>
+<div class="row toolbar">
+  <div class="col">
+    <h3><%= t('admin.entity.language') %></h3>
+  </div>
+  <div class="col text-right">
+    <buton class="btn btn-secondary"
+           onclick="javascript:history.back();">
+      <%= t('admin.action.back') %>
+    </buton>
+    <a href="#" data-submit-form="language_form"
+       class="btn btn-success">
+      <%= t('admin.action.submit') %>
+    </a>
+  </div>
+</div>
 
-<%= render 'form', language: @language %>
-
-<%= link_to 'Back', admin_languages_path %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= render 'form', language: @language %>
+      <br>
+    </div>
+  </div>
+</div>

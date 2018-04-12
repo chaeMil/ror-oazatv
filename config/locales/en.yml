@@ -82,6 +82,8 @@ en:
       error: "Error"
       files: "Files"
       color: "Color"
+      languages: "Languages"
+      locale: "Locale"
     menu:
       archive: "Archive"
       video_convert_profiles: "Video convert profiles"
@@ -91,6 +93,7 @@ en:
     entity:
       archive_item: "Archive Item"
       category: "Category"
+      language: "Language"
   simple_form:
     labels:
       video_convert_profile:
