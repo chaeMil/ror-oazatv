@@ -19,5 +19,7 @@
 //= require bootstrap-datepicker/js/bootstrap-datepicker.js
 //= require turbolinks
 //= require resumablejs
+//= require select2
+//= //require select2_simple_form
 //= require admin/ui
 //= require_tree .

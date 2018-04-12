@@ -43,14 +43,7 @@
     </div>
     <div class="col">
       <p>
-        <%= form.label :categories %>
-        <%= form.text_field :categories, value: (@archive_item.categories.map do |category|
-          category.id
-        end.join(',')) %>
-        <br>
-        <% @categories.each do |category| %>
-          <a href="#" class="add-category" data-category-id="<%= category['id'] %>"><%= category['title'] %></a>
-        <% end %>
+        <%= form.input :categories, as: :select2, collection: Category.all, multiple: true %>
       </p>
     </div>
     <div class="col">

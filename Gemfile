@@ -57,6 +57,8 @@ gem 'summernote-rails', '~> 0.8.9.2'
 gem 'js-routes-rails'
 gem 'exifr'
 gem 'bootstrap4-kaminari-views'
+gem 'select2-rails'
+gem 'select2_simple_form', github: 'lndl/select2_simple_form', tag: '0.7.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

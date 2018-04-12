@@ -80,6 +80,7 @@ en:
       status: "Status"
       finished_at: "Finished at"
       error: "Error"
+      files: "Files"
     menu:
       archive: "Archive"
       video_convert_profiles: "Video convert profiles"
