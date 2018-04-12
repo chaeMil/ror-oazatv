@@ -1,25 +1,48 @@
-<h1>Live stream</h1>
-
-<%= form_tag url: admin_livestream_path, method: :post do %>
-  <p>
-    <%= label_tag :youtube_id, 'Youtube video ID' %>
-    <%= text_field_tag :youtube_id, @store['youtube_id'] %>
-  </p>
-
-  <p>
-    <%= label_tag :online, 'Online' %>
-    <%= check_box_tag :online, true, (true if @store['online']) %>
-  </p>
-
-  <div class="row">
-    <% @languages.each do |language| %>
-      <div class="col-lg-6">
-        <%= label_tag "text_#{language['locale']}", "Text (#{language['locale'].upcase})" %>
-        <%= text_area_tag "text_#{language['locale']}", @store["text_#{language['locale']}"],
-                          data: {provider: 'summernote'} %>
-      </div>
-    <% end %>
+<div class="row toolbar">
+  <div class="col">
+    <h3><%= t('admin.label.live_stream') %></h3>
   </div>
+  <div class="col text-right">
+    <a href="#" data-submit-form="live_stream_form"
+       class="btn btn-success">
+      <%= t('admin.action.submit') %>
+    </a>
+  </div>
+</div>
 
-  <%= submit_tag 'submit' %>
-<% end %>
+<div class="container-fluid live-stream-container">
+  <div class="row">
+    <div class="col-lg-8">
+
+    </div>
+    <div class="col-lg-4 form">
+      <%= form_tag url: admin_livestream_path, html: {id: 'live_stream_form'}, method: :post do %>
+        <div class="row">
+          <div class="col">
+            <p>
+              <%= label_tag :youtube_id, 'Youtube video ID' %>
+              <%= text_field_tag :youtube_id, @store['youtube_id'], class: 'form-control' %>
+            </p>
+          </div>
+          <div class="col">
+            <p>
+              <%= label_tag :online, 'Online' %>
+              <%= check_box_tag :online, true, (true if @store['online']) %>
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <% @languages.each do |language| %>
+              <%= label_tag "text_#{language['locale']}", "Text (#{language['locale'].upcase})" %>
+              <%= text_area_tag "text_#{language['locale']}", @store["text_#{language['locale']}"],
+                                data: {provider: 'summernote'} %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

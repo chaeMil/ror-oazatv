@@ -87,6 +87,7 @@ en:
       locale: "Locale"
       preachers: "Preachers"
       name: "Name"
+      live_stream: "Live Stream"
     menu:
       video_convert_profiles: "Video convert profiles"
       video_conversion_queue: "Video conversion queue"
