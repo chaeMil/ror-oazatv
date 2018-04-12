@@ -2,43 +2,49 @@
                     html: {id: 'preacher_form'},
                     url: (@preacher.new_record? ? admin_preachers_path : admin_preacher_path(@preacher)),
                     method: (@preacher.new_record? ? :post : :put) do |form| %>
-    <% if @preacher.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@preacher.errors.count, "error") %> prohibited this preacher from being saved:</h2>
+  <% if @preacher.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@preacher.errors.count, "error") %> prohibited this preacher from being saved:</h2>
 
-          <ul>
-            <% @preacher.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-    <%= image_tag(@preacher.image.thumb.url) if @preacher.image? %>
-
-    <p>
-      <%= form.label :title, class: 'col-form-label' %> <br>
-      <%= form.text_field :title, class: 'form-control' %>
-    </p>
-
-    <p>
-      <%= form.label :image, class: 'col-form-label' %>
-      <%= form.file_field :image, class: 'form-control' %>
-    </p>
-
-    <p>
-      <%= form.label :tags, class: 'col-form-label' %> <br>
-      <%= form.text_field :tags, class: 'form-control tags-input' %>
-    </p>
-
-    <p>
-      <%= form.label :description, class: 'col-form-label' %>
-      <%= form.text_area :description, data: {provider: 'summernote'}, class: 'form-control' %>
-    </p>
-
-    <div class="actions d-none">
-      <%= form.submit %>
+      <ul>
+        <% @preacher.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
+
+  <div class="row">
+    <% if @preacher.image? %>
+      <div class="col-3">
+        <%= image_tag @preacher.image.url, class: 'img-fluid' if @preacher.image? %>
+      </div>
+    <% end %>
+    <div class="col">
+      <p>
+        <%= form.label :title, class: 'col-form-label' %> <br>
+        <%= form.text_field :title, class: 'form-control' %>
+      </p>
+
+      <p>
+        <%= form.label :image, class: 'col-form-label' %>
+        <%= form.file_field :image, class: 'form-control' %>
+      </p>
+
+      <p>
+        <%= form.label :tags, class: 'col-form-label' %> <br>
+        <%= form.text_field :tags, class: 'form-control tags-input' %>
+      </p>
+    </div>
+  </div>
+
+  <br>
+
+  <%= render 'admin/shared/forms/localized_editor', model: @preacher, name: 'description', horizontal: true %>
+
+  <div class="actions d-none">
+    <%= form.submit %>
+  </div>
 <% end %>
 
 <% content_for :scripts do %>

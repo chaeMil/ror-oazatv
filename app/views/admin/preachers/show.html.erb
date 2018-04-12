@@ -25,7 +25,11 @@
 
       <p><%= t('admin.label.tags') %>: <%= @preacher.tags %></p>
 
-      <p><%= t('admin.label.description') %>: <%= @preacher.description.html_safe %></p>
+      <%= render 'admin/shared/forms/localized_html',
+                 name: t('admin.label.description'),
+                 model: @preacher,
+                 key: 'description',
+                 css_class: '' %>
     </div>
   </div>
 </div>
