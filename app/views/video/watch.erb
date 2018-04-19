@@ -1,4 +1,9 @@
 <div class="container-fluid video-player">
   <div class="row">
+    <video poster="<%= @video.get_thumbnail(I18n.locale) %>" id="plyr-player" playsinline controls>
+      <% @video.get_video_sources(nil).each do |source| %>
+        <source src="<%= source.file.url %>" type="video/mp4">
+      <% end %>
+    </video>
   </div>
 </div>

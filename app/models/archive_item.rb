@@ -31,10 +31,24 @@ class ArchiveItem < ApplicationRecord
         thumb_url_fallback = archive_file.file.medium.url
       end
     end
-    if thumb_url != nil
+    if !thumb_url.nil?
       thumb_url
     else
       thumb_url_fallback
     end
+  end
+
+  def get_video_sources(locale)
+    sources = []
+    archive_files.each do |archive_file|
+      if !locale.nil?
+        if archive_file.video? && archive_file.language.locale == locale.to_s
+          sources.push(archive_file)
+        end
+      elsif archive_file.video?
+        sources.push(archive_file)
+      end
+    end
+    sources
   end
 end
