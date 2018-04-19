@@ -20,4 +20,21 @@ class ArchiveItem < ApplicationRecord
   translates :title, :description
   globalize_accessors attributes: [:title, :description]
   globalize_validations locales: [:en]
+
+  def get_thumbnail(locale)
+    thumb_url = nil
+    thumb_url_fallback = nil
+    archive_files.each do |archive_file|
+      if archive_file.image? && archive_file.language.locale == locale.to_s
+        thumb_url = archive_file.file.medium.url
+      elsif archive_file.image?
+        thumb_url_fallback = archive_file.file.medium.url
+      end
+    end
+    if thumb_url != nil
+      thumb_url
+    else
+      thumb_url_fallback
+    end
+  end
 end

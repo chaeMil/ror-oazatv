@@ -1,5 +1,7 @@
 <div class="container">
-  <%= @latest_videos.each do |video| %>
-    <p><%= video.title %></p>
-  <% end %>
+  <div class="row">
+    <% @latest_videos.each do |video| %>
+      <%= render 'video_card', video: video %>
+    <% end %>
+  </div>
 </div>
