@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'home/index'
   root 'home#index'
 
+  get 'video/watch/:hash_id', to: 'video#watch', as: 'video_watch'
+
   devise_for :users
 
   namespace :admin do
