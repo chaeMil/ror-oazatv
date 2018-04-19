@@ -5,6 +5,7 @@
     "bootbox": "^4.4.0",
     "bootstrap-datepicker": "^1.7.1",
     "bootstrap4-tagsinput": "https://github.com/Nodws/bootstrap4-tagsinput",
+    "plyr": "^3.2.0",
     "resumablejs": "^1.1.0"
   }
 }
