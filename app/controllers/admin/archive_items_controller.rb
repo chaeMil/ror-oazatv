@@ -4,7 +4,7 @@ module Admin
     before_action :set_archive_item, only: %i[show edit update destroy]
 
     def index
-      @archive_items = ArchiveItem.page(params[:page]).per(30)
+      @archive_items = ArchiveItem.order(date: :desc).page(params[:page]).per(30)
     end
 
     def new
