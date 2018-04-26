@@ -1,5 +1,25 @@
 $plyr-color-main: $blue;
+$plyr-font-size-captions-base: 16px;
+$plyr-font-size-captions-small: 16px;
+$plyr-font-size-captions-medium: 25px;
+$plyr-font-size-captions-large: 35px;
 
 .plyr {
   border-radius: $border-radius;
+
+  .plyr__captions {
+
+    span {
+      border-radius: $border-radius;
+    }
+
+    //hack to have blur behind subtitles in safari
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+      _::-webkit-full-page-media, _:future, :root, span {
+        background: rgba(0, 0, 0, 0.3);
+        display: inline-block;
+        -webkit-backdrop-filter: blur(12px);
+      }
+    }
+  }
 }
