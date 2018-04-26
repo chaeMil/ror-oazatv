@@ -6,6 +6,15 @@
           <source src="<%= source.file.url %>" type="video/mp4">
         <% end %>
       </video>
+      <h1>
+        <%= @video.title %>
+      </h1>
+      <p class="views">
+        <%= @video. %>
+      </p>
+      <div class="description">
+        <%= @video.description.html_safe %>
+      </div>
     </div>
     <div class="col-lg-3 similar-videos-wrapper">
       <p class="title"><%= t('front.similar_videos') %></p>

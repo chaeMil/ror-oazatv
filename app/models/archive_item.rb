@@ -10,6 +10,7 @@
 #  note       :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  views      :integer
 #
 
 class ArchiveItem < ApplicationRecord
