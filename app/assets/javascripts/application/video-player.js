@@ -97,6 +97,9 @@ $(document).on('turbolinks:load', function () {
 
     player.on('ready', function (e) {
         canSeek = true;
+        if (bowser.mobile) {
+            setupMobilePlayer();
+        }
     });
 
     player.on('play', function (e) {
@@ -148,6 +151,10 @@ $(document).on('turbolinks:load', function () {
 
     function hidePlayerSettings() {
         settingsPopOver.popover("hide");
+    }
+
+    function setupMobilePlayer() {
+        $('.plyr__volume').hide();
     }
 
     settingsButton.on('click', function () {
