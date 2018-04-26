@@ -9,9 +9,12 @@ class ArchiveController < ApplicationController
   end
 
   def category
+    page = params[:page] || 1
     category = Category.find(params[:category])
     if category.present?
       @videos = ArchiveItem.by_category(category)
+                    .where(published: true)
+                    .page(page).per(12)
       @category = category
     end
   end
