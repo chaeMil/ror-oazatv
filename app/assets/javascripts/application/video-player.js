@@ -57,42 +57,50 @@ $(document).on('turbolinks:load', function () {
         title: 'Settings',
         placement: 'top',
         trigger: 'focus',
-        container : '.plyr',
+        container: '.plyr',
         html: true,
         content: '<h1>test</h1>'
     });
 
     function syncAudioWithVideo() {
-        audio.currentTime = player.currentTime;
+        audio.currentTime = player.currentTime + 0.2;
     }
 
     player.on('ready', function (e) {
         canSeek = true;
     });
 
-    player.on('play', function(e) {
+    player.on('play', function (e) {
         audio.play();
         syncAudioWithVideo();
     });
 
-    player.on('pause', function(e) {
+    player.on('pause', function (e) {
         audio.pause();
         syncAudioWithVideo();
     });
 
-    player.on('seeking', function(e) {
+    player.on('seeking', function (e) {
         audio.pause();
     });
 
-    player.on('seeked', function(e) {
+    player.on('seeked', function (e) {
         if (player.playing) {
             audio.play();
         }
         syncAudioWithVideo();
     });
 
-    player.on('controlshidden', function(e) {
+    player.on('controlshidden', function (e) {
         //hidePlayerSettings();
+    });
+
+    player.on('volumechange', function (e) {
+        if (player.muted) {
+            audio.volume = 0;
+        } else {
+            audio.volume = player.volume;
+        }
     });
 
     function showPlayerSettings() {
@@ -104,7 +112,7 @@ $(document).on('turbolinks:load', function () {
         settingsPopOver.popover("hide");
     }
 
-    settingsButton.on('click', function() {
+    settingsButton.on('click', function () {
         showPlayerSettings();
     });
 
