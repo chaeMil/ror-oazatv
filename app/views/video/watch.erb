@@ -1,26 +1,27 @@
 <div class="container video-player">
   <div class="row">
     <div class="col-lg-9 player-wrapper">
-      <video poster="<%= @video.get_thumbnail(I18n.locale) %>" id="plyr-player" playsinline controls muted>
-        <% @video.get_video_sources(nil).each do |source| %>
-          <source src="<%= source.file.url %>" type="video/mp4">
-        <% end %>
-        <audio id="audio" controls>
-          <% @video.get_audio_sources(nil).each do |source| %>
-            <source src="<%= source.file.url %>" type="audio/mp4"/>
+      <div id="play-overlay" class="active">
+        <video poster="<%= @video.get_thumbnail(I18n.locale) %>" id="plyr-player" playsinline controls muted>
+          <% @video.get_video_sources(nil).each do |source| %>
+            <source src="<%= source.file.url %>" type="video/mp4">
           <% end %>
-        </audio>
-        <% @video.get_subtitle_sources(nil).each do |source| %>
-          <track kind="captions" label="<%= source.language.title %>"
-                 src="<%= source.file.url %>" srclang="<%= source.language.locale %>" default>
-          <track kind="captions" label="test"
-                 src="<%= source.file.url %>" srclang="en" default>
-        <% end %>
-      </video>
+          <audio id="audio" controls>
+            <% @video.get_audio_sources(nil).each do |source| %>
+              <source src="<%= source.file.url %>" type="audio/mp4"/>
+            <% end %>
+          </audio>
+          <% @video.get_subtitle_sources(nil).each do |source| %>
+            <track kind="captions" label="<%= source.language.title %>"
+                   src="<%= source.file.url %>" srclang="<%= source.language.locale %>" default>
+            <track kind="captions" label="test"
+                   src="<%= source.file.url %>" srclang="en" default>
+          <% end %>
+        </video>
+      </div>
       <h1>
         <%= @video.title %>
       </h1>
-      <button id="play">play</button>
       <p class="views">
         <%= @video.views %> <%= t('front.views') %>
       </p>

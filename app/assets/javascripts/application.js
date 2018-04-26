@@ -4,5 +4,5 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require plyr/dist/plyr.polyfilled.js
+//= require bowser/src/bowser.js
 //= require_tree ./application
-//= require_tree .

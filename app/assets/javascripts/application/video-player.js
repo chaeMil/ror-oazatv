@@ -47,15 +47,17 @@ $(document).on('turbolinks:load', function () {
     const player = new Plyr('#plyr-player', {controls});
     let audio = $('#audio').get(0);
 
-    //player.play();
-
-    //hotfix for mobile now TODO make it better
-    $('#play').on('click', function () {
-        audio.play();
-        setTimeout(function () {
-            player.play();
-            syncAudioWithVideo();
-        }, 500);
+    $('#play-overlay').on('click', function (e) {
+        e.stopPropagation();
+        var overlay = $(this);
+        if (overlay.hasClass('active')) {
+            audio.play();
+            setTimeout(function () {
+                player.play();
+                syncAudioWithVideo();
+                $(overlay).removeClass('active');
+            }, 500);
+        }
     });
 
     let canSeek = false;
@@ -72,10 +74,22 @@ $(document).on('turbolinks:load', function () {
     });
 
     function syncAudioWithVideo() {
-        var syncFix = 0.2;
+        var syncFix = 0;
+        switch (bowser.name.toLowerCase()) {
+            case 'safari':
+                syncFix = 0.3;
+                break;
+            case 'chrome':
+                syncFix = 0.15;
+                break;
+            default:
+                syncFix = 0.25;
+        }
+
         var difference = Math.abs(player.currentTime - audio.currentTime + syncFix);
+        console.log('difference', difference);
         audio.muted = false;
-        if (difference > 0.1) {
+        if (difference > syncFix) {
             console.warn('syncAudioWithVideo', 'difference bigger than 0.1 (' + difference + '), syncing');
             audio.currentTime = player.currentTime + syncFix;
         }
