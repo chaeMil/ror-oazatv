@@ -1,8 +1,9 @@
 class ArchiveController < ApplicationController
-  def page
+  def index
+    page = params[:page] || 1
     @videos = ArchiveItem
                   .where(published: true)
                   .order(date: :desc)
-                  .page(params[:page]).per(30)
+                  .page(page).per(12)
   end
 end
