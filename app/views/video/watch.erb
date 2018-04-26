@@ -6,7 +6,7 @@
           <% @video.get_video_sources(nil).each do |source| %>
             <source src="<%= source.file.url %>" type="video/mp4">
           <% end %>
-          <audio id="audio" controls>
+          <audio id="audio">
             <% @video.get_audio_sources(nil).each do |source| %>
               <source src="<%= source.file.url %>" type="audio/mp4"/>
             <% end %>

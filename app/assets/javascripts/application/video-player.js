@@ -31,6 +31,16 @@ $(document).on('turbolinks:load', function () {
         <svg class="icon--pressed" role="presentation"><use xlink:href="#plyr-captions-on"></use></svg>
         <svg class="icon--not-pressed" role="presentation"><use xlink:href="#plyr-captions-off"></use></svg>
     </button>
+    <button type="button" class="plyr__control" data-plyr="pip">
+        <svg role="presentation" focusable="false">
+            <use xlink:href="#plyr-pip"></use>
+        </svg>
+    </button>
+    <button type="button" class="plyr__control" data-plyr="airplay">
+        <svg role="presentation" focusable="false">
+            <use xlink:href="#plyr-airplay"></use>
+        </svg>
+    </button>
     <button id="plyr-settings-toggle" aria-haspopup="true" aria-controls="plyr-settings-{id}" aria-expanded="false" type="button" class="plyr__control" data-plyr="settings">
         <svg role="presentation" focusable="false">
             <use xlink:href="#plyr-settings"></use>
