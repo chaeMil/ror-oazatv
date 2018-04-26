@@ -1,7 +1,5 @@
 .video-link {
   .video.card {
-    transition-duration: 200ms;
-
     .card-img-top {
       background-color: $secondary;
       background-size: cover;
@@ -30,10 +28,5 @@
 
   &:hover {
     text-decoration: none;
-
-    .video.card {
-      transform: scale(1.02) translateY(-2px);
-      transition-duration: 200ms;
-    }
   }
 }

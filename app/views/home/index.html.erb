@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="row">
+  <section class="row">
     <div class="col-12">
-      <h2><%= t('section.latest_videos') %></h2>
+      <h1><%= t('section.latest_videos') %></h1>
     </div>
-  </div>
+  </section>
   <div class="row">
     <% @latest_videos.each do |video| %>
       <div class="col-sm-6 col-md-4 col-lg-3">
@@ -11,4 +11,16 @@
       </div>
     <% end %>
   </div>
+  <section class="row">
+    <div class="col-12">
+      <h1>
+        <%= t('section.categories') %>
+      </h1>
+    </div>
+    <% @categories.each do |category| %>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <%= render 'shared/category_card', category: category %>
+      </div>
+    <% end %>
+  </section>
 </div>
