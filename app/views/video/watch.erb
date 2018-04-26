@@ -10,8 +10,16 @@
         <%= @video.title %>
       </h1>
       <p class="views">
-        <%= @video. %>
+        <%= @video.views %> <%= t('front.views') %>
       </p>
+      <p class="date">
+        <%= @video.date %>
+      </p>
+      <div class="tags">
+        <% @video.tags.split(',').each do |tag| %>
+          <span class="badge badge-primary"><%= tag %></span>
+        <% end %>
+      </div>
       <div class="description">
         <%= @video.description.html_safe %>
       </div>
