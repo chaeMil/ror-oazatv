@@ -5,6 +5,11 @@
         <% @video.get_video_sources(nil).each do |source| %>
           <source src="<%= source.file.url %>" type="video/mp4">
         <% end %>
+
+        <% @video.get_subtitle_sources(nil).each do |source| %>
+          <track kind="captions" label="English captions"
+                 src="<%= source.file.url %>" srclang="<%= source.language.locale %>" default>
+        <% end %>
       </video>
       <h1>
         <%= @video.title %>

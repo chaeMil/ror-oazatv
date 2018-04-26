@@ -55,4 +55,18 @@ class ArchiveItem < ApplicationRecord
     end
     sources
   end
+
+  def get_subtitle_sources(locale)
+    sources = []
+    archive_files.each do |archive_file|
+      if !locale.nil?
+        if archive_file.subtitles? && archive_file.language.locale == locale.to_s
+          sources.push(archive_file)
+        end
+      elsif archive_file.subtitles?
+        sources.push(archive_file)
+      end
+    end
+    sources
+  end
 end
