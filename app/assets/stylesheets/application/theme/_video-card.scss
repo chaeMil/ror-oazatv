@@ -1,0 +1,32 @@
+.video-link {
+  .video.card {
+    .card-img-top {
+      background-color: $secondary;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-body {
+      padding: 8px;
+
+      .card-title {
+        font-weight: 500;
+        margin-bottom: 0;
+        color: $gray-700;
+        height: 50px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .card-footer {
+      padding: 8px;
+    }
+
+    margin-bottom: 30px;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}

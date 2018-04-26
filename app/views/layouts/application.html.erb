@@ -10,16 +10,20 @@
 
 <body>
 <%= render 'application/shared/navbar' %>
-<div class="container-fluid">
-  <% if notice.present? %>
-    <p class="notice"><%= notice %></p>
-  <% end %>
-  <% if alert.present? %>
-    <p class="alert"><%= alert %></p>
-  <% end %>
-  <%= yield %>
 
-  <%= yield :scripts %>
-</div>
+<% if notice.present? || alert.present? %>
+  <div class="container">
+    <% if notice.present? %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert.present? %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+  </div>
+<% end %>
+
+<%= yield %>
+
+<%= yield :scripts %>
 </body>
 </html>

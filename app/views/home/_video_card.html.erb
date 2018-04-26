@@ -1,16 +1,14 @@
-<div class="col-sm-3">
-  <%= link_to video_watch_path(video.hash_id) do %>
-    <div class="card">
-      <img class="card-img-top"
-           src="<%= video.get_thumbnail(I18n.locale) %>"
-           alt="<%= video.title %>">
-      <div class="card-body">
-        <h5 class="card-title"><%= video.title %></h5>
-        <%#<p class="card-text"></p> %>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted"><%= video.date %></small>
-      </div>
+<%= link_to video_watch_path(video.hash_id), class: 'video-link' do %>
+  <div class="video card">
+    <div class="card-img-top box-16-9"
+         style="background-image: url(<%= video.get_thumbnail(I18n.locale) %>)">
     </div>
-  <% end %>
-</div>
+    <div class="card-body">
+      <h5 class="card-title"><%= video.title %></h5>
+      <%#<p class="card-text"></p> %>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"><%= video.date %></small>
+    </div>
+  </div>
+<% end %>

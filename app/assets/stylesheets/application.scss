@@ -1,8 +1,18 @@
+//bootstrap
 @import "application/bootstrap/variables";
 @import "bootstrap";
 @import "application/bootstrap/bootswatch";
 @import "application/bootstrap/custom/navbar";
+
+//plyr video player
 @import "application/theme/plyr-custom-theme";
 @import "plyr/src/sass/plyr";
+
+//utils
+@import "application/util/aspect-ratio-boxes";
+
+//theme
 @import "application/theme/generic";
 @import "application/theme/navbar";
+@import "application/theme/video-card";
+
