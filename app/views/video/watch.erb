@@ -1,9 +1,14 @@
-<div class="container-fluid video-player">
+<div class="container video-player">
   <div class="row">
-    <video poster="<%= @video.get_thumbnail(I18n.locale) %>" id="plyr-player" playsinline controls>
-      <% @video.get_video_sources(nil).each do |source| %>
-        <source src="<%= source.file.url %>" type="video/mp4">
-      <% end %>
-    </video>
+    <div class="col-lg-9 player-wrapper">
+      <video poster="<%= @video.get_thumbnail(I18n.locale) %>" id="plyr-player" playsinline controls>
+        <% @video.get_video_sources(nil).each do |source| %>
+          <source src="<%= source.file.url %>" type="video/mp4">
+        <% end %>
+      </video>
+    </div>
+    <div class="col-lg-3 similar-videos-wrapper">
+      <p class="title"><%= t('front.similar_videos') %></p>
+    </div>
   </div>
 </div>

@@ -98,6 +98,8 @@ en:
       category: "Category"
       language: "Language"
       preacher: "Preacher"
+  front:
+    similar_videos: "Similar videos"
   simple_form:
     labels:
       video_convert_profile:

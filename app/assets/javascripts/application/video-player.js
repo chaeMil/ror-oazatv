@@ -7,13 +7,12 @@ $(document).on('turbolinks:load', function () {
 
     player.on('ready', function (e) {
         canSeek = true;
-        console.log('canSeek', canSeek);
     });
 
-    setTimeout(function () {
+    //just a test
+    /*setTimeout(function () {
         currentTime = player.currentTime;
         canSeek = false;
-        console.log('canSeek', canSeek);
         player.source = {
             type: 'video',
             title: 'Test',
@@ -26,12 +25,10 @@ $(document).on('turbolinks:load', function () {
         };
         player.play();
         player.on('playing', function (e) {
-            console.log('canSeek', canSeek);
             if (canSeek) {
                 player.currentTime = currentTime;
                 canSeek = false;
-                console.log('canSeek', canSeek);
             }
         });
-    }, 10 * 1000);
+    }, 10 * 1000);*/
 });
