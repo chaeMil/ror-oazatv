@@ -49,6 +49,15 @@ $(document).on('turbolinks:load', function () {
 
     //player.play();
 
+    //hotfix for mobile now TODO make it better
+    $('#play').on('click', function () {
+        audio.play();
+        setTimeout(function () {
+            player.play();
+            syncAudioWithVideo();
+        }, 500);
+    });
+
     let canSeek = false;
     let currentTime;
     let settingsButton = $('#plyr-settings-toggle');
@@ -65,8 +74,9 @@ $(document).on('turbolinks:load', function () {
     function syncAudioWithVideo() {
         var syncFix = 0.2;
         var difference = Math.abs(player.currentTime - audio.currentTime + syncFix);
+        audio.muted = false;
         if (difference > 0.1) {
-            //console.log('syncAudioWithVideo', 'difference bigger than 0.1 (' + difference + '), syncing');
+            console.warn('syncAudioWithVideo', 'difference bigger than 0.1 (' + difference + '), syncing');
             audio.currentTime = player.currentTime + syncFix;
         }
     }
@@ -96,7 +106,7 @@ $(document).on('turbolinks:load', function () {
         syncAudioWithVideo();
     });
 
-    player.on('progress', function(e) {
+    player.on('progress', function (e) {
         if (player.playing) {
             audio.play();
             syncAudioWithVideo();
