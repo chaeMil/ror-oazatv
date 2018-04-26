@@ -63,7 +63,12 @@ $(document).on('turbolinks:load', function () {
     });
 
     function syncAudioWithVideo() {
-        audio.currentTime = player.currentTime + 0.2;
+        var syncFix = 0.2;
+        var difference = Math.abs(player.currentTime - audio.currentTime + syncFix);
+        if (difference > 0.1) {
+            //console.log('syncAudioWithVideo', 'difference bigger than 0.1 (' + difference + '), syncing');
+            audio.currentTime = player.currentTime + syncFix;
+        }
     }
 
     player.on('ready', function (e) {
@@ -89,6 +94,15 @@ $(document).on('turbolinks:load', function () {
             audio.play();
         }
         syncAudioWithVideo();
+    });
+
+    player.on('progress', function(e) {
+        if (player.playing) {
+            audio.play();
+            syncAudioWithVideo();
+        } else {
+            audio.pause();
+        }
     });
 
     player.on('controlshidden', function (e) {
