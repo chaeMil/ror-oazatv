@@ -22,6 +22,8 @@ class ArchiveItem < ApplicationRecord
   globalize_accessors attributes: [:title, :description]
   globalize_validations locales: [:en]
 
+  scope :by_title, ->(title) { joins(:translations).where('lower(archive_item_translations.title) LIKE ?', "%#{title.to_s.downcase}%").distinct }
+
   def get_thumbnail(locale)
     thumb_url = nil
     thumb_url_fallback = nil

@@ -1,0 +1,19 @@
+<div class="container search">
+  <% if @query.present? %>
+    <div class="row">
+      <div class="col-12">
+        <h2><%= t('search') %>: <%= @query %></h2>
+      </div>
+    </div>
+  <% end %>
+  <br>
+  <div class="row">
+    <% if @videos.present? %>
+      <% @videos.each do |video| %>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <%= render 'shared/video_card', video: video %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

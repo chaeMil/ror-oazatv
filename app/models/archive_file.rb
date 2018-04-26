@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: archive_files
@@ -54,14 +55,14 @@ class ArchiveFile < ApplicationRecord
   end
 
   def get_video_info
-    FileInfoService::get_video_info(self)
+    FileInfoService.get_video_info(self)
   end
 
   def get_image_info
-    FileInfoService::get_image_info(self)
+    FileInfoService.get_image_info(self)
   end
 
   def get_subtitles_info
-    FileInfoService::get_subtitles_info(self)
+    FileInfoService.get_subtitles_info(self)
   end
 end
