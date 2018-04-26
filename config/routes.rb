@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'video/watch/:hash_id', to: 'video#watch', as: 'video_watch'
+  get 'archive/page/:page', to: 'archive#page', as: 'archive_page', defaults: {page: 1}
 
   devise_for :users
 

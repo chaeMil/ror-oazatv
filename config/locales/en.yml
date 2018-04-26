@@ -116,3 +116,6 @@ en:
         extension: "File extension"
         threads: "Threads"
         custom: "Custom parameter"
+  section:
+    archive: "Archive"
+    latest_videos: "Latest videos"
