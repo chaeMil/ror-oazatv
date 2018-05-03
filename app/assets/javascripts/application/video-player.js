@@ -73,13 +73,23 @@ $(document).on('turbolinks:load', function () {
     let canSeek = false;
     let currentTime;
     let settingsButton = $('#plyr-settings-toggle');
-    let captionsHtml = '<div data-captions>';
-    $('#plyr-player track').each(function(index) {
+    let captionsHtml = '<div data-captions><p>captions:</p>';
+    $('#plyr-player track').each(function (index) {
         let locale = $(this).attr('srclang');
         let title = $(this).attr('label');
         captionsHtml += `<div data-locale="${locale}">${title}</div>`;
     });
     captionsHtml += '</div>';
+
+    let audioSourcesHtml = '<div data-audio-sources><p>audio:</p>';
+    $('#audio source').each(function (index) {
+        let locale = $(this).attr('srclang');
+        let title = $(this).attr('label');
+        let source = $(this).attr('src');
+        audioSourcesHtml += `<div data-src="${source}" data-locale="${locale}">${title}</div>`;
+    });
+    audioSourcesHtml += '</div>';
+
     let settingsPopOver = settingsButton.popover({
         animation: true,
         title: 'Settings',
@@ -87,7 +97,7 @@ $(document).on('turbolinks:load', function () {
         trigger: 'focus',
         container: '.plyr',
         html: true,
-        content: captionsHtml
+        content: captionsHtml + audioSourcesHtml
     });
 
     function syncAudioWithVideo() {
@@ -165,6 +175,7 @@ $(document).on('turbolinks:load', function () {
         settingsPopOver.popover("show");
         player.toggleControls(true);
         bindCaptionsClick();
+        bindAudioSourceClick();
     }
 
     function hidePlayerSettings() {
@@ -180,9 +191,24 @@ $(document).on('turbolinks:load', function () {
     });
 
     function bindCaptionsClick() {
-        $('[data-captions] [data-locale]').click(function() {
+        $('[data-captions] [data-locale]').click(function () {
             let locale = $(this).attr('data-locale');
             player.captions = {active: true, language: locale}
+        });
+    }
+
+    function bindAudioSourceClick() {
+        $('[data-audio-sources] [data-locale]').click(function () {
+            let locale = $(this).attr('data-locale');
+            let source = $(this).attr('data-src');
+            audio.volume = 0;
+            audio.src = source;
+            audio.load();
+            audio.play();
+            audio.volume = player.volume;
+            setTimeout(function() {
+                syncAudioWithVideo();
+            }, 500);
         });
     }
 

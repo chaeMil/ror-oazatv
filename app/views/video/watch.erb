@@ -4,16 +4,22 @@
       <div id="play-overlay" class="active">
         <video poster="<%= @video.get_thumbnail(I18n.locale) %>" id="plyr-player" playsinline controls muted>
           <% @video.get_video_sources(nil).each do |source| %>
-            <source src="<%= source.file.url %>" type="video/mp4">
+            <source src="<%= source.file.url %>"
+                    type="video/mp4">
           <% end %>
           <audio id="audio">
             <% @video.get_audio_sources(nil).each do |source| %>
-              <source src="<%= source.file.url %>" type="audio/mp3"/>
+              <source src="<%= source.file.url %>"
+                      srclang="<%= source.language.locale %>"
+                      label="<%= source.language.title %>"
+                      type="audio/mp3"/>
             <% end %>
           </audio>
           <% @video.get_subtitle_sources(nil).each do |source| %>
-            <track kind="captions" label="<%= source.language.title %>"
-                   src="<%= source.file.url %>" srclang="<%= source.language.locale %>" default>
+            <track kind="captions"
+                   label="<%= source.language.title %>"
+                   src="<%= source.file.url %>"
+                   srclang="<%= source.language.locale %>">
           <% end %>
         </video>
       </div>
