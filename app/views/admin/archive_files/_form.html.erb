@@ -81,12 +81,17 @@
           console.log('file added: ' + file);
       });
       resumable.on('fileSuccess', function (file, response) {
+          console.log(response);
           var jsonResponse = $.parseJSON(response);
-          var url = JsRoutesRails.admin_archive_item_archive_file_path({
-              archive_item_id: <%= @archive_item.id %>,
-              archive_file_id: jsonResponse.id
-          });
-          window.location.href = url.replace(':id', jsonResponse.id);
+          if (jsonResponse) {
+              var url = JsRoutesRails.admin_archive_item_archive_file_path({
+                  archive_item_id: <%= @archive_item.id %>,
+                  archive_file_id: jsonResponse.id
+              });
+              window.location.href = url.replace(':id', jsonResponse.id);
+          } else {
+              alert('An error occurred when processing the file on server');
+          }
       });
       resumable.on('fileError', function (file, message) {
           alert(message);
