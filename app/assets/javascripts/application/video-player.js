@@ -73,6 +73,13 @@ $(document).on('turbolinks:load', function () {
     let canSeek = false;
     let currentTime;
     let settingsButton = $('#plyr-settings-toggle');
+    let captionsHtml = '<div data-captions>';
+    $('#plyr-player track').each(function(index) {
+        let locale = $(this).attr('srclang');
+        let title = $(this).attr('label');
+        captionsHtml += `<div data-locale="${locale}">${title}</div>`;
+    });
+    captionsHtml += '</div>';
     let settingsPopOver = settingsButton.popover({
         animation: true,
         title: 'Settings',
@@ -80,7 +87,7 @@ $(document).on('turbolinks:load', function () {
         trigger: 'focus',
         container: '.plyr',
         html: true,
-        content: '<h1>test</h1>'
+        content: captionsHtml
     });
 
     function syncAudioWithVideo() {
@@ -157,6 +164,7 @@ $(document).on('turbolinks:load', function () {
     function showPlayerSettings() {
         settingsPopOver.popover("show");
         player.toggleControls(true);
+        bindCaptionsClick();
     }
 
     function hidePlayerSettings() {
@@ -170,6 +178,13 @@ $(document).on('turbolinks:load', function () {
     settingsButton.on('click', function () {
         showPlayerSettings();
     });
+
+    function bindCaptionsClick() {
+        $('[data-captions] [data-locale]').click(function() {
+            let locale = $(this).attr('data-locale');
+            player.captions = {active: true, language: locale}
+        });
+    }
 
     //just a test
     /*setTimeout(function () {

@@ -8,14 +8,12 @@
           <% end %>
           <audio id="audio">
             <% @video.get_audio_sources(nil).each do |source| %>
-              <source src="<%= source.file.url %>" type="audio/mp4"/>
+              <source src="<%= source.file.url %>" type="audio/mp3"/>
             <% end %>
           </audio>
           <% @video.get_subtitle_sources(nil).each do |source| %>
             <track kind="captions" label="<%= source.language.title %>"
                    src="<%= source.file.url %>" srclang="<%= source.language.locale %>" default>
-            <track kind="captions" label="test"
-                   src="<%= source.file.url %>" srclang="en" default>
           <% end %>
         </video>
       </div>
