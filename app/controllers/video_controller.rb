@@ -17,6 +17,8 @@ class VideoController < ApplicationController
     if cookies[cookie_name].nil?
       @video.increment(:views, 1)
       @video.save
+      video_watch = VideoWatch.new(video_hash_id: @video.hash_id)
+      video_watch.save
       cookies[cookie_name] = {value: 'watched', expires: Time.now + 1 * 60 * 60} #count view againd after one hour
     end
   end
