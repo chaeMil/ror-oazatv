@@ -5,6 +5,7 @@ class ArchiveController < ApplicationController
     @videos = ArchiveItem
                   .where(published: true)
                   .order(date: :desc)
+                  .includes(:archive_files, :translations)
                   .page(page).per(12)
   end
 
