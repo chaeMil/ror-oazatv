@@ -3,7 +3,9 @@ module Admin
     before_action :set_category, only: [:show, :edit, :update, :destroy]
 
     def index
-      @categories = Category.page(params[:page]).per(30)
+      @categories = Category
+                        .includes(:translations)
+                        .page(params[:page]).per(30)
     end
 
     def new
@@ -33,6 +35,7 @@ module Admin
     end
 
     private
+
     def set_category
       @category = Category.find(params[:id])
     end

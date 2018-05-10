@@ -4,7 +4,11 @@ module Admin
     before_action :set_archive_item, only: %i[show edit update destroy]
 
     def index
-      @archive_items = ArchiveItem.order(date: :desc).page(params[:page]).per(30)
+      @archive_items = ArchiveItem
+                           .includes(:archive_files, :translations)
+                           .order(date: :desc)
+                           .page(params[:page])
+                           .per(30)
     end
 
     def new
@@ -17,7 +21,9 @@ module Admin
     end
 
     def show
-      @archive_files = ArchiveFile.where(archive_item_id: @archive_item.id)
+      @archive_files = ArchiveFile
+                           .where(archive_item_id: @archive_item.id)
+                           .includes(:video_convert_progress, :language)
       @convert_profiles = VideoConvertProfile.all
     end
 
@@ -45,6 +51,7 @@ module Admin
     end
 
     private
+
     def set_archive_item
       @archive_item = ArchiveItem.find(params[:id])
     end
