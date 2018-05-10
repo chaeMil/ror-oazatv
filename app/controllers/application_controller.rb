@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :set_locale, :load_locales
 
   def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    I18n.locale = params[:locale] || session[:locale] || I18n.default_locale
+    session[:locale] = I18n.locale
     @current_db_locale = Language.where(locale: I18n.locale).first.title
   end
 
