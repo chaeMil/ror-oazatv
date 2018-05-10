@@ -56,6 +56,8 @@ $(document).on('turbolinks:load', function () {
     // Setup the player
     const player = new Plyr('#plyr-player', {controls});
     let audio = $('#audio').get(0);
+    let audioLang = '';
+    let videoLang = '';
 
     $('#play-overlay').on('click', function (e) {
         e.stopPropagation();
@@ -71,13 +73,16 @@ $(document).on('turbolinks:load', function () {
     });
 
     let canSeek = false;
-    let currentTime;
     let settingsButton = $('#plyr-settings-toggle');
     let captionsHtml = '<div data-captions><p>captions:</p>';
     $('#plyr-player track').each(function (index) {
         let locale = $(this).attr('srclang');
         let title = $(this).attr('label');
-        captionsHtml += `<div data-locale="${locale}">${title}</div>`;
+        let elementClass = '';
+        if (videoLang == locale) {
+            elementClass = 'active';
+        }
+        captionsHtml += `<div class="${elementClass}" data-locale="${locale}">${title}</div>`;
     });
     captionsHtml += '</div>';
 
@@ -86,13 +91,17 @@ $(document).on('turbolinks:load', function () {
         let locale = $(this).attr('srclang');
         let title = $(this).attr('label');
         let source = $(this).attr('src');
-        audioSourcesHtml += `<div data-src="${source}" data-locale="${locale}">${title}</div>`;
+        let elementClass = '';
+        if (audioLang == locale) {
+            elementClass = 'active';
+        }
+        console.log(elementClass);
+        audioSourcesHtml += `<div class="${elementClass}" data-src="${source}" data-locale="${locale}">${title}</div>`;
     });
     audioSourcesHtml += '</div>';
 
     let settingsPopOver = settingsButton.popover({
         animation: true,
-        title: 'Settings',
         placement: 'top',
         trigger: 'focus',
         container: '.plyr',
@@ -132,6 +141,7 @@ $(document).on('turbolinks:load', function () {
     player.on('play', function (e) {
         audio.play();
         syncAudioWithVideo();
+        videoLang = player.language;
     });
 
     player.on('pause', function (e) {
@@ -200,13 +210,14 @@ $(document).on('turbolinks:load', function () {
     function bindAudioSourceClick() {
         $('[data-audio-sources] [data-locale]').click(function () {
             let locale = $(this).attr('data-locale');
+            audioLang = locale;
             let source = $(this).attr('data-src');
             audio.volume = 0;
             audio.src = source;
             audio.load();
             audio.play();
             audio.volume = player.volume;
-            setTimeout(function() {
+            setTimeout(function () {
                 syncAudioWithVideo();
             }, 500);
         });

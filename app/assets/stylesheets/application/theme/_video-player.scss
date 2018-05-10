@@ -1,5 +1,28 @@
 .video-player {
   .player-wrapper {
+    .popover {
+      [data-captions], [data-audio-sources] {
+        p {
+          margin-bottom: 0;
+          opacity: 0.4;
+          font-weight: bold;
+          font-family: $font-family-sans-serif;
+          cursor: default;
 
+          &:nth-child(1) {
+            margin-top: 8px;
+          }
+        }
+
+        [data-locale] {
+          padding: 2px 6px;
+          &:hover {
+            background: $primary;
+            color: white;
+            cursor: pointer;
+          }
+        }
+      }
+    }
   }
 }
