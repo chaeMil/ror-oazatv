@@ -27,10 +27,6 @@ Rails.application.routes.draw do
     resources :languages
     resources :categories
     resources :preachers
-    resources :songs
-    resources :photo_albums do
-      resources :photos
-    end
     resources :video_queue_items, only: [:index, :show, :destroy] do
       get :status, on: :member, export: true
     end

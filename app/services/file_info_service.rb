@@ -4,10 +4,10 @@ class FileInfoService
       if File::exist?(archive_file.file.path)
         FFMPEG::Movie.new(archive_file.file.path)
       else
-        throw 'File does not exist! Cannot get video info'
+        raise 'File does not exist! Cannot get video info'
       end
     else
-      throw 'File is not a video! Cannot get video info'
+      raise 'File is not a video! Cannot get video info'
     end
   end
 
@@ -16,7 +16,7 @@ class FileInfoService
       require 'exifr/jpeg'
       EXIFR::JPEG.new(archive_file.file.path)
     else
-      throw 'File is not a image! Cannot get image info'
+      raise 'File is not a image! Cannot get image info'
     end
   end
 
@@ -30,7 +30,7 @@ class FileInfoService
       }
       info
     else
-      throw 'File is not a subtitles! Cannot get subtitles info'
+      raise 'File is not a subtitles! Cannot get subtitles info'
     end
   end
 end

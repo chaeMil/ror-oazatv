@@ -39,7 +39,7 @@
   <% @archive_items.each do |archive_item| %>
     <tr>
       <td>
-        <% if archive_item.archive_files.present? && archive_item.archive_files.length > 0 %>
+        <% if archive_item.archive_files.any? %>
           <% archive_item.archive_files.each do |archive_file| %>
             <% if archive_file.image? %>
               <%= image_tag archive_file.file.tiny.url %>
