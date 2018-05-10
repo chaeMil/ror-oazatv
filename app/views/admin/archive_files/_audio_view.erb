@@ -1,0 +1,50 @@
+<div class="col-lg-9">
+  <div class="embed-responsive embed-responsive-16by9">
+    <audio class="embed-responsive-item" controls>
+      <source src="<%= @archive_file.file.url %>" type="audio/<%= File.extname(@archive_file.file.url).gsub('.', '') %>">
+    </audio>
+  </div>
+</div>
+<div class="col-lg-3">
+
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">
+        <%= t('admin.label.basic_info') %>
+      </H3>
+      <p class="card-text">
+        <%= t('admin.label.length') %>: <%= format_video_duration(@archive_file.get_video_info.duration) %> <br>
+        <%= t('admin.label.bitrate') %>: <%= number_to_human_size(@archive_file.get_video_info.bitrate) %>/s <br>
+        <%= t('admin.label.size') %>: <%= number_to_human_size(@archive_file.get_video_info.size) %> <br>
+      </p>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">
+        <%= t('admin.label.audio') %>
+      </h3>
+      <p class="card-text">
+        <%= t('admin.label.codec') %>: <%= @archive_file.get_video_info.audio_codec %> <br>
+        <%= t('admin.label.sample_rate') %>: <%= @archive_file.get_video_info.audio_sample_rate %> <br>
+        <%= t('admin.label.channels') %>: <%= @archive_file.get_video_info.audio_channels %> <br>
+      </p>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">
+        <%= t('admin.label.advanced_info') %>
+      </h3>
+      <p class="card-text">
+        <%= t('admin.label.sync') %>: <%= @archive_file.sync %> <br>
+        </p>
+    </div>
+  </div>
+</div>

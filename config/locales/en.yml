@@ -91,6 +91,8 @@ en:
       name: "Name"
       live_stream: "Live Stream"
       drop_file_here: "Drop file here"
+      advanced_info: "Advanced info"
+      sync: "Sync"
     menu:
       video_convert_profiles: "Video convert profiles"
       video_conversion_queue: "Video conversion queue"

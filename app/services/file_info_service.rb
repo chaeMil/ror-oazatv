@@ -1,6 +1,6 @@
 class FileInfoService
   def self.get_video_info(archive_file)
-    if archive_file.video?
+    if archive_file.video? || archive_file.audio?
       if File::exist?(archive_file.file.path)
         FFMPEG::Movie.new(archive_file.file.path)
       else

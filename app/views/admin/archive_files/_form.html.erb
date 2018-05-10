@@ -1,4 +1,5 @@
 <%= simple_form_for @archive_file,
+                    html: {id: 'upload_archive_file_form'},
                     url: (@archive_file.new_record? ? admin_archive_item_archive_files_path(archive_item_id: @archive_item) : admin_archive_item_archive_file_path(archive_item_id: @archive_item.id, id: @archive_file.id)),
                     method: (@archive_file.new_record? ? :post : :put) do |form| %>
   <% if @archive_file.errors.any? %>
@@ -15,11 +16,14 @@
 
   <div id="form-elements">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col">
         <%= form.input :file_type, required: true %>
       </div>
-      <div class="col-md-6">
+      <div class="col">
         <%= form.association :language, required: true %>
+      </div>
+      <div class="col d-none" id="sync">
+        <%= form.input :sync %>
       </div>
     </div>
 
@@ -93,11 +97,21 @@
               }
           }
 
-          $('#archive_file_file_type').change(function() {
+          function toggleSyncInput() {
+              var fileType = $("#archive_file_file_type option:selected").val();
+              if (fileType == "audio") {
+                  $('#sync').removeClass("d-none");
+              } else {
+                  $("#sync").addClass("d-none");
+              }
+          }
+
+          $('#archive_file_file_type').change(function (e) {
               validateForm();
+              toggleSyncInput();
           });
 
-          $('#archive_file_language_id').change(function () {
+          $('#archive_file_language_id').change(function (e) {
               validateForm();
           });
 
@@ -158,6 +172,9 @@
           resumable.on('fileError', function (file, message) {
               alert(message);
           });
+
+          toggleSyncInput();
+          validateForm();
       });
   </script>
 <% end %>

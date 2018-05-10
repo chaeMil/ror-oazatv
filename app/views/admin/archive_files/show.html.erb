@@ -33,6 +33,8 @@
       <%= render 'video_view' %>
     <% elsif @archive_file.subtitles? %>
       <%= render 'subtitles_view' %>
+    <% elsif @archive_file.audio? %>
+      <%= render 'audio_view' %>
     <% end %>
   </div>
 </div>

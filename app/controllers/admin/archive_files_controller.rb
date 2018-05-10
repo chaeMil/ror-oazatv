@@ -137,7 +137,7 @@ module Admin
     end
 
     def archive_file_params
-      params.require(:archive_file).permit(:filename, :file, :file_type, :archive_item_id, :language_id)
+      params.require(:archive_file).permit(:filename, :file, :file_type, :archive_item_id, :language_id, :sync)
     end
   end
 end
