@@ -130,13 +130,11 @@ $(document).on('turbolinks:load', function () {
             default:
                 syncFix = 0.25;
         }
-        syncFix += doubleToFloat(audioSourceFileSyncFix);
         var difference = Math.abs(player.currentTime - audio.currentTime + syncFix);
-        console.log('difference', difference);
         audio.muted = false;
         if (difference > syncFix) {
             console.warn('syncAudioWithVideo', 'difference bigger than 0.1 (' + difference + '), syncing');
-            audio.currentTime = player.currentTime + syncFix;
+            audio.currentTime = player.currentTime + syncFix + doubleToFloat(audioSourceFileSyncFix);
         }
     }
 
