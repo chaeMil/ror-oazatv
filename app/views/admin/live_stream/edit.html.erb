@@ -13,7 +13,7 @@
 <div class="container-fluid live-stream-container">
   <div class="row">
     <div class="col-lg-8">
-
+      <iframe src="<%= live_stream_path %>" frameborder="0"></iframe>
     </div>
     <div class="col-lg-4 form">
       <%= form_tag url: admin_livestream_path, html: {id: 'live_stream_form'}, method: :post do %>
