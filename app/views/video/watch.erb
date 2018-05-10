@@ -31,7 +31,7 @@
         <%= @video.views %> <%= t('front.views') %>
       </p>
       <p class="date">
-        <%= @video.date %>
+        <%= localize @video.date, locale: I18n.locale %>
       </p>
       <div class="tags">
         <% @video.tags.split(',').each do |tag| %>
@@ -39,7 +39,9 @@
         <% end %>
       </div>
       <div class="description">
-        <%= @video.description.html_safe %>
+        <% if @video.description.present? %>
+          <%= @video.description.html_safe %>
+        <% end %>
       </div>
     </div>
     <div class="col-lg-3 similar-videos-wrapper">

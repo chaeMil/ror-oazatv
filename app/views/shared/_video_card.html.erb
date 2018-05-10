@@ -8,7 +8,9 @@
       <%#<p class="card-text"></p> %>
     </div>
     <div class="card-footer">
-      <small class="text-muted"><%= video.date %></small>
+      <small class="text-muted">
+        <%= localize video.date, locale: I18n.locale %>
+      </small>
     </div>
   </div>
 <% end %>
