@@ -23,7 +23,7 @@ class ArchiveItem < ApplicationRecord
   globalize_validations locales: [:en]
 
   scope :by_title, ->(title) {joins(:translations).where('lower(archive_item_translations.title) LIKE ?', "%#{title.to_s.downcase}%").distinct}
-  scope :by_category, ->(category) { includes(:categories).where(categories: {id: category.id})}
+  scope :by_category, ->(category) {includes(:categories).where(categories: {id: category.id})}
 
   def get_thumbnail(locale)
     thumb_url = nil
