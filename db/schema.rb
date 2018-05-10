@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180510142958) do
+ActiveRecord::Schema.define(version: 20180510143500) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -171,6 +171,12 @@ ActiveRecord::Schema.define(version: 20180510142958) do
     t.text "error"
     t.integer "original_archive_file_id"
     t.index ["original_archive_file_id"], name: "index_video_convert_progresses_on_original_archive_file_id"
+  end
+
+  create_table "video_views", force: :cascade do |t|
+    t.string "video_hash_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "video_watches", force: :cascade do |t|

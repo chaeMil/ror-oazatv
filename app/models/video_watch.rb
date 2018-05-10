@@ -9,4 +9,8 @@
 #
 
 class VideoWatch < ApplicationRecord
+  scope :popular_video_ids, -> {where('created_at >= ?', 1.week.ago)
+                                    .group(:video_hash_id)
+                                    .order('count_video_hash_id desc')
+                                    .count(:video_hash_id)}
 end
