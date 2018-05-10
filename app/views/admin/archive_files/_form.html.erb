@@ -13,17 +13,30 @@
     </div>
   <% end %>
 
-  <p>
-    <%= form.input :file_type, required: true %>
-  </p>
+  <div id="form-elements">
+    <div class="row">
+      <div class="col-md-6">
+        <%= form.input :file_type, required: true %>
+      </div>
+      <div class="col-md-6">
+        <%= form.association :language, required: true %>
+      </div>
+    </div>
 
-  <p>
-    <%= form.association :language, required: true %>
-  </p>
+    <div class="row">
+      <div class="col-md-6">
+        <div id="drop-target">
+          <%= t('admin.label.drop_file_here') %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div id="file-info">
 
-  <div>
-    <div id="drop-target"></div>
-    <input type="button" class="btn btn-primary" id="browse-button" value="Browse"/>
+        </div>
+        <input type="button" class="btn btn-default" id="browse-button" value="<%= t('admin.action.browse') %>"/>
+        <input type="button" class="btn btn-danger d-none" id="remove-button" value="<%= t('admin.action.remove') %>"/>
+      </div>
+    </div>
   </div>
 
   <br>
@@ -37,64 +50,114 @@
   <br>
 
   <div class="actions">
-    <%= form.submit id: 'upload' %>
+    <%= form.submit id: 'upload', class: 'btn btn-primary disabled', disabled: 'disabled' %>
   </div>
 <% end %>
 
 <%= content_for :scripts do %>
   <script type="text/javascript" charset="utf-8">
-      var resumable = new Resumable({
-          target: '<%= admin_archive_files_chunk_path %>',
-          simultaneousUploads: 1,
-          chunkSize: 1 * 1024 * 1024,
-          headers: {
-              'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-          },
-          query: {
-              'file_type': '',
-              'language': '',
-              'archive_item_id': '<%= @archive_item.id %>'
+      $(document).on('turbolinks:load', function () {
+          var selectedFile;
+          var resumable = new Resumable({
+              target: '<%= admin_archive_files_chunk_path %>',
+              simultaneousUploads: 1,
+              chunkSize: 1 * 1024 * 1024,
+              headers: {
+                  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+              },
+              query: {
+                  'file_type': '',
+                  'language': '',
+                  'archive_item_id': '<%= @archive_item.id %>'
+              }
+          });
+
+          function validateForm() {
+              var valid = 3;
+              var validated = 0;
+
+              if ($("#archive_file_file_type option:selected").text().trim().length > 0) {
+                  validated += 1;
+              }
+              if ($("#archive_file_language_id option:selected").text().trim().length > 0) {
+                  validated += 1;
+              }
+              if (selectedFile != null) {
+                  validated += 1;
+              }
+
+              if (valid === validated) {
+                  $('#upload').removeClass('disabled').attr('disabled', null);
+              } else {
+                  $('#upload').addClass('disabled').attr('disabled', 'disabled');
+              }
           }
-      });
 
-      resumable.assignBrowse($('#browse-button'));
-      resumable.assignDrop($('#drop-target'));
+          $('#archive_file_file_type').change(function() {
+              validateForm();
+          });
 
-      $('#upload').click(function (e) {
-          e.preventDefault();
-          resumable.opts.query.file_type = $('#archive_file_file_type').find(":selected").val();
-          resumable.opts.query.language = $('#archive_file_language_id').find(":selected").val();
-          resumable.upload();
-      });
+          $('#archive_file_language_id').change(function () {
+              validateForm();
+          });
 
-      function updateProgress(progress) {
-          $('#upload-progress')
-              .css('width', progress * 100 + '%')
-              .attr('aria-volumenow', progress * 100);
-      }
+          resumable.assignBrowse($('#browse-button'));
+          resumable.assignDrop($('#drop-target'));
 
-      resumable.on('progress', function () {
-          updateProgress(resumable.progress());
-      });
-      resumable.on('fileAdded', function (file, event) {
-          console.log(file);
-          console.log('file added: ' + file);
-      });
-      resumable.on('fileSuccess', function (file, response) {
-          console.log(response);
-          var jsonResponse = $.parseJSON(response);
-          if (jsonResponse) {
-              var url = JsRoutesRails.admin_archive_item_archive_file_path({
-                  archive_item_id: <%= @archive_item.id %>,
-                  archive_file_id: jsonResponse.id
-              });
-              window.location.href = url.replace(':id', jsonResponse.id);
-          } else {
-              alert('An error occurred when processing the file on server');
+          $('#upload').click(function (e) {
+              e.preventDefault();
+              $('#form-elements').hide('fade');
+              resumable.opts.query.file_type = $('#archive_file_file_type').find(":selected").val();
+              resumable.opts.query.language = $('#archive_file_language_id').find(":selected").val();
+              resumable.upload();
+          });
+
+          function updateProgress(progress) {
+              $('#upload-progress')
+                  .css('width', progress * 100 + '%')
+                  .attr('aria-volumenow', progress * 100);
           }
-      });
-      resumable.on('fileError', function (file, message) {
-          alert(message);
+
+          resumable.on('progress', function () {
+              updateProgress(resumable.progress());
+          });
+
+          $('#remove-button').on('click', function (e) {
+              selectedFile = null;
+              resumable.removeFile(selectedFile);
+              $('#browse-button').attr('disabled', null).removeClass('disabled');
+              $('#remove-button').addClass('d-none');
+              $('#drop-target').removeClass('disabled');
+              $('#file-info').text('');
+              validateForm();
+          });
+
+          resumable.on('fileAdded', function (file, event) {
+              selectedFile = file;
+              $('#browse-button').attr('disabled', 'disabled').addClass('disabled');
+              $('#remove-button').removeClass('d-none');
+              $('#drop-target').addClass('disabled');
+              $('#file-info').text(file.fileName);
+              validateForm();
+          });
+
+          resumable.on('fileSuccess', function (file, response) {
+              console.log(response);
+              var jsonResponse = $.parseJSON(response);
+              if (jsonResponse) {
+                  var url = JsRoutesRails.admin_archive_item_archive_file_path({
+                      archive_item_id: <%= @archive_item.id %>,
+                      archive_file_id: jsonResponse.id
+                  });
+                  window.location.href = url.replace(':id', jsonResponse.id);
+              } else {
+                  alert('An error occurred when processing the file on server');
+              }
+          });
+
+          resumable.on('fileError', function (file, message) {
+              alert(message);
+          });
       });
   </script>
 <% end %>

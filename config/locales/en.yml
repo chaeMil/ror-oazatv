@@ -43,6 +43,8 @@ en:
       convert: "Convert"
       submit: "Submit"
       save: "Save"
+      browse: "Browse"
+      remove: "Remove"
     label:
       archive: "Archive"
       type: "Type"
@@ -88,6 +90,7 @@ en:
       preachers: "Preachers"
       name: "Name"
       live_stream: "Live Stream"
+      drop_file_here: "Drop file here"
     menu:
       video_convert_profiles: "Video convert profiles"
       video_conversion_queue: "Video conversion queue"

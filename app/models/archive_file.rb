@@ -11,6 +11,7 @@
 #  archive_item_id           :integer
 #  language_id               :integer
 #  used_as_conversion_source :boolean
+#  sync                      :float
 #
 # Indexes
 #

@@ -1,3 +1,19 @@
-<%= @archive_item.title %>
+<div class="row toolbar" style="padding-right: 15px;">
+  <div class="col">
+    <h3><%= @archive_item.title %></h3>
+  </div>
+  <div class="col-5 text-right">
+    <buton class="btn btn-secondary"
+           onclick="javascript:history.back();">
+      <%= t('admin.action.back') %>
+    </buton>
+  </div>
+</div>
 
-<%= render 'form' %>
+<div class="container archive-file-new">
+  <div class="row">
+    <div class="col-12">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

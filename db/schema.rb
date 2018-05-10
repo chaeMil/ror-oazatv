@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426083855) do
+ActiveRecord::Schema.define(version: 20180510104243) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20180426083855) do
     t.integer "archive_item_id"
     t.integer "language_id"
     t.boolean "used_as_conversion_source"
+    t.float "sync"
     t.index ["archive_item_id"], name: "index_archive_files_on_archive_item_id"
     t.index ["language_id"], name: "index_archive_files_on_language_id"
   end
