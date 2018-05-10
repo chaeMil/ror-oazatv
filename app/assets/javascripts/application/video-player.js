@@ -57,7 +57,7 @@ $(document).on('turbolinks:load', function () {
     const player = new Plyr('#plyr-player', {controls});
     let audio = $('#audio').get(0);
     let audioLang = '';
-    let videoLang = '';
+    let captionsLang = '';
 
     $('#play-overlay').on('click', function (e) {
         e.stopPropagation();
@@ -79,7 +79,7 @@ $(document).on('turbolinks:load', function () {
         let locale = $(this).attr('srclang');
         let title = $(this).attr('label');
         let elementClass = '';
-        if (videoLang == locale) {
+        if (captionsLang == locale) {
             elementClass = 'active';
         }
         captionsHtml += `<div class="${elementClass}" data-locale="${locale}">${title}</div>`;
@@ -109,7 +109,16 @@ $(document).on('turbolinks:load', function () {
         content: captionsHtml + audioSourcesHtml
     });
 
+    function doubleToFloat(d) {
+        if (Float32Array)
+            return new Float32Array([d])[0];
+    }
+
     function syncAudioWithVideo() {
+        var audioSourceFileSyncFix = $('audio source[srclang="' + audioLang + '"]').attr('sync');
+        if (audioSourceFileSyncFix == null) {
+            audioSourceFileSyncFix = 0;
+        }
         var syncFix = 0;
         switch (bowser.name.toLowerCase()) {
             case 'safari':
@@ -121,13 +130,12 @@ $(document).on('turbolinks:load', function () {
             default:
                 syncFix = 0.25;
         }
-
         var difference = Math.abs(player.currentTime - audio.currentTime + syncFix);
         console.log('difference', difference);
         audio.muted = false;
         if (difference > syncFix) {
             console.warn('syncAudioWithVideo', 'difference bigger than 0.1 (' + difference + '), syncing');
-            audio.currentTime = player.currentTime + syncFix;
+            audio.currentTime = player.currentTime + syncFix + doubleToFloat(audioSourceFileSyncFix);
         }
     }
 
@@ -141,7 +149,7 @@ $(document).on('turbolinks:load', function () {
     player.on('play', function (e) {
         audio.play();
         syncAudioWithVideo();
-        videoLang = player.language;
+        audioLang = player.language;
     });
 
     player.on('pause', function (e) {

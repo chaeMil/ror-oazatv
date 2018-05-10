@@ -10,6 +10,7 @@
           <audio id="audio">
             <% @video.get_audio_sources(nil).each do |source| %>
               <source src="<%= source.file.url %>"
+                      sync="<%= source.sync %>"
                       srclang="<%= source.language.locale %>"
                       label="<%= source.language.title %>"
                       type="audio/mp3"/>
