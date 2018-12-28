@@ -45,7 +45,7 @@
     <orderEntry type="library" scope="PROVIDED" name="bootstrap4-kaminari-views (v1.0.0, RVM: ruby-2.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.3, RVM: ruby-2.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bullet (v5.7.5, RVM: ruby-2.4.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.16.1, RVM: ruby-2.4.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.16.6, RVM: ruby-2.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="byebug (v9.1.0, RVM: ruby-2.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capybara (v2.17.0, RVM: ruby-2.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="carrierwave (v1.2.2, RVM: ruby-2.4.2) [gem]" level="application" />

@@ -4,6 +4,7 @@ class VideoController < ApplicationController
   def watch
     if @video.published
       count_view
+      @similar_videos = similar_videos
     else
       raise ActionController::RoutingError.new('This video is not available')
       #TODO do something nicer
@@ -21,6 +22,11 @@ class VideoController < ApplicationController
       video_watch.save
       cookies[cookie_name] = {value: 'watched', expires: Time.now + 1 * 60 * 60} #count view againd after one hour
     end
+  end
+
+  def similar_videos
+    tags_array = @video.tags.split(",").map(&:strip)
+    #p ArchiveItem.where('tags iLIKE ANY ( array[?] )', tags_array)
   end
 
   def set_archive_item
