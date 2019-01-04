@@ -28,6 +28,19 @@ def rand_in_range(from, to)
   rand * (to - from) + from
 end
 
+Language.create(
+    locale: 'cs',
+    title: 'česky'
+)
+Language.create(
+    locale: 'en',
+    title: 'English'
+)
+Language.create(
+    locale: 'ru',
+    title: 'русский'
+)
+
 archive_items_count.times do |i|
   archive_item = ArchiveItem.create(
       published: rand(2) == 1,
