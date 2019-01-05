@@ -16,7 +16,6 @@ class Api::V1::VideosController < ApplicationController
   # GET /videos/:id
   def show
     hash_id = params[:id] || nil
-    p params
     @video = ArchiveItem.where(published: true)
                  .includes(:archive_files, :translations)
                  .select(:hash_id, :date, :tags, :created_at, :updated_at, :views, :title, :description)
