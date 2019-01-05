@@ -1,4 +1,4 @@
-class Api::V1::VideosController < ApplicationController
+class Api::V3::VideosController < ApplicationController
 
   #GET /videos
   def index

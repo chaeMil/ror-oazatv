@@ -1,4 +1,4 @@
-class Api::V1::LiveStreamController < ApplicationController
+class Api::V3::LiveStreamController < ApplicationController
 
   require 'moneta'
   before_action :setup_moneta

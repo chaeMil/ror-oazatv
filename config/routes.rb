@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    namespace :v1 do
+    namespace :v3 do
       resources :videos, only: [:index, :show]
       resources :categories, only: [:index, :show]
       resources :preachers, only: [:index, :show]

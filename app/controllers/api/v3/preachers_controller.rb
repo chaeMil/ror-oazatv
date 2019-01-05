@@ -1,4 +1,4 @@
-class Api::V1::PreachersController < ApplicationController
+class Api::V3::PreachersController < ApplicationController
 
   #GET /preachers
   def index
