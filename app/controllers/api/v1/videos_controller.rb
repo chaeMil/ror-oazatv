@@ -10,7 +10,7 @@ class Api::V1::VideosController < ApplicationController
                   .order(date: :desc)
                   .where(published: true)
                   .page(page).per(15)
-    render json: @videos.to_json(include: [:archive_files, :translations], except: [:id, :note, :published])
+    render json: @videos.to_json(include: [:archive_files, :translations], except: [:note, :published])
   end
 
   # GET /videos/:id
@@ -23,7 +23,7 @@ class Api::V1::VideosController < ApplicationController
                  .where(hash_id: hash_id)
                  .first
     if @video != nil
-      render json: @video.to_json(include: [:archive_files, :translations], except: [:id, :note, :published])
+      render json: @video.to_json(include: [:archive_files, :translations], except: [:note, :published])
     else
       render json: {
           error: "No such video; check the hash id",
