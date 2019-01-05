@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :admins
   get 'home/index'
   root 'home#index'
 
@@ -9,7 +8,7 @@ Rails.application.routes.draw do
   get 'archive/category/:category', to: 'archive#category', as: 'category'
   get 'live-stream', to: 'live_stream#view', as: 'live_stream'
 
-  devise_for :users
+  devise_for :admins
 
   namespace :admin do
     get '/', to: 'dashboard#index'
