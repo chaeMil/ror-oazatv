@@ -38,6 +38,7 @@ class Admin::PreachersController < Admin::AdminController
   end
 
   def preacher_params
-    params.require(:preacher).permit(:title, :tags, :description, :image)
+    permitted = Preacher.globalize_attribute_names + [:description]
+    params.require(:preacher).permit(*permitted)
   end
 end

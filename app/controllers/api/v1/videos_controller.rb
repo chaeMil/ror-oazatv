@@ -9,7 +9,8 @@ class Api::V1::VideosController < ApplicationController
                   .select(:hash_id, :date, :tags, :created_at, :updated_at, :views, :title, :description)
                   .order(date: :desc)
                   .where(published: true)
-                  .page(page).per(15)
+                  .page(page)
+                  .per(15)
     render json: @videos.to_json(include: [:archive_files, :translations], except: [:note, :published])
   end
 

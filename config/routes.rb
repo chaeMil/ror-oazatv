@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :videos, only: [:index, :show]
       resources :categories, only: [:index, :show]
+      resources :preachers, only: [:index, :show]
     end
   end
 

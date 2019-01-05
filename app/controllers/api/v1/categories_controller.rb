@@ -5,14 +5,14 @@ class Api::V1::CategoriesController < ApplicationController
     page = params[:page] || 1
     @page = page
     @categories = Category.includes(:translations)
-                      .page(page).per(15)
+                      .page(page)
+                      .per(15)
     render json: @categories.to_json(include: [:translations])
   end
 
   # GET /categories/:id
   def show
     @category = Category.includes(:translations)
-                    .select(:hash_id, :date, :tags, :created_at, :updated_at, :views, :title, :description)
                     .where(id: params[:id])
                     .first
     if @category != nil
