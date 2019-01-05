@@ -1,6 +1,6 @@
 class Api::V3::VideosController < ApplicationController
 
-  #GET /videos
+  # GET /videos
   def index
     page = params[:page] || 1
     @page = page
@@ -30,5 +30,14 @@ class Api::V3::VideosController < ApplicationController
           status: 404
       }, status: 404
     end
+  end
+
+  # GET /videos/popular
+  def popular
+    popular_video_ids = VideoWatch.popular_video_ids
+    @popular_videos = ArchiveItem.where(published: true)
+                          .where(hash_id: popular_video_ids.keys)
+                          .order('views desc')
+    render json: @popular_videos.to_json(include: [:archive_files, :translations], except: [:note, :published])
   end
 end
