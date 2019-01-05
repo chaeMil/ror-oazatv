@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20181228103133) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "archive_item_id"
-    t.integer "language_id"
     t.boolean "used_as_conversion_source"
     t.float "sync"
+    t.integer "language_id"
     t.index ["archive_item_id"], name: "index_archive_files_on_archive_item_id"
     t.index ["language_id"], name: "index_archive_files_on_language_id"
   end
