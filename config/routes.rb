@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       resources :videos, only: [:index, :show]
       resources :categories, only: [:index, :show]
       resources :preachers, only: [:index, :show]
+      get '/live-stream', to: 'live_stream#show'
     end
   end
 
