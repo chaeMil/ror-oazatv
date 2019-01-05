@@ -37,4 +37,11 @@ Rails.application.routes.draw do
     post '/livestream', to: 'live_stream#save'
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :videos, only: [:index, :show] do
+      end
+    end
+  end
+
 end
