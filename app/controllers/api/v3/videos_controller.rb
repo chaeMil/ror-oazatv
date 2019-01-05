@@ -4,7 +4,6 @@ class Api::V3::VideosController < ApplicationController
   def index
     page = params[:page] || 1
     @page = page
-    @languages = Language.all
     @videos = ArchiveItem
                   .includes(:archive_files, :translations, archive_files: [:language])
                   .select(:hash_id, :date, :tags, :created_at, :updated_at, :views, :title, :description)
@@ -12,15 +11,6 @@ class Api::V3::VideosController < ApplicationController
                   .where(published: true)
                   .page(page)
                   .per(15)
-    @videos.each do |video|
-      video.archive_files.each do |archive_file|
-        @languages.each do |language|
-          if language.id == archive_file.id
-            archive_file.language = language
-          end
-        end
-      end
-    end
     render json: @videos.to_json(:include => {:translations => {}, :archive_files => {:include => :language}},
                                  except: [:note, :published])
   end

@@ -69,7 +69,7 @@ archive_items_count.times do |i|
     archive_file = ArchiveFile.create(
         file: file,
         file_type: 3, #just images for now
-        language_id: rand_int(1, 2)
+        language_id: rand_int(1, 3)
     )
 
     archive_file.archive_item_id = archive_item.id
