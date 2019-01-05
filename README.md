@@ -4,6 +4,8 @@
 `redis-server /usr/local/etc/redis.conf`
 `bundle exec sidekiq -C config/sidekiq.yml `
 `rails server`
+or run 
+`foreman start`
 
 ## Ruby version
 2.4.2
