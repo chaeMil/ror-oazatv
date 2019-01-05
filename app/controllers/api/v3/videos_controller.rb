@@ -34,7 +34,8 @@ class Api::V3::VideosController < ApplicationController
                  .where(hash_id: hash_id)
                  .first
     if @video != nil
-      render json: @video.to_json(include: [:archive_files, :translations], except: [:note, :published])
+      render json: @video.to_json(:include => {:translations => {}, :archive_files => {:include => :language}},
+                                  except: [:note, :published])
     else
       render json: {
           error: "No such video; check the hash id",
@@ -49,6 +50,7 @@ class Api::V3::VideosController < ApplicationController
     @popular_videos = ArchiveItem.where(published: true)
                           .where(hash_id: popular_video_ids.keys)
                           .order('views desc')
-    render json: @popular_videos.to_json(include: [:archive_files, :translations], except: [:note, :published])
+    render json: @popular_videos.to_json(:include => {:translations => {}, :archive_files => {:include => :language}},
+                                         except: [:note, :published])
   end
 end
