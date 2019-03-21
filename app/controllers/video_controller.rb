@@ -20,7 +20,8 @@ class VideoController < ApplicationController
       @video.save
       video_watch = VideoWatch.new(video_hash_id: @video.hash_id)
       video_watch.save
-      cookies[cookie_name] = {value: 'watched', expires: Time.now + 1 * 60 * 60} #count view againd after one hour
+      cookies[cookie_name] = {value: 'watched', expires: Time.now + 1 * 60 * 60}
+      #count view again after one hour
     end
   end
 
