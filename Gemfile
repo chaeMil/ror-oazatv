@@ -61,6 +61,7 @@ gem 'select2-rails'
 gem 'select2_simple_form', github: 'lndl/select2_simple_form', tag: '0.7.3'
 gem 'jquery-minicolors-rails'
 gem 'toastr-rails'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
