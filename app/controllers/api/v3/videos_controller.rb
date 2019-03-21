@@ -10,8 +10,17 @@ class Api::V3::VideosController < ApplicationController
                   .where(published: true)
                   .page(@page)
                   .per(15)
-    render json: @videos.to_json(:include => {:translations => {}, :archive_files => {:include => :language}},
-                                 except: [:note, :published])
+
+    @count = ArchiveItem
+                 .order(date: :desc)
+                 .where(published: true)
+                 .count()
+
+    render json: {
+        "count": @count,
+        "videos": @videos.as_json(:include => {:translations => {}, :archive_files => {:include => :language}},
+                                  except: [:note, :published])
+        }
   end
 
   # GET /videos/:id
