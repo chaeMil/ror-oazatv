@@ -37,4 +37,16 @@ Rails.application.routes.draw do
     post '/livestream', to: 'live_stream#save'
   end
 
+  namespace :api do
+    namespace :v3 do
+      resources :videos, only: [:index, :show]
+      resources :categories, only: [:index, :show]
+      resources :preachers, only: [:index, :show]
+      resources :languages, only: [:index, :show]
+      get '/categories/:id/videos', to: 'categories#videos_in_category'
+      get '/live-stream', to: 'live_stream#show'
+      get '/popular-videos', to: 'videos#popular'
+    end
+  end
+
 end

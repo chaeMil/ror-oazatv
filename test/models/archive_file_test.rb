@@ -8,9 +8,9 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  archive_item_id           :integer
-#  language_id               :integer
 #  used_as_conversion_source :boolean
 #  sync                      :float
+#  language_id               :integer
 #
 # Indexes
 #
