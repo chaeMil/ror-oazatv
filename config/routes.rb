@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  get 'home/index'
-  root 'home#index'
+  #get 'home/index'
+  #root 'home#index'
 
-  get 'video/watch/:hash_id', to: 'video#watch', as: 'video_watch'
-  get 'archive/(page/:page)', to: 'archive#index', as: 'archive_page'
-  get 'search/(?q=:query)', to: 'search#index', as: 'search'
-  get 'archive/category/:category', to: 'archive#category', as: 'category'
-  get 'live-stream', to: 'live_stream#view', as: 'live_stream'
+  #get 'video/watch/:hash_id', to: 'video#watch', as: 'video_watch'
+  #get 'archive/(page/:page)', to: 'archive#index', as: 'archive_page'
+  #get 'search/(?q=:query)', to: 'search#index', as: 'search'
+  #get 'archive/category/:category', to: 'archive#category', as: 'category'
+  #get 'live-stream', to: 'live_stream#view', as: 'live_stream'
 
   devise_for :admins
 
