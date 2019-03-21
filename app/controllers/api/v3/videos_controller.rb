@@ -2,14 +2,13 @@ class Api::V3::VideosController < ApplicationController
 
   # GET /videos
   def index
-    page = params[:page] || 1
-    @page = page
+    @page = params[:page] || 1
     @videos = ArchiveItem
                   .includes(:archive_files, :translations, archive_files: [:language])
                   .select(:hash_id, :date, :tags, :created_at, :updated_at, :views, :title, :description)
                   .order(date: :desc)
                   .where(published: true)
-                  .page(page)
+                  .page(@page)
                   .per(15)
     render json: @videos.to_json(:include => {:translations => {}, :archive_files => {:include => :language}},
                                  except: [:note, :published])

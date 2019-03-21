@@ -43,8 +43,9 @@ Rails.application.routes.draw do
       resources :categories, only: [:index, :show]
       resources :preachers, only: [:index, :show]
       resources :languages, only: [:index, :show]
+      get '/categories/:id/videos', to: 'categories#videos_in_category'
       get '/live-stream', to: 'live_stream#show'
-      get 'popular-videos', to: 'videos#popular'
+      get '/popular-videos', to: 'videos#popular'
     end
   end
 
